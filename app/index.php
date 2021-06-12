@@ -49,7 +49,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
         return $response;
     });
    
-    $group->get('/loguin/{usuario}/{contraseña}',\UsuariosController::class.':retornarUsuario');
+    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
    
    //La ñ no funciona
    /*$group->get('/loguin/{usuario}/{contrasea}',function(Request $request, Response $response, array $args) { 
