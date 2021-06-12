@@ -38,6 +38,10 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
+    $group->get('/loguin',function(Request $request, Response $response, array $args) { 
+        $response->getBody()->write("Hello");
+        return $response;
+    });
     $group->get('/loguin/{usuario}/{contraseña}', \UsuariosController::class.':retornarUsuario');
 });
 
