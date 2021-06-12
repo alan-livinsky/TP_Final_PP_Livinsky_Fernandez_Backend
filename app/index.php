@@ -35,9 +35,12 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     return $response;
 });
 
+
+
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \UsuariosController::class . ':RetornarUsuario' );
+    $group->get('/loguin/{usuario}/{contraseña}', \UsuariosController::class.':retornarUsuario');
 });
+
 
 $app->get('[/]',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Hello");

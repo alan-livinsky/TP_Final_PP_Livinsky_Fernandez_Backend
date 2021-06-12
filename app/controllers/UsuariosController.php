@@ -2,6 +2,7 @@
 
 class UsuarioController{
 
+    /*
     public function RetornarUsuario($request,$response,$args){
 
         $usr=new Usuarios();
@@ -15,10 +16,16 @@ class UsuarioController{
         return $response;
     }
 
+
     public function RetornarTodos($request,$response,$args){
         $array=Usuarios::obtenerUsuarios();
         $response->getBody()->write(json_encode($array));
         return $response;
+    }*/
+
+    public function retornarUsuario($request,$response,$args){
+        $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contraseña']);
+        $response->getBody()->write(json_encode($usuario));
     }
 
 }
