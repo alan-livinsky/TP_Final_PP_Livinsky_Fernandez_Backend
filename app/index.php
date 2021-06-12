@@ -11,12 +11,18 @@ use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
 
-require __DIR__ . '/../vendor/autoload.php';
-/*
-require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
+
+
+require __DIR__ .'/../vendor/autoload.php';
+require __DIR__ .'/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/entidades/Usuarios.php';
-require __DIR__ . '/entidades/Cursos.php';*/
+require __DIR__ . '/entidades/Cursos.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable('../');
+$dotenv->load();
 
 // Instantiate App
 $app = AppFactory::create();
@@ -43,10 +49,16 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
         return $response;
     });
    /* $group->get('/loguin/{usuario}/{contraseña}',\UsuariosController::class.':retornarUsuario');*/
-   $group->get('/loguin/{usuario}/{contraseña}',function(Request $request, Response $response, array $args) { 
-        $response->getBody()->write("Hello");
+   //La ñ no funciona
+   $group->get('/loguin/{usuario}/{contrasea}',function(Request $request, Response $response, array $args) { 
+        $response->getBody()->write("Hellogfgf");
         return $response;
     });
+/*
+    $group->get('/loguin/{usuario}/{b}',function(Request $request, Response $response, array $args) { 
+        $response->getBody()->write("ehh");
+        return $response;
+    });*/
 });
 
 

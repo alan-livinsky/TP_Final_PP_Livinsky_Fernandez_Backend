@@ -1,16 +1,9 @@
 <?php
-require_once realpath("../vendor/autoload.php");
-
-
-use Dotenv\Dotenv;
-
-$dotenv = Dotenv::createImmutable('../');
-$dotenv->load();
 
 class Acceso_a_datos{
     private static $obj_BD;
     private $objetoPDO;
-
+    
     private function __construct(){
         $host=$_ENV['DB_HOST'];
         $user=$_ENV['DB_USERNAME'];
