@@ -42,7 +42,11 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
         $response->getBody()->write("Hello");
         return $response;
     });
-    $group->get('/loguin/{usuario}/{contraseña}', \UsuariosController::class.':retornarUsuario');
+   /* $group->get('/loguin/{usuario}/{contraseña}',\UsuariosController::class.':retornarUsuario');*/
+   $group->get('/loguin/{usuario}/{contraseña}',function(Request $request, Response $response, array $args) { 
+        $response->getBody()->write("Hello");
+        return $response;
+    });
 });
 
 
