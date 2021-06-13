@@ -25,8 +25,8 @@ class UsuariosController{
 
     public static function retornarUsuario($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
-        
-        return (json_encode($usuario);
+        $response=json_encode($usuario);
+        return $response;
 
         /*->withHeader('Content-type','application/json')*/
     }
