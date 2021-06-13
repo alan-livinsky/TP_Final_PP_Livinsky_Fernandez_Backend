@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController{
+class UsuariosController{
 
     /*
     public function RetornarUsuario($request,$response,$args){
