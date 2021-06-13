@@ -16,7 +16,7 @@ class Acceso_a_datos{
         try {
             $this->objetoPDO = new PDO($dsn, $user, $password, 
                    array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            $this->objetoPDO->exec("SET CHARACTER SET utf8");
+         
         } catch (PDOException $e) {
             print "Error: " . $e->getMessage();
             die();
@@ -28,6 +28,7 @@ class Acceso_a_datos{
         if(!isset(self::$obj_BD)){
             self::$obj_BD=new Acceso_a_datos();
         }
+        return self::$obj_BD;
     }
 
 

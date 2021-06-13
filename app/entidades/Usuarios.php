@@ -12,9 +12,10 @@
         
         public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email=$email AND 
-                                                    contraseña=$contraseña");
-            $consulta=execute();
+            $email="'".$email."'";
+            $contraseña="'".$contraseña."'";
+            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email=$email AND contraseña=$contraseña");
+            $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
 
