@@ -20,22 +20,23 @@
         }
 
 
-        /*
-        public static function obtenerUsuarios($tabla){
+        
+        public static function obtenerUsuarios(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta('SELECT * FROM'.$tabla);
+            $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
             $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_CLASS,$tabla);
-        }*/
+            return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+        }
 
-        /*
-        public function registrar_usuario($tabla,$email,$contraseña){
+        
+        public function registrar_usuario($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE email=$this->$email AND 
+            $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
+                                                      values (=$this->$email AND 
                                                     contraseña=$this->$contraseña");
             $consulta=execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
-        }*/
+        }
 
 
 
