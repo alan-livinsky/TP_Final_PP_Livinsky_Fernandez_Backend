@@ -56,7 +56,8 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
 
     $group->post('/registrar',function(Request $request,Response $response,array $args){
         $data = $request->getParsedBody();
-        $response->getBody()->write($data);
+        $html = var_export($data, true);
+        $response->getBody()->write($html);
         return $response;
     });
 
