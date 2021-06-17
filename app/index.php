@@ -56,7 +56,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $response=$request->getBody();
     return $response;
     $group->post('/registrar',function(Request $request,Response $response,array $args){
-        $response= $app->$request->getBody();
+        $response= $group->$request->getBody();
         return $response;
     });
 
