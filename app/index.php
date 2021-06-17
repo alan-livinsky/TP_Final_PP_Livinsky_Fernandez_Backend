@@ -57,7 +57,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/registrar',function(Request $request,Response $response,array $args){
         $json = $request->getBody();
         $data = json_decode($json, true);
-        $response->getBody()->write($data);
+        $response->getBody()->write(json_encode($data));
         return $response;
     });
 
