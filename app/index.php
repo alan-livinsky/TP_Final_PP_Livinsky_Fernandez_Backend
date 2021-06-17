@@ -52,9 +52,13 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
    //La ñ no funciona
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
 
-    $group->post('/registrar'.\UsuariosController::class.':retornarEstadoRegistro');
-   
-   
+    /*$group->post('/registrar'.\UsuariosController::class.':retornarEstadoRegistro');*/
+    $response=$request->getBody();
+    return $response;
+    $group->post('/registrar',function($request,$response,$args){
+        $response=$request->getBody();
+        return $response;
+    });
 
     
 });
