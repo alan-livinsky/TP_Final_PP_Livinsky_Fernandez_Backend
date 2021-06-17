@@ -15,7 +15,7 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
 
-    public function retornarEstadoRegistro($request,$response,$args){
+    public static function retornarEstadoRegistro($request,$response,$args){
 
         
         /*$datosRegistro=json_decode($request->getBody(),true);*/
