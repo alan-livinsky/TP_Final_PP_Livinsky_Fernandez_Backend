@@ -55,9 +55,8 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     /*$group->post('/registrar'.\UsuariosController::class.':retornarEstadoRegistro');*/
 
     $group->post('/registrar',function(Request $request,Response $response,array $args){
-        $data = $request->getParsedBody();
-        $html = var_export($data, true);
-        $response->getBody()->write($html);
+
+        $response=$request;
         return $response;
     });
 
