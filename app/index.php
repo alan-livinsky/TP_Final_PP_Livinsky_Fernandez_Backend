@@ -53,7 +53,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
 
     $group->post('/registrar/{id_usuario}/{email}/{contraseña}/{nombre}/{apellido}/{tipo_usuario}/'
-                .\UsuariosController::class.':retornarEstadoRegistro');
+                ,\UsuariosController::class.':retornarEstadoRegistro');
 
     /*
     $group->post('/registrar',function(Request $request,Response $response,array $args){
