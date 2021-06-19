@@ -22,8 +22,8 @@ class UsuariosController{
         return $response;*/
 
         $usuario=new Usuarios();
-        $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data[0]['email'],$data[0]['contraseña']
-                                                    ,$data[0]['nombre'],$data[0]['apellido'],$data[0]['tipo_usuario']);
+        $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data['email'],$data['contraseña']
+                                                    ,$data['nombre'],$data['apellido'],$data['tipo_usuario']);
         $response->getBody()->write($estadoRegistro);                                    
         return $response;
     }
