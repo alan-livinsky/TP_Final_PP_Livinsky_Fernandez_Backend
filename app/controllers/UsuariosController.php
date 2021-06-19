@@ -16,6 +16,7 @@ class UsuariosController{
 
     public static function retornarEstadoRegistro($request,$response,$args){
         $json = $request->getBody();
+        $data = json_decode($json,true);
         /*$data = json_decode($json, true);
         $response->getBody()->write(json_encode($data));
         return $response;*/
