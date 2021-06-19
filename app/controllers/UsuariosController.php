@@ -22,7 +22,7 @@ class UsuariosController{
         return $response;*/
 
         $usuario=new Usuarios();
-        $estadoRegistro=$usuario->registrar_usuario($data[0]['id_usuario'],$data[0]['email'],$data[0]['contraseña']
+        $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data[0]['email'],$data[0]['contraseña']
                                                     ,$data[0]['nombre'],$data[0]['apellido'],$data[0]['tipo_usuario']);
         $response->getBody()->write($estadoRegistro);                                    
         return $response;
