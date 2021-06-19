@@ -2,32 +2,25 @@
 
 class UsuariosController{
 
-    
-    public function retornarListaUsuarips($request,$response,$args){
-        $array=Usuarios::obtenerUsuarios();
-        $response->getBody()->write(json_encode($array));
-        return $response;
-    }
-
     public static function retornarUsuario($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         $response->getBody()->write(json_encode($usuario));
         return $response->withHeader('Content-type','application/json');
     }
 
-    public static function retornarEstadoRegistro($request,$response,$args){
-
-        
-        /*$datosRegistro=json_decode($request->getBody(),true);*/
-           /*
-        $array=Usuarios::registrarUsuario();*/
-        /*$response->getBody()->write(json_encode($array));*/
-        $response=$request->getBody();
+    public static function retornarListaUsuarios($request,$response,$args){
+        $listaUsuarios=Usuarios::buscar_list_usuarios();
+        $response->getBody()->write(json_encode($listaUsuarios));
         return $response;
     }
 
+    public static function retornarEstadoRegistro($request,$response,$args){
+        $estadoRegistro=Usuarios::registrar_usuario($args['id_usuario'],$args['email'],$args['contraseña'],
+                                            $args['nombre'],$args['apellido'],$args['tipo_usuario']);
+        $response->getBody()->write($estadoRegistro);                                    
+        return $response;
+    }
 
 }
-
 
 ?>

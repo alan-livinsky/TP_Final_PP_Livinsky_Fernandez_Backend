@@ -46,20 +46,21 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
 
     $group->get('/loguin',function(Request $request, Response $response, array $args) { 
-        $response->getBody()->write("Hello");
+        $response->getBody()->write("Bienvenido a SAE-SH");
         return $response;
     });
    //La ñ no funciona
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
 
-    /*$group->post('/registrar'.\UsuariosController::class.':retornarEstadoRegistro');*/
+    $group->post('/registrar'.\UsuariosController::class.':retornarEstadoRegistro');
 
+    /*
     $group->post('/registrar',function(Request $request,Response $response,array $args){
         $json = $request->getBody();
         $data = json_decode($json, true);
         $response->getBody()->write(json_encode($data));
         return $response;
-    });
+    });*/
 
     
 });

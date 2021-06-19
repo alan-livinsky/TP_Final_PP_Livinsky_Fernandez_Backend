@@ -19,9 +19,7 @@
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
 
-
-        
-        public static function obtenerUsuarios(){
+        public static function buscar_lista_usuarios(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
             $consulta->execute();
@@ -32,25 +30,22 @@
         public function registrar_usuario($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
-                                                      values (=$this->$email AND 
-                                                    contraseña=$this->$contraseña");
-            $consulta=execute();
-            return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+                                                    values 
+                                                    ($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario)");
+            try{
+                $consulta=execute();
+                return "Registro completado";
+            }
+            catch(Exeption $e){
+                echo 'Exception -> ';
+                var_dump($e->getMessage());
+                return "error";
+            }       
         }
 
 
 
     }
 
-    /*
-    class Alumnos extends Usuarios{
-        public $id_alumno;
-        public $id_curso;
-    }
-
-    class Profesores extends Usuarios{
-        public $id_profesor;
-    }
-    */
 
 ?>
