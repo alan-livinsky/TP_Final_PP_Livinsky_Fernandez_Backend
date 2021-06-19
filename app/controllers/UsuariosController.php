@@ -15,6 +15,11 @@ class UsuariosController{
     }
 
     public static function retornarEstadoRegistro($request,$response,$args){
+        $json = $request->getBody();
+        /*$data = json_decode($json, true);
+        $response->getBody()->write(json_encode($data));
+        return $response;*/
+
         $estadoRegistro=Usuarios::registrar_usuario($args['id_usuario'],$args['email'],$args['contraseña'],
                                             $args['nombre'],$args['apellido'],$args['tipo_usuario']);
         $response->getBody()->write($estadoRegistro);                                    
