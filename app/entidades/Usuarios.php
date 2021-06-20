@@ -28,12 +28,12 @@
 
         
         public function registrar_usuario($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario){
-            try{
-                $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-                $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
+            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+            $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
                                                     values 
                                                     ($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario)");
-                $consulta=execute();
+            try{
+                $consulta->execute();
                 return "Registro completado";
             }
             catch(Exeption $e){
