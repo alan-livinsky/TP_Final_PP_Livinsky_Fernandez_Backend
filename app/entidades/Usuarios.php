@@ -28,11 +28,11 @@
 
         
         public function registrar_usuario($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario){
-            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
+            try{
+                $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+                $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
                                                     values 
                                                     ($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario)");
-            try{
                 $consulta=execute();
                 return "Registro completado";
             }
