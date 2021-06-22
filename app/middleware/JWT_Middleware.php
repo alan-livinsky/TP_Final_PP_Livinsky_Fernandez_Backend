@@ -3,7 +3,7 @@
 
 class JWT_Middleware{
 
-    public function __invoke($request,$handler){
+    public function __invoke($request,$handler):ResponseInterface{
         echo json_decode($response);
 
         $response = $handler->handle($request);
