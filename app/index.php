@@ -58,6 +58,7 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
 
     $group->get('/loguin',function(Request $request, Response $response, array $args) { 
         
+        /*
         $header = [
             'typ' => 'JWT',
             'alg' => 'HS256'];
@@ -76,10 +77,10 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
         $signature = base64_encode($signature);
         $JWT=$header.$payload.$signature;
 
-        echo $JWT;
+        echo $JWT;*/
         
     
-        /*
+        
         $privateKey = <<<EOD
         -----BEGIN RSA PRIVATE KEY-----
         MIICXAIBAAKBgQC8kGa1pSjbSYZVebtTRBLxBz5H4i2p/llLCrEeQhta5kaQu/Rn
@@ -107,18 +108,28 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
         -----END PUBLIC KEY-----
         EOD;
 
+        $header = [
+            'typ' => 'JWT',
+            'alg' => 'HS256'];
+        
+       
 
+        $payload = [
+            "nom" => "Alan",
+            "ape" => "Livinsky",];
+
+      
         JWT::$leeway = 240; 
-        $jwt = JWT::encode($payload, $privateKey, 'RS256');
+        $jwt = JWT::encode($header.$payload, $privateKey, 'RS256');
         echo "Encode:\n" . print_r($jwt, true) . "\n";
 
         $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
 
-        /* NOTE: This will now be an object instead of an associative array. To getan associative 
-        array, you will need to cast it as such:
+        /*NOTE: This will now be an object instead of an associative array. To getan associative 
+        array, you will need to cast it as such:*/
 
         $decoded_array = (array) $decoded;
-        echo "Decode:\n" . print_r($decoded_array, true) . "\n";*/
+        echo "Decode:\n" . print_r($decoded_array, true) . "\n";
 
     });
   
