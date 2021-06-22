@@ -1,6 +1,6 @@
 <?php
 
-use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Psr7\Response;
 
 class JWT_Middleware{
 
