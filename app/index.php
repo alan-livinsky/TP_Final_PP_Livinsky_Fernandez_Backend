@@ -12,7 +12,8 @@ use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
 
 require __DIR__ .'/../vendor/autoload.php';
-require __DIR__ .'/acceso_a_datos/Acceso_a_datos.php';
+require __DIR__ .'/middleware/Acceso_a_datos.php';
+require __DIR__ .'/acceso_a_datos/JWT_Middleware.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/entidades/Usuarios.php';
 require __DIR__ . '/entidades/Cursos.php';
