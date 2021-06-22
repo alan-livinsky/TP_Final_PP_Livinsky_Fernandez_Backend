@@ -11,14 +11,13 @@ use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
 
-
-
 require __DIR__ .'/../vendor/autoload.php';
 require __DIR__ .'/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/entidades/Usuarios.php';
 require __DIR__ . '/entidades/Cursos.php';
 
+use Auth0\SDK\Auth0;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable('../');
@@ -33,7 +32,6 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
-
     $response = $response->withHeader('Access-Control-Allow-Origin', '*');
     $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
