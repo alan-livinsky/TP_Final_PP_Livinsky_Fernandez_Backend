@@ -7,10 +7,10 @@ class JWT_Middleware{
     public function __invoke($request,$handler):Response{
 
         $response = $handler->handle($request);
-        $existingContent = $response->getBody();
+       /* $existingContent = $response->getBody();
     
-        $response = new Response();
-        $response->getBody()->write('BEFORE' . $existingContent);
+       /* $response = new Response();
+       /* $response->getBody()->write('BEFORE' . $existingContent);
     
         return $response;
 
