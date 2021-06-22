@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '178d4eb165877c3a96a3bc0070bc7ef8d6e0c763',
+    'reference' => '2c6bdf08b0f308c31b25950c121816c386365372',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '178d4eb165877c3a96a3bc0070bc7ef8d6e0c763',
+      'reference' => '2c6bdf08b0f308c31b25950c121816c386365372',
     ),
     'fig/http-message-util' => 
     array (
@@ -88,6 +88,7 @@
       'provided' => 
       array (
         0 => '1.0',
+        1 => '^1.0',
       ),
     ),
     'psr/http-message' => 
@@ -186,6 +187,33 @@
       array (
       ),
       'reference' => 'eca0bf41ed421bed1b57c4958bab16aa86b757d0',
+    ),
+    'tuupola/callable-handler' => 
+    array (
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0bc7b88630ca753de9aba8f411046856f5ca6f8c',
+    ),
+    'tuupola/http-factory' => 
+    array (
+      'pretty_version' => '1.3.0',
+      'version' => '1.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'aa48841a9f572b9cebe9d3ac5d5d3362a83f57ac',
+    ),
+    'tuupola/slim-jwt-auth' => 
+    array (
+      'pretty_version' => '3.5.1',
+      'version' => '3.5.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1c3668deebbcbdc49c9abe6cce4f6e0c8c5e09b5',
     ),
     'vlucas/phpdotenv' => 
     array (

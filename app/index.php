@@ -14,7 +14,6 @@ use Slim\Routing\RouteContext;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
-require __DIR__ . '/middleware/JWT_Middleware.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/entidades/Usuarios.php';
 require __DIR__ . '/entidades/Cursos.php';
@@ -30,7 +29,7 @@ $app = AppFactory::create();
 // Add error middleware
 $app->addErrorMiddleware(true, true, true);
 
-//CORS
+//CORS middleware
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
@@ -39,6 +38,12 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     return $response;
 });
+
+//JWT Middleware
+
+$app->add(new Tuupola\Middleware\JwtAuthentication([
+    "secret" => $_ENV['JWT_SECRET']
+]));
 
 
 $app->get('[/]',function(Request $request, Response $response, array $args) { 
