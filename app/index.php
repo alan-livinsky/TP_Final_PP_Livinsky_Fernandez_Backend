@@ -79,7 +79,13 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
 
         echo $JWT;*/
         
-        $privateKey = $_ENV['JWT_SECRET'];
+    
+        
+        $privateKey = <<<EOD
+        -----BEGIN RSA PRIVATE KEY-----
+        clave-de-32-caracteres-super-ultra-secreta-para-generar-JWT
+        -----END RSA PRIVATE KEY-----
+        EOD;
 
         $publicKey = <<<EOD
         -----BEGIN PUBLIC KEY-----
