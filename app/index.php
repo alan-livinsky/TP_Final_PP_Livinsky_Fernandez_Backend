@@ -51,18 +51,17 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
 
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
-
-    /*
-    $group->post('/registrar',function(Request $request,Response $response,array $args){
-        $json = $request->getBody();
-        $data = json_decode($json, true);
-        $response->getBody()->write(json_encode($data));
-        return $response;
-    });*/
-
-    
+   
 });
 
+
+$app->group('/Testeo', function (RouteCollectorProxy $group) {
+    $app->get('/auth0',function(Request $request, Response $response, array $args) { 
+        $response->getBody()->write($_ENV['AUTH0_DOMAIN']);
+        return $response;
+    });
+    
+});
 
 $app->get('[/]',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Hello");
