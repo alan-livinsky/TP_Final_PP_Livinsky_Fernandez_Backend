@@ -58,38 +58,28 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
 
     $group->get('/loguin',function(Request $request, Response $response, array $args) { 
         
-        $key = "example_key";
-        $payload = array(
-            "iss" => "http://example.org",
-            "aud" => "http://example.com",
-            "iat" => 1356999524,
-            "nbf" => 1357000000
-        );
-
-        $jwt = JWT::encode($payload, $key);
-        JWT::$leeway = 240;
-        $decoded = JWT::decode($jwt, $key, array('HS256'));
-
-        print_r($decoded);
-
-        /*
-        NOTE: This will now be an object instead of an associative array. To get
-        an associative array, you will need to cast it as such:
-        */
-
-        $decoded_array = (array) $decoded;
-        print_r($decoded_array);
-
-        /**
-         * You can add a leeway to account for when there is a clock skew times between
-         * the signing and verifying servers. It is recommended that this leeway should
-         * not be bigger than a few minutes.
-         * Source: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
-         */
-        JWT::$leeway = 240; // $leeway in seconds
-        $decoded = JWT::decode($jwt, $key, array('HS256'));
-
+        $header = [
+            'typ' => 'JWT',
+            'alg' => 'HS256'];
         
+        $header = json_encode($header); 
+        $header = base64_encode($header);
+
+        $payload = [
+            "nom" => "Alan",
+            "ape" => "Livinsky",];
+
+        $payload = json_encode($payload);		
+        $payload = base64_encode($payload); 
+
+        $signature = hash_hmac('sha256','$header.$payload',$_ENV['JWT_SECRET'],true);
+        $signature = base64_encode($signature);
+        $JWT=$header.$payload.$signature;
+
+        echo $token;
+        
+    
+        /*
         $privateKey = <<<EOD
         -----BEGIN RSA PRIVATE KEY-----
         MIICXAIBAAKBgQC8kGa1pSjbSYZVebtTRBLxBz5H4i2p/llLCrEeQhta5kaQu/Rn
@@ -117,25 +107,18 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
         -----END PUBLIC KEY-----
         EOD;
 
-        $payload = array(
-            "iss" => "example.org",
-            "aud" => "example.com",
-            "iat" => 1356999524,
-            "nbf" => 1357000000
-        );
 
+        JWT::$leeway = 240; 
         $jwt = JWT::encode($payload, $privateKey, 'RS256');
         echo "Encode:\n" . print_r($jwt, true) . "\n";
 
         $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
 
-        /*
-        NOTE: This will now be an object instead of an associative array. To get
-        an associative array, you will need to cast it as such:
-        */
+        /* NOTE: This will now be an object instead of an associative array. To getan associative 
+        array, you will need to cast it as such:
 
         $decoded_array = (array) $decoded;
-        echo "Decode:\n" . print_r($decoded_array, true) . "\n";
+        echo "Decode:\n" . print_r($decoded_array, true) . "\n";*/
 
     });
   
