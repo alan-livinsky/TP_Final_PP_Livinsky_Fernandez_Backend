@@ -120,7 +120,7 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
 
       
         JWT::$leeway = 240; 
-        $jwt = JWT::encode($header.$payload, $privateKey, 'RS256');
+        $jwt = JWT::encode($payload, $privateKey, 'RS256');
         echo "Encode:\n" . print_r($jwt, true) . "\n";
 
         $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
