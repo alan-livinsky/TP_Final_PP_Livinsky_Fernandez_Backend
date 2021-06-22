@@ -76,7 +76,7 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
         $signature = base64_encode($signature);
         $JWT=$header.$payload.$signature;
 
-        echo $token;
+        echo $JWT;
         
     
         /*
