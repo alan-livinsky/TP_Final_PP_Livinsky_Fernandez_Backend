@@ -2,7 +2,7 @@
 
 class UsuariosController{
 
-    public static function retornarUsuario($request,$response,$args){
+    public static function retornarUsuario(Request $request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         $response->getBody()->write(json_encode($usuario));
         return $response->withHeader('Content-type','application/json');
@@ -14,7 +14,7 @@ class UsuariosController{
         return $response;
     }
 
-    public static function retornarEstadoRegistro(Request $request,$response,$args){
+    public static function retornarEstadoRegistro($request,$response,$args){
         $json = $request->getBody();
         $data = json_decode($json,true);
         /*$data = json_decode($json, true);
