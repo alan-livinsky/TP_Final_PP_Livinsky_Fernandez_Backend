@@ -53,8 +53,7 @@ $app->get('[/]',function(Request $request, Response $response, array $args) {
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
    //La ñ no funciona
-    $group->get('/loguin/{usuario}/{contrasea}',
-    \UsuariosController::class.':retornarUsuario')->add(new JWT_Middleware());
+    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
 });
 
