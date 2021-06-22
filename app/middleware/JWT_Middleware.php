@@ -1,15 +1,15 @@
 <?php
 
-
+use Psr\Http\Message\ResponseInterface as Response;
 
 class JWT_Middleware{
 
-    public function __invoke($request,$handler):ResponseInterface{
+    public function __invoke($request,$handler):Response{
 
         $response = $handler->handle($request);
         $existingContent = (string) $response->getBody();
     
-        $response = new ResponseInterface();
+        $response = new Response();
         $response->getBody()->write('BEFORE' . $existingContent);
     
         return $response;
