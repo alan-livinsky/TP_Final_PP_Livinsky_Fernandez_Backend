@@ -56,7 +56,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
 
 
 $app->group('/Testeo', function (RouteCollectorProxy $group) {
-    $app->get('/auth0',function(Request $request, Response $response, array $args) { 
+    $group->get('/auth0',function(Request $request, Response $response, array $args) { 
         $response->getBody()->write($_ENV['AUTH0_DOMAIN']);
         return $response;
     });
