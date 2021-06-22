@@ -1,6 +1,5 @@
 <?php
 
-use Slim\Psr7\Response;
 
 class JWT_Middleware{
 
