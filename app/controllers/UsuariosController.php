@@ -19,6 +19,7 @@ class UsuariosController{
             
             $privateKey = $_ENV['JWT_SECRET'];
             
+            
             $payload = array(
                 "nom" => '"'.$usuario->{$nombre}.'"',
                 "ape" => '"'.$usuario->{$apellido}.'"',
