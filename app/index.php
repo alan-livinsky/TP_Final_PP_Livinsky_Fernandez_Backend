@@ -66,12 +66,19 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
-    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario'); 
+    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso'); 
 });
 
 $app->get('/testToken',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("No deveria ver este mensaje");
     return $response;
+});
+
+$app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
+    $group->post('/menu_principal',function(Request $request, Response $response, array $args){
+
+    });
+
 });
 
 

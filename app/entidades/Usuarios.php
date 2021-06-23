@@ -24,7 +24,7 @@
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
-  
+
         public function registrar_usuario($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
@@ -39,6 +39,18 @@
                 var_dump($e->getMessage());
                 return "error";
             }       
+        }
+
+        public static function loguearUsuario($email,$contraseña){
+            $usuario_a_loguear=$this->buscar_usuario($email,$contraseña);
+
+            if($usuario_a_loguear==null){
+                
+            }
+
+
+            
+            
         }
 
         
