@@ -41,7 +41,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 //JWT Middleware
 
-/*
+
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
@@ -52,7 +52,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
-]));*/
+]));
 
 
 $app->get('[/]',function(Request $request, Response $response, array $args) { 
