@@ -49,14 +49,13 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "error" => function ($response, $arguments){
         $data["status"]="error";
         $data["message"]=$arguments["message"];
-
-        //return $response->withAddedHeader('Location', 'https://www.example.com')->withStatus(302);
-        
+     
         return $response
-        
-            ->withAddedHeader('Location', 'https://www.example.com')
+            ->withAddedHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/')
             ->withStatus(302);
-          
+            /*
+            ->withHeader("Content-Type", "application/json")
+            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));*/
     }
 ]));
 
