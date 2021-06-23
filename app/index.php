@@ -30,9 +30,6 @@ $app = AppFactory::create();
 // Add error middleware
 $app->addErrorMiddleware(true, true, true);
 
-
-
-
 //CORS middleware
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
     $response = $handler->handle($request);
@@ -43,7 +40,20 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     return $response;
 });
 
+$app->add(new Tuupola\Middleware\JwtAuthentication([
+    "secure" => false,//Evitar error https
+    "secret" => $_ENV['JWT_SECRET'],
+    "error" => function ($response, $arguments){
+        $data["status"]="error";
+        $data["message"]=$arguments["message"];
 
+        //return $response->withHeader('Location', 'https://www.example.com')->withStatus(302);
+        
+        return $response
+            ->withHeader("Content-Type", "application/json")
+            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    }
+]));
 
 $app->get('[/]',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
