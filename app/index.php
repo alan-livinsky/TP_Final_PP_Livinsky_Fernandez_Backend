@@ -43,7 +43,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
-    "ignore" => ["/Usuarios/registro", "/Usuarios/loguin"],
+    "ignore" => ["/","/Usuarios/registro", "/Usuarios/loguin"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
