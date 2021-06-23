@@ -18,11 +18,11 @@ class UsuariosController{
         else{
             
             $privateKey = $_ENV['JWT_SECRET'];
-        
+            
             $payload = array(
-                "nom" => '"'.$usuario->$nombre.'"',
-                "ape" => '"'.$usuario->$apellido.'"',
-                "tu" => '"'.$usuario->$tipo_usuario.'"'
+                "nom" => '"'.$usuario->{$nombre}.'"',
+                "ape" => '"'.$usuario->{$apellido}.'"',
+                "tu" => '"'.$usuario->{$tipo_usuario}.'"'
             );
        
             JWT::$leeway = 240; 
