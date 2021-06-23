@@ -44,7 +44,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
     "path" => "/", 
-    "ignore" => ["/bienvenido","/Usuarios/registro","/Usuarios/loguin"],
+    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
@@ -59,7 +59,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     }
 ]));
 
-$app->get('/bienvenido',function(Request $request, Response $response, array $args) { 
+$app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
     return $response;
 });
