@@ -67,7 +67,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario'); 
 });
 
-$app->get('[/testToken]',function(Request $request, Response $response, array $args) { 
+$app->get('/testToken',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("No deveria ver este mensaje");
     return $response;
 });
