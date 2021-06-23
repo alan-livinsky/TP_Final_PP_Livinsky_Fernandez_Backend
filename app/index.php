@@ -42,6 +42,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 //JWT Middleware
 
 $app->add(new Tuupola\Middleware\JwtAuthentication([
+    "secure" => false,
     "secret" => $_ENV['JWT_SECRET']
 ]));
 
