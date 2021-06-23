@@ -53,10 +53,10 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         //return $response->withAddedHeader('Location', 'https://www.example.com')->withStatus(302);
         
         return $response
-            ->withHeader("Content-Type", "application/json")
+        
             ->withAddedHeader('Location', 'https://www.example.com')
-            ->withStatus(302)
-            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+            ->withStatus(302);
+          
     }
 ]));
 
