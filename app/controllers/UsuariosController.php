@@ -15,7 +15,7 @@ class UsuariosController{
         
         if($usuario==false){
             $response->getBody()->write(json_encode($usuario));
-            return $response; 
+            return $response->withHeader('Content-type','application/json'); 
         }
         else{
             
@@ -38,7 +38,7 @@ class UsuariosController{
             //Tambien se encripta automaticamente en base64url   
 
             $response->getBody()->write($jwt);
-            return $response;
+            return $response->withHeader('Content-type','application/json');
         }
     }
 
