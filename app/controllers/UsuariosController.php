@@ -1,5 +1,7 @@
 <?php
 
+use Firebase\JWT\JWT;
+
 class UsuariosController{
 
     public static function retornarUsuario($request,$response,$args){
