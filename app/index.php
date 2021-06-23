@@ -48,7 +48,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         $data["status"]="error";
         $data["message"]=$arguments["message"];
 
-        $response = $app->getResponseFactory()->createResponse();
+        //$response = $app->getResponseFactory()->createResponse();
         // echo "User NOT authorized.";
         return $response->withRedirect('https://tp-final-pp-liv-ferz-frontend.herokuapp.com/',301);
         //return $response->withHeader('Location','/')->withStatus(302);
