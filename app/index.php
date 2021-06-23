@@ -8,7 +8,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Slim\Middleware\ErrorMiddleware;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
@@ -28,25 +27,8 @@ $dotenv->load();
 // Instantiate App
 $app = AppFactory::create();
 
-
-class MyErrorHandler extends ErrorHandler
-{
-    protected function logError(string $error): void
-    {
-        echo $error;
-    }
-}
-
-// Instantiate Your Custom Error Handler
-$myErrorHandler = new MyErrorHandler($app->getCallableResolver(), $app->getResponseFactory());
-
-// Add Error Middleware
-$errorMiddleware = $app->addErrorMiddleware(true, true, true);
-$errorMiddleware->setDefaultErrorHandler($myErrorHandler);
-
-
 // Add error middleware
-//$app->addErrorMiddleware(true, true, true);
+$app->addErrorMiddleware(true, true, true);
 
 //CORS middleware
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
