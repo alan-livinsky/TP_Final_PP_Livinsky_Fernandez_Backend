@@ -44,16 +44,18 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
     "path" => "/", 
-    "ignore" => ["/bienvenido","/Usuarios/registro", "/Usuarios/loguin"],
+    "ignore" => ["/bienvenido","/Usuarios/registro","/Usuarios/loguin"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
         $data["message"]=$arguments["message"];
 
-        //return $response->withHeader('Location', 'https://www.example.com')->withStatus(302);
+        //return $response->withAddedHeader('Location', 'https://www.example.com')->withStatus(302);
         
         return $response
             ->withHeader("Content-Type", "application/json")
+            ->withAddedHeader('Location', 'https://www.example.com')
+            ->withStatus(302)
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
 ]));
