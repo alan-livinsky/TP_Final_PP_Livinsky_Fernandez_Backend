@@ -49,7 +49,6 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         $data["status"]="error";
         $data["message"]=$arguments["message"];
 
-        
         //return $response->withHeader('Location', 'https://www.example.com')->withStatus(302);
         
         return $response
@@ -66,6 +65,11 @@ $app->get('[/]',function(Request $request, Response $response, array $args) {
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario'); 
+});
+
+$app->get('[/testToken]',function(Request $request, Response $response, array $args) { 
+    $response->getBody()->write("No deveria ver este mensaje");
+    return $response;
 });
 
 
