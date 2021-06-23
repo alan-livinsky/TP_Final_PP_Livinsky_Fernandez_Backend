@@ -30,15 +30,7 @@ $app = AppFactory::create();
 // Add error middleware
 $app->addErrorMiddleware(true, true, true);
 
-//CORS middleware
-$app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
-    $response = $handler->handle($request);
-    $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
-    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post');
-    $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
-    return $response;
-});
+
 
 //JWT verificacion Middleware
 $app->add(new Tuupola\Middleware\JwtAuthentication([
@@ -61,6 +53,16 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));*/
     }
 ]));
+
+//CORS middleware
+$app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
+    $response = $handler->handle($request);
+    $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
+    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,put,delete,options');
+    $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
+    return $response;
+});
 
 
 
