@@ -43,10 +43,13 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
+    "ignore" => ["/Usuarios/registro", "/Usuarios/loguin"],
+    
     "error" => function ($response, $arguments){
         $data["status"]="error";
         $data["message"]=$arguments["message"];
 
+        
         //return $response->withHeader('Location', 'https://www.example.com')->withStatus(302);
         
         return $response
@@ -61,10 +64,10 @@ $app->get('[/]',function(Request $request, Response $response, array $args) {
 });
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
-   //La ñ no funciona
-    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
+    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario'); 
 });
+
 
 $app->group('/Token', function (RouteCollectorProxy $group) {
     $group->get('/loguin',function(Request $request, Response $response, array $args) { 
