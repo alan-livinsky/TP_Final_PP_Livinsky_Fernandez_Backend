@@ -41,10 +41,18 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 //JWT Middleware
 
+/*
 $app->add(new Tuupola\Middleware\JwtAuthentication([
-    "secure" => false,
-    "secret" => $_ENV['JWT_SECRET']
-]));
+    "secure" => false,//Evitar error https
+    "secret" => $_ENV['JWT_SECRET'],
+    "error" => function ($response, $arguments){
+        $data["status"]="error";
+        $data["message"]=$arguments["message"];
+        return $response
+            ->withHeader("Content-Type", "application/json")
+            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    }
+]));*/
 
 
 $app->get('[/]',function(Request $request, Response $response, array $args) { 
@@ -81,7 +89,7 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
         $JWT=$header.$payload.$signature;
 
         echo $JWT;*/
-        
+        /*
         $privateKey = <<<EOD
         -----BEGIN RSA PRIVATE KEY-----
         MIICXAIBAAKBgQC8kGa1pSjbSYZVebtTRBLxBz5H4i2p/llLCrEeQhta5kaQu/Rn
@@ -107,7 +115,11 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
         0tyazyZ8JXw+KgXTxldMPEL95+qVhgXvwtihXC1c5oGbRlEDvDF6Sa53rcFVsYJ4
         ehde/zUxo6UvS7UrBQIDAQAB
         -----END PUBLIC KEY-----
-        EOD;
+        EOD;*/
+
+
+        $privateKey = $_ENV['JWT_SECRET'];
+        
 
         $payload = array(
             "nom" => "Alan",
@@ -116,13 +128,13 @@ $app->group('/Token', function (RouteCollectorProxy $group) {
        
         JWT::$leeway = 240; 
 
-        $jwt = JWT::encode($payload,$privateKey,'RS256');
+        $jwt = JWT::encode($payload,$privateKey,'HS256');
         //El header se autogenera con el algoritmo y tipo de token
         //Tambien se encripta automaticamente en base64url   
 
         echo "Encode:\n" . print_r($jwt, true) . "\n";
 
-        $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
+        $decoded = JWT::decode($jwt, $publicKey, array('HS256'));
         /*NOTE: This will now be an object instead of an associative array. To getan associative 
         array, you will need to cast it as such:*/
         $decoded_array = (array) $decoded;
