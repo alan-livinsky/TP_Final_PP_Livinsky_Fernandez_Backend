@@ -21,7 +21,7 @@ class UsuariosController{
             
             $privateKey = $_ENV['JWT_SECRET'];
             
-            $nombre='"'.$usuario->{$nombre}.'"';
+            $nombre=$usuario->nombre;
             $apellido='"'.$usuario->{$apellido}.'"';
             $tipo='"'.$usuario->{$tipo_usuario}.'"';
             
