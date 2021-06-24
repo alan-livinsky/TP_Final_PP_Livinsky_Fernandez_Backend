@@ -34,7 +34,7 @@
                 $consulta->execute();
                 return "Registro completado";
             }
-            catch(Exeption $e){
+            catch(PDOExeption $e){
                 echo 'Exception -> ';
                 var_dump($e->getMessage());
                 return "error";
