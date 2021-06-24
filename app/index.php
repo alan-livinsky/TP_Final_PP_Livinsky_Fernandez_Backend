@@ -31,7 +31,7 @@ $dotenv->load();
 $app = AppFactory::create();
 
 // Add error middleware
-$app->addErrorMiddleware(true, true, true);
+//$app->addErrorMiddleware(true, true, true);
 
 
 //Validacion JWT Middleware
@@ -72,13 +72,16 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
-    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso'); 
+    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso');
+    //pasar a post con json 
 });
 
+/*
 $app->get('/testToken',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("No deveria ver este mensaje");
     return $response;
 });
+*/
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');

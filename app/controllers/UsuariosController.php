@@ -52,7 +52,6 @@ class UsuariosController{
         $json = $request->getBody();
         $data = json_decode($json,true);
        
-        //MEJOR FORMA DE ITERAR EL JSON??
         $usuario=new Usuarios();
         $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data['email'],$data['contraseña']
                                                     ,$data['nombre'],$data['apellido'],$data['tipo_usuario']);
