@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '2c6bdf08b0f308c31b25950c121816c386365372',
+    'reference' => '05bb0a9e5de257e000ce2712f905ee80cd444919',
     'name' => '__root__',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '2c6bdf08b0f308c31b25950c121816c386365372',
+      'reference' => '05bb0a9e5de257e000ce2712f905ee80cd444919',
     ),
     'fig/http-message-util' => 
     array (
@@ -72,6 +72,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '7e279d2cd5d7fbb156ce46daada972355cea27bb',
+    ),
+    'neomerx/cors-psr7' => 
+    array (
+      'pretty_version' => 'v1.0.13',
+      'version' => '1.0.13.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2556e2013f16a55532c95928455257d5b6bbc6e2',
     ),
     'nikic/fast-route' => 
     array (
@@ -222,6 +231,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '0bc7b88630ca753de9aba8f411046856f5ca6f8c',
+    ),
+    'tuupola/cors-middleware' => 
+    array (
+      'pretty_version' => '1.2.1',
+      'version' => '1.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4f085d11f349e83d18f1eb5802551353b2b093a3',
     ),
     'tuupola/http-factory' => 
     array (

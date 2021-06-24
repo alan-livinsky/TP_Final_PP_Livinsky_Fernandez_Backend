@@ -36,6 +36,10 @@ class ComposerStaticInit6af79a420864a2d1b1be2c4bd6dc9a06
             'Psr\\Container\\' => 14,
             'PhpOption\\' => 10,
         ),
+        'N' => 
+        array (
+            'Neomerx\\Cors\\' => 13,
+        ),
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
@@ -57,6 +61,7 @@ class ComposerStaticInit6af79a420864a2d1b1be2c4bd6dc9a06
         array (
             0 => __DIR__ . '/..' . '/tuupola/callable-handler/src',
             1 => __DIR__ . '/..' . '/tuupola/slim-jwt-auth/src',
+            2 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
         ),
         'Tuupola\\Http\\Factory\\' => 
         array (
@@ -103,6 +108,10 @@ class ComposerStaticInit6af79a420864a2d1b1be2c4bd6dc9a06
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'Neomerx\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/neomerx/cors-psr7/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (

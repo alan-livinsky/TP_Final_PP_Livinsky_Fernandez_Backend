@@ -26,6 +26,11 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
 $dotenv->load();
 
+
+use Tuupola\Middleware\CorsMiddleware;
+$app->pipe(CorsMiddleware::class);
+$app->add(new Tuupola\Middleware\CorsMiddleware);
+
 // Instantiate App
 $app = AppFactory::create();
 
@@ -54,7 +59,9 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     }
 ]));
 
+
 //CORS Middleware
+/*
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
@@ -62,7 +69,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,put,delete,options');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     return $response;
-});
+});*/
 
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
