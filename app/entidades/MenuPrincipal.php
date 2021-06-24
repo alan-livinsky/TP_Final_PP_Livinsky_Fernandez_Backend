@@ -8,7 +8,7 @@
 
 
         public function getURL(){
-            return $this->url;
+            return self::$url;
         }
 
 
