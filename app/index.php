@@ -31,7 +31,7 @@ $dotenv->load();
 $app = AppFactory::create();
 
 // Add error middleware
-//$app->addErrorMiddleware(true, true, true);
+$app->addErrorMiddleware(true,true,true);
 
 
 //Validacion JWT Middleware
@@ -76,12 +76,6 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     //pasar a post con json 
 });
 
-/*
-$app->get('/testToken',function(Request $request, Response $response, array $args) { 
-    $response->getBody()->write("No deveria ver este mensaje");
-    return $response;
-});
-*/
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
@@ -89,26 +83,6 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
 });
 
 
-$app->group('/Token', function (RouteCollectorProxy $group) {
-    $group->get('/loguin',function(Request $request, Response $response, array $args) { 
-        
-        $privateKey = $_ENV['JWT_SECRET'];
-        
-        $payload = array(
-            "nom" => "Alan",
-            "ape" => "Livinsky"
-        );
-       
-        JWT::$leeway = 240; 
-
-        $jwt = JWT::encode($payload,$privateKey,'HS256');
-        //El header se autogenera con el algoritmo y tipo de token
-        //Tambien se encripta automaticamente en base64url   
-
-        $response=$jwt;
-        return $response;
-    });
-});
 
 
 

@@ -20,13 +20,14 @@ class UsuariosController{
         else{
             
             $privateKey = $_ENV['JWT_SECRET'];
-/*
+            
             $nombre='"'.$usuario->{$nombre}.'"';
             $apellido='"'.$usuario->{$apellido}.'"';
             $tipo='"'.$usuario->{$tipo_usuario}.'"';
-            */
+            
+
             $payload = array(
-                "nom" => "dfdffd",
+                "nom" => $nombre,
                 "ape" => "ssd",
                 "tu" =>"wewe" 
             );
