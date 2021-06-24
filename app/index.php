@@ -33,14 +33,35 @@ $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
 
 //CORS Middleware
+
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
-    $response = $handler->handle($request);
+   /* $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
     $response = $response->withHeader('Access-Control-Allow-Origin', '*');
     $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,put,delete,options');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
-    return $response;
+    return $response;*/
+
+    $response = $app->response;
+
+    $response->headers->set('Content-Type', 'application/json');
+    $response->headers->set('Access-Control-Allow-Origin', 'http://example.com');
+    $response->headers->set('Access-Control-Allow-Credentials', 'true');
+    $response->headers->set('Access-Control-Max-Age', '60');
+    $response->headers->set('Access-Control-Allow-Headers', 'AccountKey,x-requested-with, Content-Type, origin, authorization, accept, client-security-token, host, date, cookie, cookie2');
+    $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+    if ( ! $req->isOptions()) {
+        // this continues the normal flow of the app, and will return the proper body
+        $this->next->call();
+    } else {
+        //stops the app, and sends the response
+        return $response;
+    }
 });
+
+
+
 
 
 //Validacion JWT Middleware
