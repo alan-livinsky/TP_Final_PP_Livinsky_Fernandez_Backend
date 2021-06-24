@@ -44,7 +44,6 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 
 //Validacion JWT Middleware
-/*
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
@@ -55,14 +54,14 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         $data["status"]="error";
         $data["message"]=$arguments["message"];
      
-        return $response
-            ->withAddedHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/')
-            ->withStatus(302);
+        $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/');
+        $response->withStatus(302);
+        return $response;
            
             //->withHeader("Content-Type", "application/json")
             //->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
-]));*/
+]));
 
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
