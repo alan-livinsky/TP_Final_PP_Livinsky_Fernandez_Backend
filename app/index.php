@@ -77,7 +77,7 @@ $app->get('/testToken',function(Request $request, Response $response, array $arg
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
-    $group->post('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
+    $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
 
 });
 
