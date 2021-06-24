@@ -15,8 +15,10 @@ use Slim\Routing\RouteContext;
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
+require __DIR__ . '/controllers/MenuPrincipalController.php';
 require __DIR__ . '/entidades/Usuarios.php';
 require __DIR__ . '/entidades/Cursos.php';
+require __DIR__ . '/entidades/MenuPrincipal.php';
 
 use Firebase\JWT\JWT;
 
@@ -75,9 +77,7 @@ $app->get('/testToken',function(Request $request, Response $response, array $arg
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
-    $group->post('/menu_principal',function(Request $request, Response $response, array $args){
-
-    });
+    $group->post('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
 
 });
 
