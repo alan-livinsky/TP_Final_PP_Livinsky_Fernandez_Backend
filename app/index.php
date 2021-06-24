@@ -32,7 +32,7 @@ $app = AppFactory::create();
 // Add error middleware
 $app->addErrorMiddleware(true, true, true);
 
-//CORS middleware
+//CORS Middleware
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
@@ -42,11 +42,12 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     return $response;
 });
 
+//Validacion JWT Middleware
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
     "path" => "/", 
-    "ignore" => ["/","/Bienvenido","/Usuarios/registro","/Usuarios/loguin"],
+    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
