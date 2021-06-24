@@ -7,7 +7,7 @@
 
 
 
-        public static function getURL(){
+        public function getURL(){
             return $this->url;
         }
 
