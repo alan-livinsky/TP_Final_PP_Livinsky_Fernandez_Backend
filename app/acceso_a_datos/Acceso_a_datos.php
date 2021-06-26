@@ -5,18 +5,22 @@ class Acceso_a_datos{
     private $objetoPDO;
     
     private function __construct(){
-        $host=$_ENV['DB_HOST'];
+        /*$host=$_ENV['DB_HOST'];
         $user=$_ENV['DB_USERNAME'];
         $password=$_ENV['DB_PASSWORD'];
         $dbname=$_ENV['DB_NAME'];
-        $port=$_ENV['DB_PORT'];
+        $port=$_ENV['DB_PORT'];*/
 
-        $dsn = "pgsql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
+        $dsn = "pgsql:host=".$_ENV['DB_HOST'] 
+               .";port=".$_ENV['DB_PORT']
+               .";dbname=".$_ENV['DB_NAME']
+               .";user=".$_ENV['DB_USERNAME']
+               .";password=".$_ENV['DB_PASSWORD']
+               .";";
 
         try {
-            $this->objetoPDO = new PDO($dsn, $user, $password, 
+            $this->objetoPDO = new PDO($dsn,$_ENV['DB_USERNAME'],$_ENV['DB_PASSWORD'], 
                    array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-         
         } catch (PDOException $e) {
             print "Error: " . $e->getMessage();
             die();
