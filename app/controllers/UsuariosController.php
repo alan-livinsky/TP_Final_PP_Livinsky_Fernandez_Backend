@@ -6,8 +6,12 @@ class UsuariosController{
 
     public static function retornarUsuario($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
-        $response->getBody()->write(json_encode($usuario));
-        return $response->withHeader('Content-type','application/json');
+        if ($usuario) {
+            $response->getBody()->write(json_encode($usuario));
+            return $response->withHeader('Content-type','application/json');
+          } else {
+            return $response->withStatus(401);
+          }
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
