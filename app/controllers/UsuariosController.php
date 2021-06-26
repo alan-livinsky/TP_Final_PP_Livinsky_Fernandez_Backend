@@ -17,17 +17,14 @@ class UsuariosController{
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
-        $usuario=self::retornarUsuario($request,$response,$args);
-        //$usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
+        $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
-     
-
-        var_dump($usuario);
         if($usuario==false){
-            //$response->getBody()->write(json_encode($usuario));
-           // return $response->withHeader('Content-type','application/json');
            var_dump($response);
-           return $response->withStatus(401);
+           return $response
+                        ->withStatus(401)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('Something went wrong!');
         }
         else{
             $privateKey = $_ENV['JWT_SECRET'];
