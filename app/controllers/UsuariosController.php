@@ -14,8 +14,8 @@ class UsuariosController{
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
         if($usuario==false){
-            $response->getBody()->write(json_encode($usuario));
-            return $response->withHeader('Content-type','application/json'); 
+            /*$response->getBody()->write(json_encode($usuario));
+            return $response->withHeader('Content-type','application/json'); */
         }
         else{
             $privateKey = $_ENV['JWT_SECRET'];
