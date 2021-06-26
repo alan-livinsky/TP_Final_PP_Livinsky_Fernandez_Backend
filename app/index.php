@@ -77,6 +77,9 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso');
     //pasar a post con json 
+    $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
+
+
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
