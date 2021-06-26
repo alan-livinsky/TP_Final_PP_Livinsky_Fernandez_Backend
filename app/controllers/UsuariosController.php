@@ -22,8 +22,7 @@ class UsuariosController{
            var_dump($response);
            return $response
                         ->withStatus(401)
-                        ->withHeader('Content-Type', 'text/html')
-                        ->write('Something went wrong!');
+                        ->withHeader('Content-Type', 'text/html');
         }
         else{
             $privateKey = $_ENV['JWT_SECRET'];
