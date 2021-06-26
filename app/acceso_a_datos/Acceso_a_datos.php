@@ -5,12 +5,7 @@ class Acceso_a_datos{
     private $objetoPDO;
     
     private function __construct(){
-        /*$host=$_ENV['DB_HOST'];
-        $user=$_ENV['DB_USERNAME'];
-        $password=$_ENV['DB_PASSWORD'];
-        $dbname=$_ENV['DB_NAME'];
-        $port=$_ENV['DB_PORT'];*/
-
+    
         $dsn = "pgsql:host=".$_ENV['DB_HOST'] 
                .";port=".$_ENV['DB_PORT']
                .";dbname=".$_ENV['DB_NAME']
@@ -27,7 +22,6 @@ class Acceso_a_datos{
         }
     }
     
-
     public static function obtenerConexionBD(){
         if(!isset(self::$obj_BD)){
             self::$obj_BD=new Acceso_a_datos();
@@ -35,14 +29,8 @@ class Acceso_a_datos{
         return self::$obj_BD;
     }
 
-
-
     public function prepararConsulta($sql){
         return $this->objetoPDO->prepare($sql);
     }
-
-
-
-   
 
 }

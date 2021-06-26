@@ -15,6 +15,12 @@ class UsuariosController{
         }
     }
 
+    public static function retornarListaUsuarios($request,$response,$args){
+        $listaUsuarios=Usuarios::buscar_list_usuarios();
+        $response->getBody()->write(json_encode($listaUsuarios));
+        return $response;
+    }
+
     public static function retornarTokenAcceso($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
@@ -43,12 +49,6 @@ class UsuariosController{
         }
     }
 
-    public static function retornarListaUsuarios($request,$response,$args){
-        $listaUsuarios=Usuarios::buscar_list_usuarios();
-        $response->getBody()->write(json_encode($listaUsuarios));
-        return $response;
-    }
-
     public static function retornarEstadoRegistro($request,$response,$args){
         $json = $request->getBody();
         $data = json_decode($json,true);
@@ -56,11 +56,10 @@ class UsuariosController{
         $usuario=new Usuarios();
         $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data['email'],$data['contraseña']
                                                     ,$data['nombre'],$data['apellido'],$data['tipo_usuario']);
-        $response->getBody()->write($estadoRegistro);                                    
-        return $response;
-    }
 
-    
+        $response->getBody()->write(Json_encode($estadoRegistro));                                    
+        return $response->withHeader('Content-type','application/json');
+    }
 
 }
 

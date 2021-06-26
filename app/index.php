@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(-1);
-ini_set('display_errors', 1);
+ini_set('display_errors',1);
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -26,16 +26,13 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
 $dotenv->load();
 
-
-// Instantiate App
+//Instantiate App
 $app = AppFactory::create();
 
-// Add error middleware
+//Middleware <<Error - Por defecto de Slim>>
 $app->addErrorMiddleware(true,true,true);
 
-
-//Validacion JWT Middleware
-
+//Middleware <<Validacion JWT - tuupola/slim-jwt-auth>>
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
@@ -48,15 +45,15 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         $data["message"]=$arguments["message"];
      
         return $response
-           // ->withAddedHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com')
-           // ->withStatus(302);
+            /*Por Defecto el middleware retorna 401 pero por algun motivo en el front
+              no comprende el 401 como tal si no lo aclaro con withStatus en la api*/
             ->withStatus(401)
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
 ]));
 
-//CORS Middleware
+//Middleware <<CORS - Por defecto de Slim>>
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
@@ -66,6 +63,8 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     return $response;
 });
 
+
+//<<Rutas>>
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
     return $response;
@@ -78,15 +77,9 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     //pasar a post con json 
 });
 
-
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
-
 });
-
-
-
-
 
 
 $app->run();
