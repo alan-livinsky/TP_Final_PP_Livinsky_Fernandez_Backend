@@ -30,7 +30,9 @@ $dotenv->load();
 $app = AppFactory::create();
 
 //Middleware <<Error - Por defecto de Slim>>
-$app->addErrorMiddleware(true,true,true);
+$errorMiddleware=$app->addErrorMiddleware(true,true,true);
+$errorHandler=$errorMiddleware->getDefaultErrorHandler();
+$errorHandler->forceContentType('application/json');
 
 //Middleware <<Validacion JWT - tuupola/slim-jwt-auth>>
 $app->add(new Tuupola\Middleware\JwtAuthentication([
