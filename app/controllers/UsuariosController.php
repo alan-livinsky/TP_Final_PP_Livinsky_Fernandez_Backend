@@ -6,13 +6,14 @@ class UsuariosController{
 
     public static function retornarUsuario($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
-        if ($usuario) {
+        if ($usuario){
             echo "hola";
             $response->getBody()->write(json_encode($usuario));
             return $response->withHeader('Content-type','application/json');
-          } else {
+        } 
+        else {
             return $response->withStatus(401);
-          }
+        }
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
@@ -25,8 +26,6 @@ class UsuariosController{
         }
         else{
             $privateKey = $_ENV['JWT_SECRET'];
-
-            var_dump($usuario);
 
             $payload = array(
                 "nom" => $usuario[0]->nombre,
