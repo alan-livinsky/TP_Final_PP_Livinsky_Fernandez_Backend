@@ -17,7 +17,7 @@ class UsuariosController{
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
-        $usuario=self::retornarUsuario();
+        $usuario=self::retornarUsuario($request,$response,$args);
         //$usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
      
