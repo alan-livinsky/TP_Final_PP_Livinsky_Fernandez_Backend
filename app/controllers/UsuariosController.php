@@ -19,7 +19,6 @@ class UsuariosController{
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
         if($usuario==false){
-           var_dump($response);
            return $response
                         ->withStatus(401)
                         ->withHeader('Content-Type', 'text/html');
