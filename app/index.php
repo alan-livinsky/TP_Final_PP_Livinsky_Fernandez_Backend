@@ -39,6 +39,7 @@ $app->addErrorMiddleware(true,true,true);
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
+    "algorithm" => ["HS256"],
     "path" => "/", 
     "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin"],
     
@@ -47,11 +48,11 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         $data["message"]=$arguments["message"];
      
         return $response
-            ->withAddedHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/')
-            ->withStatus(302);
+           // ->withAddedHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com')
+           // ->withStatus(302);
            
-            //->withHeader("Content-Type", "application/json")
-            //->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+            ->withHeader("Content-Type", "application/json")
+            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
 ]));
 
