@@ -16,7 +16,7 @@ class UsuariosController{
     }
 
     public static function retornarListaUsuarios($request,$response,$args){
-        $listaUsuarios=Usuarios::buscar_list_usuarios();
+        $listaUsuarios=Usuarios::buscar_lista_usuarios();
         $response->getBody()->write(json_encode($listaUsuarios));
         return $response;
     }
