@@ -19,10 +19,13 @@ class UsuariosController{
     public static function retornarTokenAcceso($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
+     
+
         var_dump($usuario);
         if($usuario==false){
-            $response->getBody()->write(json_encode($usuario));
-            return $response->withHeader('Content-type','application/json');
+            //$response->getBody()->write(json_encode($usuario));
+           // return $response->withHeader('Content-type','application/json');
+           return $response->withStatus(401);
         }
         else{
             $privateKey = $_ENV['JWT_SECRET'];
