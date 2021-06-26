@@ -72,6 +72,7 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
+    $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso');
     //pasar a post con json 
 });
