@@ -30,15 +30,15 @@
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
                                                     values 
                                                     ($id_usuario,'$email','$contraseña','$nombre','$apellido','$tipo_usuario')");
-            //try{
+            try{
                 $consulta->execute();
                 return "Registro completado";
-           // }
-           // catch(PDOExeption $e){
+            }
+            catch(PDOExeption $e){
                 echo 'Exception -> ';
                 var_dump($e->getMessage());
                 return "error";
-           // }       
+            }       
         }
 
         public static function loguearUsuario($email,$contraseña){
@@ -47,10 +47,7 @@
             if($usuario_a_loguear==null){
                 
             }
-
-
-            
-            
+    
         }
 
         
