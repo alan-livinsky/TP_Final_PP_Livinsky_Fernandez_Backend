@@ -17,7 +17,8 @@ class UsuariosController{
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
-        $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
+        $usuario=self::retornarUsuario();
+        //$usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         
      
 
@@ -25,6 +26,7 @@ class UsuariosController{
         if($usuario==false){
             //$response->getBody()->write(json_encode($usuario));
            // return $response->withHeader('Content-type','application/json');
+           var_dump($response);
            return $response->withStatus(401);
         }
         else{
