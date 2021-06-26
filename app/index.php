@@ -50,7 +50,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         return $response
            // ->withAddedHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com')
            // ->withStatus(302);
-           
+            ->withStatus(401)
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
