@@ -6,6 +6,9 @@ class MenuPrincipalController{
       return $response->withStatus(200); 
   }
 
+  public static function mantenerAccesoMenuPrincipal($request,$response,$args){
+    return $response;
+  }
 }
 
 

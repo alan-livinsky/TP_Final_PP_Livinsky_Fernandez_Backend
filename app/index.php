@@ -87,6 +87,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
+    $group->get('/menu_principal/validarToken',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
 });
 
 
