@@ -52,6 +52,11 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
             ->withStatus(401)
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    },
+
+    "after"=> function ($response,$arguments){
+        return $response->withHeader("Usuario","Valido")
+                        ->withStatus(200);
     }
 ]));
 
@@ -78,8 +83,6 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso');
     //pasar a post con json 
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
-
-
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
