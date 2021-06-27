@@ -55,8 +55,8 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     },
 
     "after"=> function ($response,$arguments){
-        return $response->withHeader("Usuario","Valido")
-                        ->withStatus(200);
+       /* return $response->withHeader("Usuario","Valido")
+                        ->withStatus(200);*/
     }
 ]));
 
@@ -87,7 +87,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
-    $group->get('/menu_principal/validarToken',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
+    $group->get('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
 });
 
 
