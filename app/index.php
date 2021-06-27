@@ -16,7 +16,9 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/controllers/MenuPrincipalController.php';
+require __DIR__ . '/controllers/EjerciciosController.php';
 require __DIR__ . '/entidades/Usuarios.php';
+require __DIR__ . '/entidades/Ejercicios.php';
 require __DIR__ . '/entidades/Cursos.php';
 require __DIR__ . '/entidades/MenuPrincipal.php';
 
