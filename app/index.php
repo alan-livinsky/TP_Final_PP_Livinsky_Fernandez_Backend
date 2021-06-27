@@ -86,7 +86,7 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/Ejercicios', function (RouteCollectorProxy $group) {
-    $group->get('/opciones_menu_principal/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
+    $group->get('/opciones_menu_principal/cargar',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
     
 });
 
