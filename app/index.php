@@ -53,11 +53,6 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     },
-
-    "after"=> function ($response,$arguments){
-       /* return $response->withHeader("Usuario","Valido")
-                        ->withStatus(200);*/
-    }
 ]));
 
 //Middleware <<CORS - Por defecto de Slim>>
