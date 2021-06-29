@@ -26,6 +26,8 @@ class UsuariosController{
         $json = $request->getBody();
         $buscar = json_decode($json,true);
 
+        var_dump($buscar);
+
         $usuario=Usuarios::buscar_usuario($buscar['email'],$buscar['contraseña']);
         
         if($usuario==false){
