@@ -12,6 +12,10 @@ use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
@@ -77,9 +81,11 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
-    $group->get('/loguin/{usuario}/{contrasea}',\UsuariosController::class.':retornarTokenAcceso');
+    $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     //pasar a post con json 
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
+
+    $group->post('/recuperar/contraseña',\UsuariosController::class.':retornarRecContraseña');
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
@@ -91,6 +97,10 @@ $app->group('/Ejercicios', function (RouteCollectorProxy $group) {
     $group->get('/opciones_menu_principal/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
     
 });
+
+
+
+
 
 
 

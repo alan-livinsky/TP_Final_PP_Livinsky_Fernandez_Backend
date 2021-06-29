@@ -35,6 +35,7 @@ class ComposerStaticInit6af79a420864a2d1b1be2c4bd6dc9a06
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'PhpOption\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'N' => 
         array (
@@ -60,8 +61,8 @@ class ComposerStaticInit6af79a420864a2d1b1be2c4bd6dc9a06
         'Tuupola\\Middleware\\' => 
         array (
             0 => __DIR__ . '/..' . '/tuupola/callable-handler/src',
-            1 => __DIR__ . '/..' . '/tuupola/slim-jwt-auth/src',
-            2 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
+            1 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
+            2 => __DIR__ . '/..' . '/tuupola/slim-jwt-auth/src',
         ),
         'Tuupola\\Http\\Factory\\' => 
         array (
@@ -108,6 +109,10 @@ class ComposerStaticInit6af79a420864a2d1b1be2c4bd6dc9a06
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Neomerx\\Cors\\' => 
         array (

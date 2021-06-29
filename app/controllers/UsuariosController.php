@@ -22,7 +22,11 @@ class UsuariosController{
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
-        $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
+
+        $json = $request->getBody();
+        $buscar = json_decode($json,true);
+
+        $usuario=Usuarios::buscar_usuario($buscar['email'],$buscar['contraseña']);
         
         if($usuario==false){
            return $response
@@ -60,7 +64,45 @@ class UsuariosController{
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
     }
+    
+    /*
+    public static function retornarRecContraseña($request,$response,$args){
+        $requestParamter = $request->getParsedBody();
+        $email =  $requestParamter['email'];
+        $id = $requestParamter['id'];
+        sendVerificationEmail($email,$id);
+    }
+
+    //Function to send mail, 
+    function sendVerificationEmail($email,$id)
+    {      
+        $mail = new PHPMailer;
+            $mail->SMTPDebug=3;
+            $mail->isSMTP();
+            $mail->Host="smtp.gmail.com";
+            $mail->Port=587;
+            $mail->SMTPSecure="tls";
+            $mail->SMTPAuth=true;
+            $mail->Username="socialcodia@gmail.com";
+            $mail->Password="12345";
+
+            $mail->addAddress($email,"User Name");
+            $mail->Subject="Verify Your Email Address For StackOverFlow";
+            $mail->isHTML();
+            $mail->Body=" Welcome to StackOverFlow.<b><b> Please verify your email adress to continue..";
+            $mail->From="SocialCodia@gmail.com";
+            $mail->FromName="Social Codia";
+
+            if($mail->send())
+            {
+                echo "Email Has Been Sent Your Email Address";
+            }
+            else
+            {
+            echo "Failed To Sent An Email To Your Email Address";
+            }
+    }
+    */
 
 }
-
 ?>
