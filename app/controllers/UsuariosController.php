@@ -24,13 +24,13 @@ class UsuariosController{
     public static function retornarTokenAcceso($request,$response,$args){
 
         $json = $request->getBody();
-        var_dump($json);
+        //var_dump($json);
 
         $buscar = json_decode($json,true);
 
-        var_dump($buscar);
+        //var_dump($buscar);
 
-        var_dump($buscar['email']);
+        //var_dump($buscar['email']);
 
         $usuario=Usuarios::buscar_usuario($buscar['email'],$buscar['contraseña']);
         
