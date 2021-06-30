@@ -70,7 +70,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
     $response = $response->withHeader('Access-Control-Allow-Origin', '*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,put,delete,options');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,PUT,delete,options');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     return $response;
 });
