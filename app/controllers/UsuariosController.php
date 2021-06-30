@@ -39,14 +39,16 @@ class UsuariosController{
                 "nom" => $usuario[0]->nombre,
                 "ape" => $usuario[0]->apellido,
                 "tu" =>$usuario[0]->tipo_usuario,
-                "em" =>$usuario[0]->email
+                "email" =>$usuario[0]->email// INSEGURO
             );
        
             JWT::$leeway = 240; 
 
             $token_creado= JWT::encode($payload,$privateKey,'HS256');
+            
             //El header se autogenera con el algoritmo y tipo de token
-            //Tambien se encripta automaticamente en base64url   
+            //Tambien se encripta automaticamente en base64url  
+            var_dump(json_encode($token_creado));
             $response->getBody()->write(json_encode($token_creado));
             return $response->withHeader('Content-type','application/json');
         }
