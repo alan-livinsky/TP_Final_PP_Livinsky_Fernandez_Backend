@@ -17,9 +17,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/../vendor/autoload.php';
-use Firebase\JWT\JWT;
-
-//require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/controllers/MenuPrincipalController.php';
@@ -29,7 +26,8 @@ require __DIR__ . '/entidades/Ejercicios.php';
 require __DIR__ . '/entidades/Cursos.php';
 require __DIR__ . '/entidades/MenuPrincipal.php';
 
-
+//use Firebase\JWT\JWT; Por Algun motivo los controllers no reconocen la dependencia
+//en el index
 
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
