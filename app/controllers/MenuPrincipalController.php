@@ -11,7 +11,7 @@ class MenuPrincipalController{
   public static function mantenerAccesoMenuPrincipal($request,$response,$args){
     $JWT = $request->getBody();
     $datosUsuario= JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
-    var_dump($datosUsuario);
+    $response=json_encode($datosUsuario);
     return $response;
   }
 }
