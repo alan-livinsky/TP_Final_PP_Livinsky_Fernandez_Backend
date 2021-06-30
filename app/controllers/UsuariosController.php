@@ -38,7 +38,8 @@ class UsuariosController{
             $payload = array(
                 "nom" => $usuario[0]->nombre,
                 "ape" => $usuario[0]->apellido,
-                "tu" =>$usuario[0]->tipo_usuario 
+                "tu" =>$usuario[0]->tipo_usuario,
+                "em" =>$usuario[0]->email
             );
        
             JWT::$leeway = 240; 
@@ -101,6 +102,19 @@ class UsuariosController{
             }
     }
     */
+
+    public static function retornarEstadoActualizacionContraseña($request,$response,$args){
+        $json = $request->getBody();
+        $data = json_decode($json,true);
+       
+        $usuario=new Usuarios();
+        $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$data['contraseña']);
+
+        $response->getBody()->write(Json_encode($estadoRegistro));                                    
+        return $response->withHeader('Content-type','application/json');
+    }
+ 
+
 
 }
 ?>

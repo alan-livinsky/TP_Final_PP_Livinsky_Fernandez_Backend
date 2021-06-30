@@ -41,17 +41,17 @@
             }       
         }
 
-        public static function loguearUsuario($email,$contraseña){
-            $usuario_a_loguear=$this->buscar_usuario($email,$contraseña);
-
-            if($usuario_a_loguear==null){
-                
-            }
-    
+        //ESTA MAL POR MOTIVOS DE SEGURIDAD
+        public function actualizar_contraseña($email,$contraseña){
+            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+            $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
+                                                        SET contraseña='$contraseña'
+                                                        WHERE email='$email'");
+           
+            $consulta->execute();
+            return "Actualizacion completada";
+           
         }
 
-        
     }
-
-
 ?>
