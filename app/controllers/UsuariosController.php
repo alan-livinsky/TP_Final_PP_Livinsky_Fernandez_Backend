@@ -24,14 +24,7 @@ class UsuariosController{
     public static function retornarTokenAcceso($request,$response,$args){
 
         $json = $request->getBody();
-        //var_dump($json);
-
         $buscar = json_decode($json,true);
-
-        //var_dump($buscar);
-
-        //var_dump($buscar['email']);
-
         $usuario=Usuarios::buscar_usuario($buscar['email'],$buscar['contraseña']);
         
         if($usuario==false){
@@ -53,7 +46,6 @@ class UsuariosController{
             $token_creado= JWT::encode($payload,$privateKey,'HS256');
             //El header se autogenera con el algoritmo y tipo de token
             //Tambien se encripta automaticamente en base64url   
-
             $response->getBody()->write(json_encode($token_creado));
             return $response->withHeader('Content-type','application/json');
         }

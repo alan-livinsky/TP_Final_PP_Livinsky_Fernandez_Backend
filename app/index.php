@@ -74,6 +74,11 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 
 //<<Rutas>>
+$app->get('/',function(Request $request, Response $response, array $args) { 
+    $response->getBody()->write("Token Test");
+    return $response;
+});
+
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
     return $response;
