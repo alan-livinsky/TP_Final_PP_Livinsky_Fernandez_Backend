@@ -1,5 +1,7 @@
 <?php
 
+use Firebase\JWT\JWT;
+
 class MenuPrincipalController{
 
   public static function retornarAccesoMenuPrincipal($request,$response,$args){
