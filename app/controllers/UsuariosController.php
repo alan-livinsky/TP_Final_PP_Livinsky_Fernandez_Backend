@@ -1,6 +1,6 @@
 <?php
 
-use Firebase\JWT\JWT;
+use Firebase\JWT\JWT;//Por algun motivo no toma la dependencia desde el index
 
 class UsuariosController{
 
@@ -36,7 +36,7 @@ class UsuariosController{
             $privateKey=$_ENV['JWT_SECRET'];
 
             $payload = array(
-                "email" =>$usuario[0]->email,// INSEGURO
+                "email" =>$usuario[0]->email,//INSEGURO
                 "nom" => $usuario[0]->nombre,
                 "ape" => $usuario[0]->apellido,
                 "tu" =>$usuario[0]->tipo_usuario
@@ -64,8 +64,20 @@ class UsuariosController{
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
     }
+
+    public static function retornarEstadoActualizacionContraseña($request,$response,$args){
+        $token=$request->getBody();
+        $data=JWT::decode($token,$_ENV['JWT_SECRET'],array('HS256'));
+       
+        $usuario=new Usuarios();
+        $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$data['contraseña']);
+
+        $response->getBody()->write(Json_encode($estadoRegistro));                                    
+        return $response->withHeader('Content-type','application/json');
+    }
     
-    /*
+
+    /*SIN TERMINAR
     public static function retornarRecContraseña($request,$response,$args){
         $requestParamter = $request->getParsedBody();
         $email =  $requestParamter['email'];
@@ -103,19 +115,6 @@ class UsuariosController{
             }
     }
     */
-
-    public static function retornarEstadoActualizacionContraseña($request,$response,$args){
-        $json = $request->getBody();
-        $data = json_decode($json,true);
-       
-        $usuario=new Usuarios();
-        $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$data['contraseña']);
-
-        $response->getBody()->write(Json_encode($estadoRegistro));                                    
-        return $response->withHeader('Content-type','application/json');
-    }
- 
-
 
 }
 ?>
