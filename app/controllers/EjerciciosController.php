@@ -2,9 +2,9 @@
 
 class EjerciciosController{
 
-  public static function retornarOpcionesMenuPrincipal($request,$response,$args){
-    $opcionesMenuPrincipal=Ejercicios::buscar_opciones_menuPrincipal();
-    $response->getBody()->write(json_encode($opcionesMenuPrincipal));
+  public static function retornarEjerciciosMenuPrincipal($request,$response,$args){
+    $ejerciciosMenuPrincipal=Ejercicios::buscar_ejercicios_menuPrincipal();
+    $response->getBody()->write(json_encode($ejerciciosMenuPrincipal));
     return $response;
   }
 

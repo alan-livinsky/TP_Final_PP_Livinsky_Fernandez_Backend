@@ -21,10 +21,12 @@ require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/controllers/MenuPrincipalController.php';
 require __DIR__ . '/controllers/EjerciciosController.php';
+require __DIR__ . '/controllers/OpcionesController.php';
 require __DIR__ . '/entidades/Usuarios.php';
 require __DIR__ . '/entidades/Ejercicios.php';
 require __DIR__ . '/entidades/Cursos.php';
 require __DIR__ . '/entidades/MenuPrincipal.php';
+require __DIR__ . '/entidades/Opciones.php';
 
 //use Firebase\JWT\JWT; Por Algun motivo los controllers no reconocen la dependencia
 //en el index
@@ -92,7 +94,6 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     //pasar a post con json 
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
-
     $group->post('/recuperar/contraseña',\UsuariosController::class.':retornarRecContraseña');
 });
 
@@ -102,7 +103,9 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/Menu_principal', function (RouteCollectorProxy $group) {
-    $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
+    $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarEjerciciosMenuPrincipal');
+    $group->get('/lista_opciones_profesor/cargar',\OpcionesController::class.':retornarOpciones_profesor');
+    //$group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
 });
 
 

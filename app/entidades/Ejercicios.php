@@ -7,7 +7,7 @@
         public $descripcion_ejercicio;
         public $url_imagen_ejercicio;
       
-        public static function buscar_opciones_menuPrincipal(){
+        public static function buscar_ejercicios_menuPrincipal(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("SELECT * FROM ejercicios");
             $consulta->execute();
