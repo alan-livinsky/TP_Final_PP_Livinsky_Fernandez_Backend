@@ -16,12 +16,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-use Firebase\JWT\JWT;
-
-use Dotenv\Dotenv;
-$dotenv = Dotenv::createImmutable('../');
-$dotenv->load();
-
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
@@ -32,6 +26,11 @@ require __DIR__ . '/entidades/Ejercicios.php';
 require __DIR__ . '/entidades/Cursos.php';
 require __DIR__ . '/entidades/MenuPrincipal.php';
 
+use Firebase\JWT\JWT;
+
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable('../');
+$dotenv->load();
 
 //Instantiate App
 $app = AppFactory::create();
@@ -80,6 +79,7 @@ $app->get('/',function(Request $request, Response $response, array $args) {
     return $response;
 });
 
+
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
     return $response;
@@ -97,7 +97,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
-    $group->get('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
+    $group->post('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
 });
 
 $app->group('/Ejercicios', function (RouteCollectorProxy $group) {

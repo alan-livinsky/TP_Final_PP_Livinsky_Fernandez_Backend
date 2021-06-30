@@ -33,7 +33,7 @@ class UsuariosController{
                         ->withHeader('Content-Type', 'text/html');
         }
         else{
-            $privateKey = $_ENV['JWT_SECRET'];
+            $privateKey=$_ENV['JWT_SECRET'];
 
             $payload = array(
                 "nom" => $usuario[0]->nombre,
