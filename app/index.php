@@ -101,9 +101,8 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
     $group->post('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
 });
 
-$app->group('/Ejercicios', function (RouteCollectorProxy $group) {
-    $group->get('/opciones_menu_principal/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
-    
+$app->group('/Menu_principal', function (RouteCollectorProxy $group) {
+    $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
 });
 
 
