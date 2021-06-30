@@ -48,7 +48,6 @@ class UsuariosController{
             
             //El header se autogenera con el algoritmo y tipo de token
             //Tambien se encripta automaticamente en base64url  
-            var_dump(json_encode($token_creado));
             $response->getBody()->write(json_encode($token_creado));
             return $response->withHeader('Content-type','application/json');
         }
