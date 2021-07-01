@@ -14,7 +14,6 @@ class MenuPrincipalController{
     $response->getBody()->write(json_encode($datosUsuario));
     return $response;
   }
+
 }
-
-
 ?>
