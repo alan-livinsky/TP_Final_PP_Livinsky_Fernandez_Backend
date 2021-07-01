@@ -68,12 +68,13 @@ class UsuariosController{
     public static function retornarEstadoActualizacionContraseña($request,$response,$args){
         $json_contraseñas=$request->getBody();
         $json_contraseñas=json_decode($json_contraseñas);
+        
         var_dump($json_contraseñas);
         $data=$request->getAttribute("token");
         var_dump($data);
        
         $usuario=new Usuarios();
-        $estadoactualizacion=$usuario->actualizar_contraseña($data[0]['email'],$data['contraseña']);
+        $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$json_contraseñas[0]->nueva,);
 
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
