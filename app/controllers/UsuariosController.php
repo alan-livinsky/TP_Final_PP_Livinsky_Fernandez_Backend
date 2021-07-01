@@ -76,7 +76,7 @@ class UsuariosController{
         $usuario=new Usuarios();
         $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$json_contraseñas->nueva,);
 
-        $response->getBody()->write(Json_encode($estadoRegistro));                                    
+        $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
     
