@@ -66,8 +66,10 @@ class UsuariosController{
     }
 
     public static function retornarEstadoActualizacionContraseña($request,$response,$args){
-        $token=$request->getBody();
-        $data=JWT::decode($token,$_ENV['JWT_SECRET'],array('HS256'));
+        //$token=$request->getBody();
+        //$data=JWT::decode($token,$_ENV['JWT_SECRET'],array('HS256'));
+        $decoded = $request->getAttribute("jwt");
+        var_dump($decoded);
        
         $usuario=new Usuarios();
         $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$data['contraseña']);
