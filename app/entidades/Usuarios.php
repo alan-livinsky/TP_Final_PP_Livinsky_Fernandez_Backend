@@ -45,11 +45,12 @@
         public function actualizar_contraseña($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
-                                                        SET contraseña='$contraseña'
+                                                    SET contraseña='$contraseña'
                                                         WHERE email='$email'");
            
             $consulta->execute();
-            return "Actualizacion completada";
+            $estado="Actualizacion completada";
+            return $estado;
            
         }
 
