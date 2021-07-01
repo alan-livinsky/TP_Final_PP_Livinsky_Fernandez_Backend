@@ -22,7 +22,6 @@ class UsuariosController{
     }
 
     public static function retornarTokenAcceso($request,$response,$args){
-
         $json = $request->getBody();
         $buscar = json_decode($json,true);
         $usuario=Usuarios::buscar_usuario($buscar['email'],$buscar['contraseña']);
@@ -60,26 +59,18 @@ class UsuariosController{
         $usuario=new Usuarios();
         $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data['email'],$data['contraseña']
                                                     ,$data['nombre'],$data['apellido'],$data['tipo_usuario']);
-
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
     }
 
-    
     public static function retornarEstadoEliminacionC($request,$response,$args){
-      
         $data=$request->getAttribute("token");
 
         $usuario=new Usuarios();
         $estadoactualizacion=$usuario->borrar_cuenta($data['email']);
-
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
-
-
-
-
 
     public static function retornarEstadoActualizacionContraseña($request,$response,$args){
         $json_contraseñas=$request->getBody();
@@ -94,7 +85,6 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
     
-
     /*SIN TERMINAR
     public static function retornarRecContraseña($request,$response,$args){
         $requestParamter = $request->getParsedBody();

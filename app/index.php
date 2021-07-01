@@ -12,10 +12,6 @@ use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/controllers/UsuariosController.php';
@@ -35,18 +31,23 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
 $dotenv->load();
 
-//Instantiate App
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Instanciar App
 $app = AppFactory::create();
 
 //Middleware <<Error - Por defecto de Slim>>
 $app->addErrorMiddleware(true,true,true);
 
-//TESTEO PARA MANEJAR MEJOR LOS ERRORES DE SLIM
-//$errorMiddleware=$app->addErrorMiddleware(true,true,true);
-//$errorHandler=$errorMiddleware->getDefaultErrorHandler();
-//$errorHandler->forceContentType('application/json');
+    //TESTEO PARA MANEJAR MEJOR LOS ERRORES DE SLIM
+    //$errorMiddleware=$app->addErrorMiddleware(true,true,true);
+    //$errorHandler=$errorMiddleware->getDefaultErrorHandler();
+    //$errorHandler->forceContentType('application/json');
 
 //Middleware <<Validacion JWT - tuupola/slim-jwt-auth>>
+//Automaticamente decodifica el token y lo guarda en $request->get_getAttribute("token");
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
@@ -89,23 +90,22 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
     return $response;
 });
 
-$app->group('/Usuarios', function (RouteCollectorProxy $group) {
+$app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
-    //pasar a post con json 
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperar_contraseña',\UsuariosController::class.':retornarRecContraseña');
 });
 
-$app->group('/Acceder_pagina', function (RouteCollectorProxy $group) {
+$app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
     $group->post('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
 });
 
-$app->group('/Menu_principal', function (RouteCollectorProxy $group) {
+$app->group('/Menu_principal', function (RouteCollectorProxy $group){
     $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarEjerciciosMenuPrincipal');
     $group->get('/lista_opciones_profesor/cargar',\OpcionesController::class.':retornarOpciones_profesor');
     //$group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
