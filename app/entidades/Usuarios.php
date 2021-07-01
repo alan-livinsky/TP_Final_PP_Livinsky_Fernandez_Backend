@@ -43,7 +43,7 @@
 
         public function borrar_cuenta($email){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuario 
+            $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuarios 
                                                     WHERE email='$email'");
            
             $consulta->execute();
