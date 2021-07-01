@@ -69,10 +69,8 @@ class UsuariosController{
         $json_contraseñas=$request->getBody();
         $json_contraseñas=json_decode($json_contraseñas);
         
-        var_dump($json_contraseñas);
         $data=$request->getAttribute("token");
-        var_dump($data);
-       
+
         $usuario=new Usuarios();
         $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$json_contraseñas->nueva,);
 
