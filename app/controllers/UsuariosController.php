@@ -65,6 +65,22 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
 
+    
+    public static function retornarEstadoEliminacionC($request,$response,$args){
+      
+        $data=$request->getAttribute("token");
+
+        $usuario=new Usuarios();
+        $estadoactualizacion=$usuario->borrar_cuenta($data['email']);
+
+        $response->getBody()->write(Json_encode($estadoactualizacion));                                    
+        return $response->withHeader('Content-type','application/json');
+    }
+
+
+
+
+
     public static function retornarEstadoActualizacionContraseña($request,$response,$args){
         $json_contraseñas=$request->getBody();
         $json_contraseñas=json_decode($json_contraseñas);

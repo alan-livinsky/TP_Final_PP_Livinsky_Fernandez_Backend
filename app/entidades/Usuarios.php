@@ -41,6 +41,18 @@
             }       
         }
 
+        public function borrar_cuenta($email){
+            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+            $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuario 
+                                                    WHERE email='$email'");
+           
+            $consulta->execute();
+            $estado="Cuenta Eliminada";
+            return $estado;
+        }
+
+
+
         //ESTA MAL POR MOTIVOS DE SEGURIDAD
         public function actualizar_contraseña($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 

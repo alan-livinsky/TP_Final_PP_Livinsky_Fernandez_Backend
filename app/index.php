@@ -40,6 +40,8 @@ $app = AppFactory::create();
 
 //Middleware <<Error - Por defecto de Slim>>
 $app->addErrorMiddleware(true,true,true);
+
+//TESTEO PARA MANEJAR MEJOR LOS ERRORES DE SLIM
 //$errorMiddleware=$app->addErrorMiddleware(true,true,true);
 //$errorHandler=$errorMiddleware->getDefaultErrorHandler();
 //$errorHandler->forceContentType('application/json');
@@ -70,7 +72,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $response = $handler->handle($request);
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
     $response = $response->withHeader('Access-Control-Allow-Origin', '*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,PUT,delete,options');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,PUT,DELETE,options');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     return $response;
 });
@@ -81,7 +83,6 @@ $app->get('/',function(Request $request, Response $response, array $args) {
     $response->getBody()->write("Token Test");
     return $response;
 });
-
 
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Bienvenido a SAE-SH");
@@ -94,6 +95,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group) {
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     //pasar a post con json 
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
+    $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperar_contraseña',\UsuariosController::class.':retornarRecContraseña');
 });
