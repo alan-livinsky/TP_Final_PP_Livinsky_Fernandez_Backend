@@ -95,6 +95,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
+    $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperar_contraseña',\UsuariosController::class.':retornarRecContraseña');
@@ -106,7 +107,7 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
 });
 
 $app->group('/Menu_principal', function (RouteCollectorProxy $group){
-    $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarEjerciciosMenuPrincipal');
+    $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarListaEjerciciosMenu');
     $group->get('/lista_opciones_profesor/cargar',\OpcionesController::class.':retornarOpciones_profesor');
     //$group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
 });

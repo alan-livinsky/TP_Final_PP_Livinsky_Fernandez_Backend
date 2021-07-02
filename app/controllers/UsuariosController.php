@@ -4,9 +4,11 @@ use Firebase\JWT\JWT;//Por algun motivo no toma la dependencia desde el index
 
 class UsuariosController{
 
+    //Request $request
     public static function retornarUsuario($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         if ($usuario){
+            
             $response->getBody()->write(json_encode($usuario));
             return $response->withHeader('Content-type','application/json');
         } 
@@ -42,7 +44,6 @@ class UsuariosController{
             );
        
             JWT::$leeway = 240; 
-
             $token_creado= JWT::encode($payload,$privateKey,'HS256');
             
             //El header se autogenera con el algoritmo y tipo de token
@@ -67,7 +68,7 @@ class UsuariosController{
         $data=$request->getAttribute("token");
 
         $usuario=new Usuarios();
-        $estadoactualizacion=$usuario->borrar_cuenta($data['email']);
+        $estadoactualizacion=$usuario->eliminar_usuario($data['email']);
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
