@@ -45,7 +45,7 @@
 
             if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
                 $cursos=new Cursos();
-                asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
+                $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
             }
     
 
