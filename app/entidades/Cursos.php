@@ -16,6 +16,7 @@
 
         public function asociarUsuarioCurso($año,$comision,$turno,$id_usuario){
             $cursoEncontrado=$this->buscarCurso($año,$comision,$turno);
+            var_dump($cursoEncontrado);
              if(count($cursoEncontrado)!=0){
                 $accesoDatos=Acceso_a_datos::obtenerConexionBD();
 
