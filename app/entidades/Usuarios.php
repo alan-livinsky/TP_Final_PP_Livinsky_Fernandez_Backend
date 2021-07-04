@@ -42,6 +42,8 @@
 
             $id_usuario_registrado=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
+            var_dump($id_usuario_registrado);
+
 
             if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
                 $cursos=new Cursos();
