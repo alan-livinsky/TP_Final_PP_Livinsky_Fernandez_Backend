@@ -60,7 +60,7 @@ class UsuariosController{
         $usuario=new Usuarios();
         $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data['email'],$data['contraseña']
                                                     ,$data['nombre'],$data['apellido'],$data['tipo_usuario']);
-    
+
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
     }

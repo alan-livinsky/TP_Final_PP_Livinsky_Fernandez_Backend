@@ -7,14 +7,21 @@
         public $turno;
         
 
-        public function buscarCurso($año,$comision,$turno){
+        public function buscarCurso(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD();
             $consulta=$accesoDatos->prepararConsulta("SELECT id_curso FROM cursos Where año='$año' and comision='$comision' and turno='$turno'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Cursos');
         }
 
-        public function asociarUsuarioCurso(){
+        public function asociarUsuarioCurso($año,$comision,$turno,$id_usuario){
+            $cursoEncontrado=$this->buscarCurso($año,$comision,$turno);
+             if(strlen($cursoEncontrado)!=0){
+                $accesoDatos=Acceso_a_datos::obtenerConexionBD();
+                $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_curso 
+                                                            VALUES ($id_usuario,$cursoEncontrado)");
+                $consulta->execute();
+             }
 
         }
 

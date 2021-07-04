@@ -29,6 +29,17 @@
                                                     values 
                                                     ($id_usuario,'$email','$contraseña','$nombre','$apellido','$tipo_usuario')");
             $consulta->execute();
+
+
+            $id_usuario_registrado=$accesoDatos->lastInsertId('usuarios_id_usuario_seq');
+
+
+            if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado1!=null){
+                $cursos=new Cursos();
+                asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
+            }
+    
+
             $estado="Registro completado";
             return $estado;     
         }
