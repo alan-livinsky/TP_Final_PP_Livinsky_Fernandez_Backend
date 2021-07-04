@@ -24,11 +24,11 @@
 
                 var_dump($test);
 
-
-
                 $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_curso 
                                                             VALUES ($id_usuario,$cursoEncontrado->id_curso)");
                 $consulta->execute();
+
+                return $test;
              }
 
         }

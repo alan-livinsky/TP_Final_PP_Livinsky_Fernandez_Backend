@@ -42,12 +42,10 @@
 
             $id_usuario_registrado=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
-            var_dump($id_usuario_registrado);
-
-
             if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
                 $cursos=new Cursos();
-                $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
+                $test=$cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
+                var_dump($test);
             }
     
             $estado="Registro completado";
