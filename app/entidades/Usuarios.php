@@ -31,7 +31,7 @@
             $consulta->execute();
 
 
-            $id_usuario_registrado=$accesoDatos->lastInsertId('usuarios_id_usuario_seq');
+            $id_usuario_registrado=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
 
             if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado1!=null){

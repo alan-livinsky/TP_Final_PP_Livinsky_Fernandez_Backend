@@ -33,4 +33,8 @@ class Acceso_a_datos{
         return $this->objetoPDO->prepare($sql);
     }
 
+    public function obtenerUltimaIdInsertada($secuencia_autoincremento_postgress){
+        return $this->objetoPDO->lastInsertId($secuencia_autoincremento_postgress);
+    }
+
 }
