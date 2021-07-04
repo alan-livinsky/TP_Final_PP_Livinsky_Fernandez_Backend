@@ -16,7 +16,7 @@
 
         public function asociarUsuarioCurso($año,$comision,$turno,$id_usuario){
             $cursoEncontrado=$this->buscarCurso($año,$comision,$turno);
-             if(strlen($cursoEncontrado)!=0){
+             if(count($cursoEncontrado)!=0){
                 $accesoDatos=Acceso_a_datos::obtenerConexionBD();
                 $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_curso 
                                                             VALUES ($id_usuario,$cursoEncontrado)");
