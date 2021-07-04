@@ -19,7 +19,7 @@
              if(count($cursoEncontrado)!=0){
                 $accesoDatos=Acceso_a_datos::obtenerConexionBD();
                 $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_curso 
-                                                            VALUES ($id_usuario,$cursoEncontrado)");
+                                                            VALUES ($id_usuario,$cursoEncontrado->id_curso)");
                 $consulta->execute();
              }
 

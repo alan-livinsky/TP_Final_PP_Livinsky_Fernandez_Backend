@@ -48,7 +48,6 @@
                 $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
             }
     
-
             $estado="Registro completado";
             return $estado;     
         }
