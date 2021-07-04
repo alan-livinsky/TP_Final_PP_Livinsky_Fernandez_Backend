@@ -23,7 +23,7 @@
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
 
-        public function registrar_usuario($data_usuarios){
+        public function registrar_usuario($data){
 
             $id_usuario=$data['id_usuario'];
             $email=$data['email'];
