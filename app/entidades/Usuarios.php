@@ -44,8 +44,8 @@
 
             if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
                 $cursos=new Cursos();
-                $test=$cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
-                var_dump($test);
+                $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
+                
             }
     
             $estado="Registro completado";
