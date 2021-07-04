@@ -56,10 +56,13 @@ class UsuariosController{
     public static function retornarEstadoRegistro($request,$response,$args){
         $json = $request->getBody();
         $data = json_decode($json,true);
+
+        var_dump($data);
        
         $usuario=new Usuarios();
         $estadoRegistro=$usuario->registrar_usuario($data['id_usuario'],$data['email'],$data['contraseña']
                                                     ,$data['nombre'],$data['apellido'],$data['tipo_usuario']);
+    
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
     }
