@@ -23,7 +23,16 @@
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
 
-        public function registrar_usuario($id_usuario,$email,$contraseña,$nombre,$apellido,$tipo_usuario){
+        public function registrar_usuario($data_usuarios){
+
+            $id_usuario=$data['id_usuario'];
+            $email=$data['email'];
+            $contraseña=$data['contraseña'];
+            $nombre=$data['nombre'];
+            $apellido=$data['apellido'];
+            $tipo_usuario=$data['tipo_usuario'];
+
+
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
                                                     values 
