@@ -43,7 +43,7 @@
             $id_usuario_registrado=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
 
-            if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado1!=null){
+            if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
                 $cursos=new Cursos();
                 asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
             }
