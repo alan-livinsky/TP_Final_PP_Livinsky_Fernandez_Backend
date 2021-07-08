@@ -1,6 +1,9 @@
 <?php
 
 use Firebase\JWT\JWT;//Por algun motivo no toma la dependencia desde el index
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class UsuariosController{
 
