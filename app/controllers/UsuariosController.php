@@ -118,7 +118,7 @@ class UsuariosController{
         //$mail->Password='SAESHlivfer';                        //SMTP password
         $mail->Username='38842178@itbeltran.com.ar';               //SMTP username
         $mail->Password='Beltran2019';                        //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      //Enable implicit TLS encryption
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;      //Enable implicit TLS encryption
         $mail->Port       = 465;     
   
         //Recipients
