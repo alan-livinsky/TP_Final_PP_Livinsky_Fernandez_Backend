@@ -92,7 +92,7 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
-        $controlador=new UsuarisoUsuariosController();
+        $controlador=new UsuariosController();
         $response=$controlador->enviarEmailDeRecuperacion($email);
         return $response;
     }
