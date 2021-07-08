@@ -52,8 +52,8 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
     "algorithm" => ["HS256"],
-    "path" => ["/","/recuperar_contraseña"], 
-    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin"],
+    "path" => ["/"], 
+    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin","/recuperar_contraseña"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
