@@ -9,16 +9,17 @@
         public $apellido;
         public $tipo_usuario;
 
-        public static function buscar_usuario($email,$contraseña){
+        public static function buscar_lista_usuarios(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
+            $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
 
-        public static function buscar_lista_usuarios(){
+        //PASAR A NO STATIC
+        public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
+            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
@@ -32,20 +33,18 @@
             $apellido=$data['apellido'];
             $tipo_usuario=$data['tipo_usuario'];
 
-
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
                                                     values 
                                                     ($id_usuario,'$email','$contraseña','$nombre','$apellido','$tipo_usuario')");
             $consulta->execute();
 
-
+            //VERIFICAR REGISTRO EXITOSO
             $id_usuario_registrado=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
             if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
                 $cursos=new Cursos();
-                $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);
-                
+                $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);  
             }
     
             $estado="Registro completado";

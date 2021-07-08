@@ -113,3 +113,5 @@ $app->group('/Menu_principal', function (RouteCollectorProxy $group){
 });
 
 $app->run();
+
+?>
