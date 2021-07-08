@@ -109,21 +109,31 @@ class UsuariosController{
     public function enviarEmailDeRecuperacion($email)
     {      
         $mail = new PHPMailer;
-        $mail->SMTPDebug=3;
-        $mail->isSMTP();
-        $mail->Host="smtp.gmail.com";
-        $mail->Port=587;
-        $mail->SMTPSecure="tls";
-        $mail->SMTPAuth=true;
-        $mail->Username="SAESHitbeltran@gmail.com";
-        $mail->Password="SAESHlivfer";
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                //Enable verbose debug output
+        $mail->isSMTP();                                      //Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';               //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                             //Enable SMTP authentication
+        $mail->Username="SAESHitbeltran@gmail.com";               //SMTP username
+        $mail->Password="SAESHlivfer";                        //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      //Enable implicit TLS encryption
+        $mail->Port       = 465;     
 
-        $mail->addAddress($email,"User Name");
-        $mail->Subject="Verify Your Email Address For StackOverFlow";
-        $mail->isHTML();
-        $mail->Body=" Welcome to StackOverFlow.<b><b> Please verify your email adress to continue..";
-        $mail->From="SAESHitbeltran@gmail.com";
-        $mail->FromName="Social Codia";
+        //Recipients
+        $mail->setFrom('SAESHitbeltran@gmail.com', 'Mailer'); //Add a recipient 
+        $mail->addAddress($email,'Joe User');     //Name is optional
+
+        //Attachments
+        $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Here is the subject';
+        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        
+    
 
         if($mail->send()){
             $response="Email Has Been Sent Your Email Address";
