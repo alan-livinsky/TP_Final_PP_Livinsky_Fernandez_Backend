@@ -111,25 +111,80 @@ class UsuariosController{
         $mail = new PHPMailer;
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                //Enable verbose debug output
         $mail->isSMTP();                                      //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';               //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                             //Enable SMTP authentication
+        $mail->Host= 'smtp.gmail.com';               //Set the SMTP server to send through
+        $mail->SMTPAuth=true;                             //Enable SMTP authentication
         $mail->Username='SAESHitbeltran@gmail.com';               //SMTP username
-        $mail->Password='rwbiofucouofrvth';                        //SMTP password
+        $mail->Password='rwbiofucouofrvth';  //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      //Enable implicit TLS encryption
         $mail->Port       = 465;     
 
         //Recipients
-        $mail->setFrom('SAESHitbeltran@gmail.com', 'Mailer'); //Add a recipient 
-        $mail->addAddress($email,'Joe User');     //Name is optional
+        $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH'); //Add a recipient 
+        $mail->addAddress($email,'Usuario');     //Name is optional
 
         //Attachments
         //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        //$mail->Body='This is the HTML message body <b>in bold!</b>';
+        $mail->Body='<body>
+
+
+    <main class="container">
+        <div class="logo">
+                <img src="https://image.e.mozilla.org/lib/fe9915707361037e75/m/3/firefox-logo-2x-sept2017.png" class="logo">
+        </div>
+        
+        <img src="https://image.e.mozilla.org/lib/fe9915707361037e75/m/4/afb835a0-c1f1-4c87-b762-8ec6700acba1.jpg" class="header-img">
+
+        <div class="body">
+            <h2>Enjoy the silence</h2>
+            
+            <p> Websites that autoplay video can be super annoying. You didnt select the video to play &mdash; it was started for you. <i>Hurumph!</i> Firefox will now stop that from happening, putting you in control. If youd like to hear or see a video, just click on the play button to watch it.</p>
+
+            <p>Firefox with <a>Block Autoplay</a>: the way online video should be</p>
+            
+            <button>FIND OUT MORE</button>
+
+        </div>
+
+    </main>
+
+    <footer class="container">
+        <p>Thanks for reading!</p>
+        <p>Youre receiving this email because we think you’re neat, AND you subscribed to hear from us. If our emails aren’t sparking joy, we’ll understand if you  <a>unsubscribe.</a></p>
+    
+        <p>You can also <a href="#">update your email preferences</a> at anytime.</p>
+
+
+        <img src="https://image.e.mozilla.org/lib/fe9915707361037e75/m/3/Mozilla-Logo-2017.png">
+        
+        <div>
+            <a>Donate to Mozilla</a> <span>|</span> <a>Download Firefox</a>
+            <p>331 E. Evelyn Avenue Mountain View CA 94041</p>
+            <P><a>Legal</a> <span>•</span> <a>Privacy</a></P>
+        </div>
+
+    </footer>
+
+</div>
+
+    
+</body>';
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         
