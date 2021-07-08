@@ -91,7 +91,8 @@ class UsuariosController{
         $datosDelUsuario=$request->getParsedBody();
         $email=$datosDelUsuario['email'];
         //$id=$requestParamter['id'];
-        enviarEmailDeRecuperacion($email);
+        $response=enviarEmailDeRecuperacion($email);
+        return $response;
     }
 
     //Function to send mail, 
@@ -108,23 +109,20 @@ class UsuariosController{
         $mail->Username="SAESHitbeltran@gmail.com";
         $mail->Password="SAESHlivfer";
 
-            $mail->addAddress($email,"User Name");
-            $mail->Subject="Verify Your Email Address For StackOverFlow";
-            $mail->isHTML();
-            $mail->Body=" Welcome to StackOverFlow.<b><b> Please verify your email adress to continue..";
-            $mail->From="SAESHitbeltran@gmail.com";
-            $mail->FromName="Social Codia";
+        $mail->addAddress($email,"User Name");
+        $mail->Subject="Verify Your Email Address For StackOverFlow";
+        $mail->isHTML();
+        $mail->Body=" Welcome to StackOverFlow.<b><b> Please verify your email adress to continue..";
+        $mail->From="SAESHitbeltran@gmail.com";
+        $mail->FromName="Social Codia";
 
-            if($mail->send())
-            {
-                echo "Email Has Been Sent Your Email Address";
-            }
-            else
-            {
-            echo "Failed To Sent An Email To Your Email Address";
-            }
+        if($mail->send()){
+            return "Email Has Been Sent Your Email Address";
+        }
+        else{
+            return "Failed To Sent An Email To Your Email Address";
+        }
     }
     
-
 }
 ?>
