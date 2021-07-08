@@ -127,10 +127,12 @@ class UsuariosController{
         //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Here is the subject';
         //$mail->Body='This is the HTML message body <b>in bold!</b>';
-        $mail->Body='<!DOCTYPE html>
+        $mail->Body=readfile('email.html');
+        
+        
+        /*'<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -185,8 +187,9 @@ class UsuariosController{
 
     
 </body>
-</html>';
+</html>';*/
         
+$mail->isHTML(true);                                  //Set email format to HTML
         
         
         
