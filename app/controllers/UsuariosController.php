@@ -111,7 +111,7 @@ class UsuariosController{
         $mail = new PHPMailer;
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                //Enable verbose debug output
         $mail->isSMTP();                                      //Send using SMTP
-        //$mail->Host       = 'smtp.gmail.com';               //Set the SMTP server to send through
+        //$mail->Host     = 'smtp.gmail.com';               //Set the SMTP server to send through
         $mail->Host       = 'smtp.office365.com';               //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                             //Enable SMTP authentication
         //$mail->Username='SAESHitbeltran@gmail.com';               //SMTP username
@@ -122,8 +122,8 @@ class UsuariosController{
         $mail->Port       = 465;     
   
         //Recipients
-        $mail->setFrom('SAESHitbeltran@gmail.com', 'Mailer'); //Add a recipient 
-        $mail->addAddress($email,'Joe User');     //Name is optional
+        $mail->setFrom('38842178@itbeltran.com.ar', 'Mailer'); //Add a recipient 
+        $mail->addAddress('38842178@itbeltran.com.ar','Joe User');     //Name is optional
 
         //Attachments
         //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
