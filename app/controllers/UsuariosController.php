@@ -126,10 +126,12 @@ class UsuariosController{
         $mail->FromName="Social Codia";
 
         if($mail->send()){
-            return "Email Has Been Sent Your Email Address";
+            $response="Email Has Been Sent Your Email Address";
+            return $response;
         }
         else{
-            return "Failed To Sent An Email To Your Email Address";
+            $response="Failed To Sent An Email To Your Email Address";
+            return $response;
         }
     }
     
