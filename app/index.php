@@ -102,7 +102,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
-    $group->post('/recuperar_contraseña',\UsuariosController::class.':retornarRecContraseña');
+    $group->post('/recuperar_password',\UsuariosController::class.':retornarRecContraseña');
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
