@@ -52,7 +52,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,//Evitar error https
     "secret" => $_ENV['JWT_SECRET'],
     "algorithm" => ["HS256"],
-    "path" => "/", 
+    "path" => ["/","/recuperar_contraseña"], 
     "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin"],
     
     "error" => function ($response, $arguments){
@@ -91,11 +91,15 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 });
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group){
-    $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
-    $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
-    $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
-    $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
     $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
+    $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
+    
+
+    $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
+
+
+    $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
+    $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperar_contraseña',\UsuariosController::class.':retornarRecContraseña');
