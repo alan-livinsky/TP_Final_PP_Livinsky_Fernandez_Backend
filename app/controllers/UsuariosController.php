@@ -111,13 +111,16 @@ class UsuariosController{
         $mail = new PHPMailer;
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                //Enable verbose debug output
         $mail->isSMTP();                                      //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';               //Set the SMTP server to send through
+        //$mail->Host       = 'smtp.gmail.com';               //Set the SMTP server to send through
+        $mail->Host       = 'smtp.office365.com';               //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                             //Enable SMTP authentication
-        $mail->Username='SAESHitbeltran@gmail.com';               //SMTP username
-        $mail->Password='SAESHlivfer';                        //SMTP password
+        //$mail->Username='SAESHitbeltran@gmail.com';               //SMTP username
+        //$mail->Password='SAESHlivfer';                        //SMTP password
+        $mail->Username='38842178@itbeltran.com.ar';               //SMTP username
+        $mail->Password='Beltran2019';                        //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;      //Enable implicit TLS encryption
         $mail->Port       = 465;     
-
+  
         //Recipients
         $mail->setFrom('SAESHitbeltran@gmail.com', 'Mailer'); //Add a recipient 
         $mail->addAddress($email,'Joe User');     //Name is optional
