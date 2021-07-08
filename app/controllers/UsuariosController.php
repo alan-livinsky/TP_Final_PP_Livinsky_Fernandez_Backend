@@ -129,7 +129,7 @@ class UsuariosController{
         //Content
         $mail->Subject = 'Here is the subject';
         //$mail->Body='This is the HTML message body <b>in bold!</b>';
-        $mail->Body=readfile('email.html');
+        $mail->Body=readfile('./email.html');
         
         
         /*'<!DOCTYPE html>
