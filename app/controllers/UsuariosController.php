@@ -92,7 +92,8 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
-        $response=$this->enviarEmailDeRecuperacion($email);
+        $controlador=new UsuarisoUsuariosController();
+        $response=$controlador->enviarEmailDeRecuperacion($email);
         return $response;
     }
 
@@ -101,6 +102,7 @@ class UsuariosController{
 
 
     //function sendVerificationEmail($email,$id)
+    //Parametro de contenido???
     public function enviarEmailDeRecuperacion($email)
     {      
         $mail = new PHPMailer;
