@@ -90,13 +90,16 @@ class UsuariosController{
     public static function retornarRecContraseña($request,$response,$args){
         $datosDelUsuario=$request->getBody();
         $datosDelUsuario=json_decode($datosDelUsuario);
-        $email=$datosDelUsuario['email'];
+        $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
         $response=enviarEmailDeRecuperacion($email);
         return $response;
     }
 
-    //Function to send mail, 
+    //Use the second parameter of json_decode to make it return an array:
+    //$result = json_decode($data, true);
+
+
     //function sendVerificationEmail($email,$id)
     function enviarEmailDeRecuperacion($email)
     {      
