@@ -95,6 +95,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
 
 
+    //AREGLAR GIONES BAJOS MINUSCULA MaYUSCULA
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
