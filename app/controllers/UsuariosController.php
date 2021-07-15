@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class UsuariosController{
 
-    //Request $request
+    /*
     public static function retornarUsuario($request,$response,$args){
         $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
         if ($usuario){
@@ -19,6 +19,7 @@ class UsuariosController{
             return $response->withStatus(401);
         }
     }
+    */
 
     public static function retornarListaUsuarios($request,$response,$args){
         $listaUsuarios=Usuarios::buscar_lista_usuarios();

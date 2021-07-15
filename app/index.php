@@ -92,7 +92,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
     
 
-    $group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
+    //$group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
 
 
     //AREGLAR GIONES BAJOS MINUSCULA MaYUSCULA
