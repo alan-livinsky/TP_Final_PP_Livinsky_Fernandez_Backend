@@ -125,7 +125,7 @@ class UsuariosController{
 
         //Content
         $mail->Subject = 'Here is the subject';
-        $mail->Body=file_get_contents('./app/Email/Email_Recuperacion_Contraseña.php');
+        $mail->Body=file_get_contents('/Email/Email_Recuperacion_Contraseña.php');
      
         $mail->isHTML(true); //Set email format to HTML
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
