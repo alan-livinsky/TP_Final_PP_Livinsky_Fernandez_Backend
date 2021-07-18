@@ -124,11 +124,11 @@ class UsuariosController{
         //$mail->addAttachment('/tmp/image.jpg','new.jpg');   //Optional name
 
         //Content
-        $mail->Subject = 'Here is the subject';
+        $mail->Subject = 'Recuperacion de contraseña';
         $mail->Body=file_get_contents(getcwd().'/Email/Email_Recuperacion_Contraseña.php');
      
         $mail->isHTML(true); //Set email format to HTML
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         if($mail->send()){
             $response="Se ha enviado el Email.Pro favor verifique su casilla de correo.";
