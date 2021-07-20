@@ -50,7 +50,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => $_ENV['JWT_SECRET'],
     "algorithm" => ["HS256"],
     "path" => ["/"], 
-    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin","/Usuarios/recuperarContraseña"],
+    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin","/Usuarios/recuperarContra"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
@@ -96,7 +96,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
-    $group->post('/recuperarContraseña',\UsuariosController::class.':retornarRecuperacionContraseña');
+    $group->post('/recuperarContrase',\UsuariosController::class.':retornarRecuperacionContraseña');
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
