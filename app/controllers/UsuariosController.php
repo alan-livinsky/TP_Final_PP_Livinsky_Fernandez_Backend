@@ -90,10 +90,10 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
     
- 
+
     public static function retornarRecuperacionContraseña($request,$response,$args){
         $datosDelUsuario=$request->getBody();
-        var_dump($datos_usuario);
+        var_dump($datosDelUsuario);
         /*$datosDelUsuario=json_decode($datosDelUsuario);*/
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
