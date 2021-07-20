@@ -91,7 +91,7 @@ class UsuariosController{
     }
     
  
-    public static function retornarRecContraseña($request,$response,$args){
+    public static function retornarRecuperacionContraseña($request,$response,$args){
         $datosDelUsuario=$request->getBody();
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;

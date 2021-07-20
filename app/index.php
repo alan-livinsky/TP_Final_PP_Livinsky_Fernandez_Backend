@@ -91,16 +91,12 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
     
-
-    //$group->get('/ver_usuario/{usuario}/{contrasea}',\UsuariosController::class.':retornarUsuario');
-
-
     //AREGLAR GIONES BAJOS MINUSCULA MaYUSCULA
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
-    $group->post('/recuperar_password',\UsuariosController::class.':retornarRecContraseña');
+    $group->post('/recuperarContraseña',\UsuariosController::class.':retornarRecuperacionContraseña');
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
