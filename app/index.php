@@ -40,8 +40,8 @@ $app = AppFactory::create();
 
     //TESTEO PARA MANEJAR MEJOR LOS ERRORES DE SLIM
 $errorMiddleware=$app->addErrorMiddleware(true,true,true);
-$errorHandler=$errorMiddleware->getDefaultErrorHandler();
-$errorHandler->forceContentType('application/json');
+//$errorHandler=$errorMiddleware->getDefaultErrorHandler();
+//$errorHandler->forceContentType('application/json');
 
 //Middleware <<Validacion JWT - tuupola/slim-jwt-auth>>
 //Automaticamente decodifica el token y lo guarda en $request->get_getAttribute("token");
@@ -68,10 +68,10 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
 //Middleware <<CORS - Por defecto de Slim>>
 $app->add(function (Request $request, RequestHandlerInterface $handler): Response {  
     $response = $handler->handle($request);
-    $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
-    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post,PUT,DELETE,options');
-    $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
+    $requestHeaders=$request->getHeaderLine('Access-Control-Request-Headers');
+    $response=$response->withHeader('Access-Control-Allow-Origin', '*');
+    $response=$response->withHeader('Access-Control-Allow-Methods', 'get,post,PUT,DELETE,options');
+    $response=$response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     return $response;
 });
 
