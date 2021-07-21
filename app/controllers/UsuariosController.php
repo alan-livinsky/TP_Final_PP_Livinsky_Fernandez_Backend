@@ -97,7 +97,8 @@ class UsuariosController{
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
         $controlador=new UsuariosController();
-        $response=$controlador->enviarEmailDeRecuperacion($email);
+        $estadoEnvio=$controlador->enviarEmailDeRecuperacion($email);
+        $response->getBody()->write(Json_encode($estadoEnvio));
         return $response->withHeader('Content-type','application/json');
     }
 
@@ -132,10 +133,10 @@ class UsuariosController{
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         if($mail->send()){
-            return $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
+            return "Se ha enviado el Email.Por favor verifique su casilla de correo.";
         }
         else{
-            return $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
+            return "Ah ocurrido un error.El email no pudo enviarse";
         }
     }
     
