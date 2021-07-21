@@ -139,13 +139,13 @@ class UsuariosController{
 
         if($mail->send()){
             $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
-            return $response->withHeader('Content-type','application/json');
         }
         else{
+
             $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
-            return $response->withHeader('Content-type','application/json');
-        
         }
+        return $response->withHeader('Content-type','application/json');
+
     }
     
 }
