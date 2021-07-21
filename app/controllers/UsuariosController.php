@@ -98,7 +98,8 @@ class UsuariosController{
         //$id=$requestParamter['id'];
         //$controlador=new UsuariosController();
        // $response=$controlador->enviarEmailDeRecuperacion($email);
-        return $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
+        $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
+        return $response->withHeader('Content-type','application/json');
     }
 
     //Use the second parameter of json_decode to make it return an array:
