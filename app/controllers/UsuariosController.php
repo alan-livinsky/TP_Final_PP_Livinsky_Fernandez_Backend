@@ -113,10 +113,10 @@ class UsuariosController{
         $email=$datosDelUsuario->email;
 
         $mail=new PHPMailer;
-        $mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
+        //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
         $mail->isSMTP();                                      //Send using SMTP
         $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
-        $mail->SMTPAuth=true;                                 //Enable SMTP authentication
+        //$mail->SMTPAuth=true;                                 //Enable SMTP authentication
         $mail->Username='SAESHitbeltran@gmail.com';           //SMTP username
         $mail->Password='rwbiofucouofrvth';                   //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
         $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;        //Enable implicit TLS encryption
