@@ -97,8 +97,7 @@ class UsuariosController{
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
         //$controlador=new UsuariosController();
-       // $response=$controlador->enviarEmailDeRecuperacion($email);
-        $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
+        $response=$controlador->enviarEmailDeRecuperacion($email);
         return $response->withHeader('Content-type','application/json');
     }
 
