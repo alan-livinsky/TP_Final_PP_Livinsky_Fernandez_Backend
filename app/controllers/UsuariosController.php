@@ -125,18 +125,17 @@ class UsuariosController{
         //$mail->addAttachment('/tmp/image.jpg','new.jpg');   //Optional name
 
         //Content
-        $mail->Subject = 'Recuperacion de contraseña';
+        $mail->Subject = 'Recuperacion de acceso a cuenta';
         $mail->Body=file_get_contents(getcwd().'/Email/Email_Recuperacion_Contraseña.php');
      
         $mail->isHTML(true); //Set email format to HTML
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         if($mail->send()){
-            return $response->getBody()->write(Json_encode("Se ha enviado el Email.Pro favor verifique su casilla de correo."));
+            return $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
         }
         else{
             return $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
-            return $response;
         }
     }
     
