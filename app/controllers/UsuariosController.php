@@ -97,8 +97,8 @@ class UsuariosController{
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
         $controlador=new UsuariosController();
-        $estadoEnvio=$controlador->enviarEmailDeRecuperacion($email);
-        $response->getBody()->write(Json_encode($estadoEnvio));
+        //$estadoEnvio=$controlador->enviarEmailDeRecuperacion($email);
+        $response->getBody()->write(Json_encode("sasaas"));
         return $response->withHeader('Content-type','application/json');
     }
 
