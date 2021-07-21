@@ -96,50 +96,15 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
-        //$controlador=new UsuariosController();
-
-        $mail=new PHPMailer;
-        $mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
-        $mail->isSMTP();                                      //Send using SMTP
-        $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
-        $mail->SMTPAuth=true;                                 //Enable SMTP authentication
-        $mail->Username='SAESHitbeltran@gmail.com';           //SMTP username
-        $mail->Password='rwbiofucouofrvth';                   //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
-        $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;        //Enable implicit TLS encryption
-        $mail->Port=465;     
-
-        //Recipients
-        $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH');  //Add a recipient 
-        $mail->addAddress($email,'Usuario');                  //Name is optional
-
-        //Attachments
-        //$mail->addAttachment('/var/tmp/file.tar.gz');       //Add attachments
-        //$mail->addAttachment('/tmp/image.jpg','new.jpg');   //Optional name
-
-        //Content
-        $mail->Subject = 'Recuperacion de contraseña';
-        $mail->Body=file_get_contents(getcwd().'/Email/Email_Recuperacion_Contraseña.php');
-     
-        $mail->isHTML(true); //Set email format to HTML
-        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-        if($mail->send()){
-            $response="Se ha enviado el Email.Pro favor verifique su casilla de correo.";
-            return $response;
-        }
-        else{
-            $response="Ah ocurrido un error.El email no pudo enviarse";
-            return $response;
-        }
-       
-        /*$response=$controlador->enviarEmailDeRecuperacion($email);
-        return $response;*/
+        $controlador=new UsuariosController();
+        $response=$controlador->enviarEmailDeRecuperacion($email);
+        return $response;
     }
 
     //Use the second parameter of json_decode to make it return an array:
     //$result = json_decode($data, true);
     //function sendVerificationEmail($email,$id)
-    /*
+    
     public function enviarEmailDeRecuperacion($email){      
         $mail=new PHPMailer;
         $mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
@@ -167,14 +132,13 @@ class UsuariosController{
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         if($mail->send()){
-            $response="Se ha enviado el Email.Pro favor verifique su casilla de correo.";
-            return $response;
+            return $response->getBody()->write(Json_encode("Se ha enviado el Email.Pro favor verifique su casilla de correo."));
         }
         else{
-            $response="Ah ocurrido un error.El email no pudo enviarse";
+            return $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
             return $response;
         }
-    }*/
+    }
     
 }
 ?>
