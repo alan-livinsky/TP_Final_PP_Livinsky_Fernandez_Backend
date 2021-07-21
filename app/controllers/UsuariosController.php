@@ -106,7 +106,12 @@ class UsuariosController{
     //$result = json_decode($data, true);
     //function sendVerificationEmail($email,$id)
     
-    public function enviarEmailDeRecuperacion($email){      
+    public static function retornarEmailDeRecuperacion($request,$response,$args){      
+
+        $datosDelUsuario=$request->getBody();
+        $datosDelUsuario=json_decode($datosDelUsuario);
+        $email=$datosDelUsuario->email;
+
         $mail=new PHPMailer;
         $mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
         $mail->isSMTP();                                      //Send using SMTP
@@ -133,10 +138,13 @@ class UsuariosController{
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         if($mail->send()){
-            return "Se ha enviado el Email.Por favor verifique su casilla de correo.";
+            $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
+            return $response->withHeader('Content-type','application/json');
         }
         else{
-            return "Ah ocurrido un error.El email no pudo enviarse";
+            $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
+            return $response->withHeader('Content-type','application/json');
+        
         }
     }
     
