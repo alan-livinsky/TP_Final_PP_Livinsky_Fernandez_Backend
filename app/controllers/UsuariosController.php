@@ -111,7 +111,7 @@ class UsuariosController{
         $datosDelUsuario=$request->getBody();
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
-/*
+
         $mail=new PHPMailer;
         $mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
         $mail->isSMTP();                                      //Send using SMTP
@@ -135,9 +135,9 @@ class UsuariosController{
         $mail->Body=file_get_contents(getcwd().'/Email/Email_Recuperacion_Contraseña.php');
      
         $mail->isHTML(true); //Set email format to HTML
-        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-        
+        /*
         if($mail->send()){
             $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
         }
@@ -145,6 +145,7 @@ class UsuariosController{
 
             $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
         }*/
+        
         $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
         return $response->withHeader('Content-type','application/json');
 
