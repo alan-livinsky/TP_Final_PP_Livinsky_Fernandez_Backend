@@ -96,7 +96,7 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
         //$id=$requestParamter['id'];
-        //$controlador=new UsuariosController();
+        $controlador=new UsuariosController();
         $response=$controlador->enviarEmailDeRecuperacion($email);
         return $response->withHeader('Content-type','application/json');
     }
