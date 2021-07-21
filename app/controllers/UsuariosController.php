@@ -136,6 +136,7 @@ class UsuariosController{
      
         $mail->isHTML(true); //Set email format to HTML
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->send();
 
         /*
         if($mail->send()){
@@ -145,7 +146,7 @@ class UsuariosController{
 
             $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
         }*/
-        
+
         $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
         return $response->withHeader('Content-type','application/json');
 
