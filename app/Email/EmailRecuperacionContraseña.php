@@ -7,7 +7,7 @@
 					<tbody>
 						<tr>
 							<td align="center" style="background:#f0b13c;">
-								<img src="https://tp-final-pp-liv-ferz-frontend.herokuapp.com/img/Inicio-Registro.jpeg"
+								<img src="https://tp-final-pp-liv-ferz-frontend.herokuapp.com/img/CabeceraEmail.png"
 									 alt="" width="600" style="height:auto;display:block;">
 							</td>
 						</tr>
@@ -27,14 +27,10 @@
 													style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
 													Le enviamos este correo porque hemos recibido una solicitud de
 													recuperacion de contraseña para esta cuenta de correo electronico.
-													Por favor ingrese al enlace provisto a continuacion para poder
-													recuperar el acceso a su cuenta.
 												</p>
 												<p
 													style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-													<a href="http://www.example.com/"
-														style="color:#ee4c50;text-decoration:underline;">Recuperar
-														Contraseña</a>
+													<input type="button" value="Recuperar Contraseña">
 												</p>
 											</td>
 										</tr>

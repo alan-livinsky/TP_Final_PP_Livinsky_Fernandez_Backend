@@ -114,6 +114,7 @@ class UsuariosController{
 
         $mail=new PHPMailer;
         //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
+           //Por algun motivo genera error de cors
         $mail->isSMTP();                                      //Send using SMTP
         $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
         $mail->SMTPAuth=true;                                 //Enable SMTP authentication
@@ -132,7 +133,7 @@ class UsuariosController{
 
         //Content
         $mail->Subject = 'Recuperacion de acceso a cuenta';
-        $mail->Body=file_get_contents(getcwd().'/Email/Email_Recuperacion_Contraseña.php');
+        $mail->Body=file_get_contents(getcwd().'/Email/EmailRecuperacionContraseña.php');
      
         $mail->isHTML(true); //Set email format to HTML
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
