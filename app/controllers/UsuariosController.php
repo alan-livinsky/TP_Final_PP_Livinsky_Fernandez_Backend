@@ -113,7 +113,7 @@ class UsuariosController{
         $email=$datosDelUsuario->email;
 
         $mail=new PHPMailer;
-        //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
+        $mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
            //Por algun motivo genera error de cors
         $mail->isSMTP();                                      //Send using SMTP
         $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
