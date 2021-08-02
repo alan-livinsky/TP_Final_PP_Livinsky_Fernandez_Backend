@@ -8,7 +8,7 @@
         
         public function buscar_lista_materiales(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD();
-            $consulta=$accesoDatos->prepararConsulta("SELECT id_materiasl FROM materiales");
+            $consulta=$accesoDatos->prepararConsulta("SELECT id_material FROM materiales");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Materiales');
         }
