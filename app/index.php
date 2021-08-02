@@ -57,7 +57,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "path" => ["/"], 
     "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin",
                 "/Usuarios/recuperarContrase","/cargaDeFuego/listaMateriales",
-                "/cargaDeFuego/datosMaterial/{material}"],
+                "/cargaDeFuego/datosMaterial"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
