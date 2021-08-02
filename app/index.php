@@ -110,6 +110,13 @@ $app->group('/Menu_principal', function (RouteCollectorProxy $group){
     //$group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
 });
 
+$app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
+    $group->get('/listaMateriales',\MaterialesController::class.':retornarListaMateriales');
+    $group->get('/datosMaterial/{material}',\MaterialesController::class.':retornarDatosMaterial');
+});
+
+
+
 $app->run();
 
 ?>
