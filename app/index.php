@@ -50,7 +50,9 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => $_ENV['JWT_SECRET'],
     "algorithm" => ["HS256"],
     "path" => ["/"], 
-    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin","/Usuarios/recuperarContrase"],
+    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin",
+                "/Usuarios/recuperarContrase","/cargaDeFuego/listaMateriales",
+                "/cargaDeFuego/datosMaterial/{material}"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
