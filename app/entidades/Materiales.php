@@ -19,7 +19,8 @@
 
             $consulta=$accesoDatos->prepararConsulta("SELECT * FROM materiales WHERE id_material='$id_material'");
             $consulta->execute(); 
-            return $consulta->fetchAll(PDO::FETCH_CLASS,'Materiales');
+            //return $consulta->fetchAll(PDO::FETCH_CLASS,'Materiales');
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
     }
