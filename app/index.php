@@ -114,7 +114,7 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
 $app->group('/Menu_principal', function (RouteCollectorProxy $group){
     $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarListaEjerciciosMenu');
     $group->get('/lista_opciones_profesor/cargar',\OpcionesController::class.':retornarOpciones_profesor');
-    //$group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
+    $group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
 });
 
 $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
