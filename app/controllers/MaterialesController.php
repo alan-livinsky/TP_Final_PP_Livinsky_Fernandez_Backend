@@ -11,7 +11,7 @@ class MaterialesController{
 
   public static function retornarDatosMaterial($request,$response,$args){
     $materiales=new Materiales();
-    $listaMateriales=$materiales->buscarDatosMaterial($args['material']);
+    $listaMateriales=$materiales->buscarDatosMaterial($args['nombre']);
     $response->getBody()->write(json_encode($listaMateriales));
     return $response;
   }
