@@ -23,7 +23,7 @@
             $buscarHash->execute();
             $hash=$buscarHash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
             echo("hola");
-            var_dump($hash);
+            var_dump($hash[0]);
 
             if (password_verify($contraseña,$hash->contraseña)){
                 echo("hola");
