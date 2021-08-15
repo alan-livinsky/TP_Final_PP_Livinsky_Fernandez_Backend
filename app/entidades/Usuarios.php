@@ -22,7 +22,7 @@
             $hash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $hash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
 
-            if (password_verify($contraseña,$hash)){
+            if (password_verify($contraseña,$hash['contraseña'])){
                 $contraseña=$hash;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
                 $consulta->execute();
