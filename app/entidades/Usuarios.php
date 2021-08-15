@@ -19,19 +19,33 @@
         //PASAR A NO STATIC
         public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
-            $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+            $hash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
+            $hash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+
+            if (password_verify($contraseña,$hash)){
+                $contraseña=$hash;
+                $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
+                $consulta->execute();
+                return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+            }
+            else{
+                return;
+            }
+            
+
+            
         }
 
         public function registrar_usuario($data){
 
             $id_usuario=$data['id_usuario'];
             $email=$data['email'];
-            $contraseña=$data['contraseña'];
+            $contraseña=password_hash($data['contraseña'],PASSWORD_DEFAULT);
             $nombre=$data['nombre'];
             $apellido=$data['apellido'];
             $tipo_usuario=$data['tipo_usuario'];
+
+
 
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
