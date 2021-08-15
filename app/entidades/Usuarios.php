@@ -22,11 +22,9 @@
             $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
             $hash=$buscarHash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
-            echo("hola");
-            var_dump($hash[0]);
-
+        
             if (password_verify($contraseña,$hash[0]->contraseña)){
-                echo("hola");
+       
                 $contraseña=$hash[0]->contraseña;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
                 $consulta->execute();
