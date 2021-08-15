@@ -20,6 +20,7 @@
         public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $hash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
+            $hash->execute();
             $hash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
 
             if (password_verify($contraseña,$hash['contraseña'])){
