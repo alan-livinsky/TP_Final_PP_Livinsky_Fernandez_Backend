@@ -23,6 +23,8 @@
             $buscarHash->execute();
             $hash=$buscarHash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
 
+            var_dump($hash);
+
             if (password_verify($contraseña,$hash['contraseña'])){
                 $contraseña=$hash;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
@@ -32,9 +34,6 @@
             else{
                 return;
             }
-            
-
-            
         }
 
         public function registrar_usuario($data){
