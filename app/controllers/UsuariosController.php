@@ -24,12 +24,12 @@ function generarTokenEmailRecuperacion($email){
                                             values
                                             (default,'$email','$token','$fechaVencimiento')");
     $consulta->execute();
-    
+
     echo "pepe";
 
     $response->getBody()->write($token);
 
-    return $token;
+    return $response;
 }   
 
 /*
