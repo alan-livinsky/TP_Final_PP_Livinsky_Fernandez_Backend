@@ -24,7 +24,6 @@
             $hash=$buscarHash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         
             if (password_verify($contraseña,$hash[0]->contraseña)){
-       
                 $contraseña=$hash[0]->contraseña;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
                 $consulta->execute();
@@ -36,15 +35,12 @@
         }
 
         public function registrar_usuario($data){
-
             $id_usuario=$data['id_usuario'];
             $email=$data['email'];
             $contraseña=password_hash($data['contraseña'],PASSWORD_DEFAULT);
             $nombre=$data['nombre'];
             $apellido=$data['apellido'];
             $tipo_usuario=$data['tipo_usuario'];
-
-
 
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
@@ -67,7 +63,7 @@
         public function eliminar_usuario($email){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuarios 
-                                                    WHERE email='$email'");
+                                                      WHERE email='$email'");
             $consulta->execute();
             $estado="Cuenta Eliminada";
             return $estado;
@@ -76,8 +72,8 @@
         public function actualizar_contraseña($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
-                                                        SET contraseña='$contraseña'
-                                                        WHERE email='$email'");
+                                                      SET contraseña='$contraseña'
+                                                      WHERE email='$email'");
             $consulta->execute();
             $estado="Actualizacion completada";
             return $estado;  

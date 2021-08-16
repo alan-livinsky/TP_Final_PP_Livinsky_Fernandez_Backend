@@ -7,20 +7,6 @@ use PHPMailer\PHPMailer\Exception;
 
 class UsuariosController{
 
-    /*
-    public static function retornarUsuario($request,$response,$args){
-        $usuario=Usuarios::buscar_usuario($args['usuario'],$args['contrasea']);
-        if ($usuario){
-            
-            $response->getBody()->write(json_encode($usuario));
-            return $response->withHeader('Content-type','application/json');
-        } 
-        else {
-            return $response->withStatus(401);
-        }
-    }
-    */
-
     public static function retornarListaUsuarios($request,$response,$args){
         $listaUsuarios=Usuarios::buscar_lista_usuarios();
         $response->getBody()->write(json_encode($listaUsuarios));
@@ -112,44 +98,41 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
 
-        $mail=new PHPMailer;
-        //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                  //Enable verbose debug output
-           //Por algun motivo genera error de cors
-        $mail->isSMTP();                                      //Send using SMTP
-        $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
-        $mail->SMTPAuth=true;                                 //Enable SMTP authentication
-        $mail->Username='SAESHitbeltran@gmail.com';           //SMTP username
-        $mail->Password='rwbiofucouofrvth';                   //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
-        $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;        //Enable implicit TLS encryption
-        $mail->Port=465;     
+        try {
+            $mail=new PHPMailer;
+            //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                //Enable verbose debug output
+            //Por algun motivo genera error de cors
+            $mail->isSMTP();                                      //Send using SMTP
+            $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
+            $mail->SMTPAuth=true;                                 //Enable SMTP authentication
+            $mail->Username='SAESHitbeltran@gmail.com';           //SMTP username
+            $mail->Password='rwbiofucouofrvth';                   //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
+            $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;        //Enable implicit TLS encryption
+            $mail->Port=465;     
 
-        //Recipients
-        $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH');  //Add a recipient 
-        $mail->addAddress($email,'Usuario');                  //Name is optional
+            //Recipients
+            $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH');  //Add a recipient 
+            $mail->addAddress($email,'Usuario');                  //Name is optional
 
-        //Attachments
-        //$mail->addAttachment('/var/tmp/file.tar.gz');       //Add attachments
-        //$mail->addAttachment('/tmp/image.jpg','new.jpg');   //Optional name
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');       //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg','new.jpg');   //Optional name
 
-        //Content
-        $mail->Subject = 'Recuperacion de acceso a cuenta';
-        $mail->Body=file_get_contents(getcwd().'/Email/EmailRecuperacionContraseña.php');
-     
-        $mail->isHTML(true); //Set email format to HTML
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->send();
-
-        /*
-        if($mail->send()){
+            //Content
+            $mail->Subject = 'Recuperacion de acceso a cuenta';
+            $mail->Body=file_get_contents(getcwd().'/Email/EmailRecuperacionContraseña.php');
+        
+            $mail->isHTML(true); //Set email format to HTML
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->send();
+            
             $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
-        }
-        else{
+            return $response->withHeader('Content-type','application/json');
 
+        }catch (\Exception $e){
             $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
-        }*/
-
-        $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
-        return $response->withHeader('Content-type','application/json');
+            return $response->withHeader('Content-type','application/json');
+        }
 
     }
     
