@@ -208,30 +208,30 @@ class UsuariosController{
                         </table>';
         return $contenidoEmail;
     }
-
-    function generarTokenEmailRecuperacion($email){  
-        $token=random_bytes(32);
-        date_default_timezone_set('Argentina/Buenos_Aires');
-        $fechaHoraActual=date('Y/m/d H:i:s');
-        $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
-
-        $datosToken = [
-            token_recuperacion=>$token,
-        ];
-
-        altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento);
-    
-        return $token;
-      
-    }   
-
-    function altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento){
-        $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-        $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
-                                                values
-                                                (default,'$email','$token','$fechaVencimiento')");
-        $consulta->execute();
-    }
-
 }
+
+function generarTokenEmailRecuperacion($email){  
+    $token=random_bytes(32);
+    date_default_timezone_set('Argentina/Buenos_Aires');
+    $fechaHoraActual=date('Y/m/d H:i:s');
+    $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
+
+    $datosToken = [
+        token_recuperacion=>$token,
+    ];
+
+    altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento);
+
+    return $token;
+  
+}   
+
+function altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento){
+    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+    $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
+                                            values
+                                            (default,'$email','$token','$fechaVencimiento')");
+    $consulta->execute();
+}
+
 ?>
