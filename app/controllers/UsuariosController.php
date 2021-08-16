@@ -216,13 +216,13 @@ class UsuariosController{
             $token=random_bytes(32);
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $fechaHoraActual=date('Y/m/d H:i:s');
-            $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
+            //$fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
             
             
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                                     values
-                                                    (1,'$email','$token','$fechaVencimiento')");
+                                                    (1,'$email','$token','a')");
             $consulta->execute();
             
             $mail->Body="a";
