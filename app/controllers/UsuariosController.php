@@ -126,7 +126,9 @@ class UsuariosController{
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
             
-            $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor verifique su casilla de correo."));
+            $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor 
+                                                    verifique su casilla de correo electronico
+                                                    y siga las instrucciones."));
             return $response->withHeader('Content-type','application/json');
 
         }catch (\Exception $e){
