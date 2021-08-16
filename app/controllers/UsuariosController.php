@@ -6,7 +6,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
-
 function generarTokenEmailRecuperacion($email){  
     $token=random_bytes(32);
     date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -181,7 +180,7 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
     
- 
+ /*
     public static function retornarRecuperacionContraseña($request,$response,$args){
         $datosDelUsuario=$request->getBody();
         $datosDelUsuario=json_decode($datosDelUsuario);
@@ -192,6 +191,7 @@ class UsuariosController{
         $response->getBody()->write(Json_encode("sasaas"));
         return $response->withHeader('Content-type','application/json');
     }
+*/
 
     //Use the second parameter of json_decode to make it return an array:
     //$result = json_decode($data, true);
@@ -226,7 +226,7 @@ class UsuariosController{
             //Content
             $mail->Subject = 'Recuperacion de acceso a cuenta';
 
-            generarTokenEmailRecuperacion($email);
+           // generarTokenEmailRecuperacion($email);
             $mail->Body="a";
         
             $mail->isHTML(true); //Set email format to HTML
