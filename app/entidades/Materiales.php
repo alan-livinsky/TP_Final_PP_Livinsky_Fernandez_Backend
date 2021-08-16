@@ -16,15 +16,11 @@
         }
 
         public function buscarDatosMaterial($nombre){
-            
             $accesoDatos=Acceso_a_datos::obtenerConexionBD();
-
             $consulta=$accesoDatos->prepararConsulta("SELECT * FROM materiales WHERE nombre='$nombre'");
             $consulta->execute(); 
             return $consulta->fetchAll(PDO::FETCH_CLASS,'Materiales');
-           
         }
 
     }
-
 ?>

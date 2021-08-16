@@ -55,7 +55,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => $_ENV['JWT_SECRET'],
     "algorithm" => ["HS256"],
     "path" => ["/"], 
-    "ignore" => ["/","/Bienvenido","/Usuarios/registro","/Usuarios/loguin",
+    "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin",
                 "/Usuarios/recuperarContrase","/cargaDeFuego/listaMateriales",
                 "/cargaDeFuego/datosMaterial"],
     
@@ -84,10 +84,9 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 
 //<<Rutas>>
-$app->get('/',function(Request $request, Response $response, array $args) {
-    return $response->withHeader('Location', 'https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
-    //$response->getBody()->write("Token Test");
-    //return $response;
+$app->get('/',function(Request $request, Response $response, array $args) { 
+    $response->getBody()->write("Token Test");
+    return $response;
 });
 
 $app->get('/Bienvenido',function(Request $request, Response $response, array $args) { 
@@ -99,12 +98,20 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
     
-    //AREGLAR GIONES BAJOS MINUSCULA MaYUSCULA
+    //AREGLAR GIONES BAJOS MINUSCULA MAYUSCULA
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
+
+    $group->get('/emailRecuperacion/{tokenRecuperacion}',function(Request $request, Response $response, array $args){
+
+        echo $args['token'];
+
+        return $response->withHeader('Location', 'https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
+    });
+    
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
@@ -122,6 +129,8 @@ $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
     $group->get('/listaMateriales',\MaterialesController::class.':retornarListaMateriales');
     $group->get('/datosMaterial/{material}',\MaterialesController::class.':retornarDatosMaterial');
 });
+
+
 
 
 $app->run();
