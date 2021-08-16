@@ -29,7 +29,9 @@ function generarTokenEmailRecuperacion($email){
 
     echo "pepe";
 
-    return $token;
+    $response->getBody()->write($token);
+
+    return $response;
 }   
 
 /*
@@ -227,7 +229,8 @@ class UsuariosController{
 
             //Content
             $mail->Subject = 'Recuperacion de acceso a cuenta';
-            $mail->Body=generarTokenEmailRecuperacion($email);
+            $response=generarTokenEmailRecuperacion($email);
+            $mail->Body=$response->getBody()->toString();
         
             $mail->isHTML(true); //Set email format to HTML
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
