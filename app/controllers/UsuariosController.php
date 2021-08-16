@@ -6,14 +6,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /*
-function generarTokenEmailRecuperacion($email){  
-    
-
-    return $response;
-}   
-*/
-
-/*
 function prepararEmailDeRecuperacion($email){
     
     $token=generarTokenEmailRecuperacion($email);
@@ -187,6 +179,8 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
 
+        SolicitudRecuperacion::generarTokenEmailRecuperacion($email);
+
         try {
             $mail=new PHPMailer;
             //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                //Enable verbose debug output
@@ -211,20 +205,7 @@ class UsuariosController{
             $mail->Subject = 'Recuperacion de acceso a cuenta';
 
            // generarTokenEmailRecuperacion($email);
-
-            
-            $token=random_bytes(32);
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
-            $fechaHoraActual=date('Y/m/d H:i:s');
-            //$fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
-            
-            
-            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
-                                                    values
-                                                    (1,'$email','$token','a')");
-            $consulta->execute();
-            
+            $test=generarTokenEmailRecuperacion($email);
             $mail->Body="a";
         
             $mail->isHTML(true); //Set email format to HTML

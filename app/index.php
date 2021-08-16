@@ -28,6 +28,7 @@ require __DIR__ . '/entidades/Cursos.php';
 require __DIR__ . '/entidades/MenuPrincipal.php';
 require __DIR__ . '/entidades/Opciones.php';
 require __DIR__ . '/entidades/Materiales.php';
+require __DIR__ . '/entidades/SolicitudRecuperacion.php';
 
 //use Firebase\JWT\JWT; Por Algun motivo los controllers no reconocen la dependencia
 //en el index
