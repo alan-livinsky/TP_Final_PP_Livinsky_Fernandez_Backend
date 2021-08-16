@@ -223,7 +223,7 @@ class UsuariosController{
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                                     values
                                                     (1,'$email','$token','$fechaVencimiento')");
-            /*$consulta->execute();*/
+            $consulta->execute();
             
             $mail->Body="a";
         
