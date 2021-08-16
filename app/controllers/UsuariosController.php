@@ -5,8 +5,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function prepararEmailDeRecuperacion($token){
+function prepararEmailDeRecuperacion($email){
     
+    $token=generarTokenEmailRecuperacion($email);
     echo "pepe2";
 
     $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$token;
@@ -224,7 +225,7 @@ class UsuariosController{
 
             //Content
             $mail->Subject = 'Recuperacion de acceso a cuenta';
-            $mail->Body=generarTokenEmailRecuperacion($email);
+            $mail->Body=prepararEmailDeRecuperacion($email);
         
             $mail->isHTML(true); //Set email format to HTML
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
