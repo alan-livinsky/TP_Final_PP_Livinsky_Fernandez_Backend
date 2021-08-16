@@ -138,7 +138,7 @@ class UsuariosController{
 
     }
 
-    public static function prepararEmailDeRecuperacion($token){     
+   function prepararEmailDeRecuperacion($token){     
 
         $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$token;
 
@@ -209,7 +209,7 @@ class UsuariosController{
         return $contenidoEmail;
     }
 
-    public static function generarTokenEmailRecuperacion($email){  
+    function generarTokenEmailRecuperacion($email){  
         $token=random_bytes(32);
         date_default_timezone_set('Argentina/Buenos_Aires');
         $fechaHoraActual=date('Y/m/d H:i:s');
