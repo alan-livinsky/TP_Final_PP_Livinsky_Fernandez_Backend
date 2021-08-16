@@ -83,9 +83,11 @@ function generarTokenEmailRecuperacion($email){
     $fechaHoraActual=date('Y/m/d H:i:s');
     $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
 
-    $datosToken = [
+    /*
+    $datosToken=[
         token_recuperacion=>$token,
     ];
+    */
 
     altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento);
 
