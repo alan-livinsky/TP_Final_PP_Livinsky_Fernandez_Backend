@@ -84,7 +84,8 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 
 //<<Rutas>>
-$app->get('/',function(Request $request, Response $response, array $args) { 
+$app->get('/',function(Request $request, Response $response, array $args) {
+    redirect('https://www.geeksforgeeks.org/postgresql-delete/'); 
     $response->getBody()->write("Token Test");
     return $response;
 });
@@ -121,7 +122,6 @@ $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
     $group->get('/listaMateriales',\MaterialesController::class.':retornarListaMateriales');
     $group->get('/datosMaterial/{material}',\MaterialesController::class.':retornarDatosMaterial');
 });
-
 
 
 $app->run();
