@@ -5,7 +5,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function prepararEmailDeRecuperacion($token){     
+function prepararEmailDeRecuperacion($token){
+    
+    echo "pepe2";
 
     $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$token;
 
@@ -90,6 +92,8 @@ function generarTokenEmailRecuperacion($email){
     */
 
     altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento);
+
+    echo "pepe";
 
     return $token;
 
