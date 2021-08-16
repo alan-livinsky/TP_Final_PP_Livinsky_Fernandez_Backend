@@ -79,7 +79,7 @@ function prepararEmailDeRecuperacion($token){
 
 function generarTokenEmailRecuperacion($email){  
     $token=random_bytes(32);
-    date_default_timezone_set('Argentina/Buenos_Aires');
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
     $fechaHoraActual=date('Y/m/d H:i:s');
     $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
 
@@ -101,6 +101,7 @@ function altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento){
     $consulta->execute();
 }
 
+//--------------------------------------------------------------------------------------------//
 
 class UsuariosController{
 
