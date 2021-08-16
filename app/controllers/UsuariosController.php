@@ -27,9 +27,7 @@ function generarTokenEmailRecuperacion($email){
 
     echo "pepe";
 
-    $response->getBody()->write($token);
-
-    return $response;
+   
 }   
 
 /*
