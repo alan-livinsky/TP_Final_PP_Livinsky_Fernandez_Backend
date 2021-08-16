@@ -205,7 +205,7 @@ class UsuariosController{
             $mail->Subject = 'Recuperacion de acceso a cuenta';
 
            // generarTokenEmailRecuperacion($email);
-            $test=generarTokenEmailRecuperacion($email);
+           // $test=generarTokenEmailRecuperacion($email);
             $mail->Body="a";
         
             $mail->isHTML(true); //Set email format to HTML
