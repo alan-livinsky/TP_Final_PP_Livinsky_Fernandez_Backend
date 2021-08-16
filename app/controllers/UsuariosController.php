@@ -5,13 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento){
-    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
-                                            values
-                                            (default,'$email','$token','$fechaVencimiento')");
-    $consulta->execute();
-}
+
 
 function generarTokenEmailRecuperacion($email){  
     $token=random_bytes(32);
@@ -25,8 +19,12 @@ function generarTokenEmailRecuperacion($email){
     ];
     */
 
-    altaSolicitudRestaurarContraseña($email,$token,$fechaVencimiento);
-
+    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+    $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
+                                            values
+                                            (default,'$email','$token','$fechaVencimiento')");
+    $consulta->execute();
+    
     echo "pepe";
 
     $response->getBody()->write($token);
