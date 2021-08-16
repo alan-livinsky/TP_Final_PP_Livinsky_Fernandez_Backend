@@ -24,9 +24,7 @@ function generarTokenEmailRecuperacion($email){
                                             (default,'$email','$token','$fechaVencimiento')");
     $consulta->execute();
 
-    echo "pepe";
-
-   
+    return $token;
 }   
 
 /*
@@ -227,6 +225,7 @@ class UsuariosController{
             $mail->Subject = 'Recuperacion de acceso a cuenta';
 
            // generarTokenEmailRecuperacion($email);
+            $test=generarTokenEmailRecuperacion($email);
             $mail->Body="a";
         
             $mail->isHTML(true); //Set email format to HTML
