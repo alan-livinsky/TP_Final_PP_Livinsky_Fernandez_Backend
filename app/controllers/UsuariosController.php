@@ -225,7 +225,7 @@ class UsuariosController{
 
             //Content
             $mail->Subject = 'Recuperacion de acceso a cuenta';
-            $mail->Body=prepararEmailDeRecuperacion($email);
+            $mail->Body="a";
         
             $mail->isHTML(true); //Set email format to HTML
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
