@@ -85,7 +85,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 //<<Rutas>>
 $app->get('/',function(Request $request, Response $response, array $args) {
-    $response->redirect('/','https://www.geeksforgeeks.org/postgresql-delete/');
+    return $response->withHeader('Location', 'https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
     //$response->getBody()->write("Token Test");
     //return $response;
 });
