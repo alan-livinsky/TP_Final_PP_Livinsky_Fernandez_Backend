@@ -126,14 +126,14 @@ class UsuariosController{
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
             
-            $response->getBody()->write(Json_encode("Se ha enviado el Email.Por favor 
-                                                    verifique su casilla de correo electronico
-                                                    y siga las instrucciones."));
-            return $response->withHeader('Content-type','application/json');
+           $response->withHeader('Content-type','application/json');
+           $response->withStatus(200);
+           return $response;
 
         }catch (\Exception $e){
-            $response->getBody()->write(Json_encode("Ah ocurrido un error.El email no pudo enviarse"));
-            return $response->withHeader('Content-type','application/json');
+            $response->withHeader('Content-type','application/json');
+            //No es lo suficientemente representativo.
+            $response->withStatus(500);
         }
 
     }
