@@ -21,7 +21,7 @@ function generarTokenEmailRecuperacion($email){
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                             values
-                                            (default,'$email','$token','$fechaVencimiento')");
+                                            ('1','$email','$token','$fechaVencimiento')");
     $consulta->execute();
 
     return $response;
