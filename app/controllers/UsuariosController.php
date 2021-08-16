@@ -24,7 +24,7 @@ function generarTokenEmailRecuperacion($email){
                                             (default,'$email','$token','$fechaVencimiento')");
     $consulta->execute();
 
-    return $token;
+    return $response;
 }   
 
 /*
