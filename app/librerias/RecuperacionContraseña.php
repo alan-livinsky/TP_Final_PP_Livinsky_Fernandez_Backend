@@ -3,7 +3,7 @@
 function  generarTokenEmailRecuperacion($email){  
 
     $selector=base64_encode(random_bytes(8));
-    $selector=str_replace("/","",$token);
+    $selector=str_replace("/","",$selector);
 
     $token=base64_encode(random_bytes(32));
     $token=str_replace("/","",$token);
