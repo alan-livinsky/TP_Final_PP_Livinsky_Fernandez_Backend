@@ -87,32 +87,22 @@ class UsuariosController{
 
         try {
             $mail=new PHPMailer;
-            //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                //Enable verbose debug output
+            //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                
             //Por algun motivo genera error de cors
-            $mail->isSMTP();                                      //Send using SMTP
-            $mail->Host='smtp.gmail.com';                         //Set the SMTP server to send through
-            $mail->SMTPAuth=true;                                 //Enable SMTP authentication
-            $mail->Username='SAESHitbeltran@gmail.com';           //SMTP username
-            $mail->Password='rwbiofucouofrvth';                   //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
-            $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;        //Enable implicit TLS encryption
+            $mail->isSMTP();                                    
+            $mail->Host='smtp.gmail.com';                       
+            $mail->SMTPAuth=true;                                 
+            $mail->Username='SAESHitbeltran@gmail.com';         
+            $mail->Password='rwbiofucouofrvth';           //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
+            $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;      
             $mail->Port=465;     
-
             //Recipients
-            $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH');  //Add a recipient 
-            $mail->addAddress($email,'Usuario');                  //Name is optional
-
-            //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');       //Add attachments
-            //$mail->addAttachment('/tmp/image.jpg','new.jpg');   //Optional name
-
+            $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH'); 
+            $mail->addAddress($email,'Usuario');                 
             //Content
             $mail->Subject = 'Recuperacion de acceso a cuenta';
-
-           // generarTokenEmailRecuperacion($email);
-           // $test=generarTokenEmailRecuperacion($email);
             $mail->Body=prepararEmailDeRecuperacion($email);
-        
-            $mail->isHTML(true); //Set email format to HTML
+            $mail->isHTML(true);
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
             

@@ -102,8 +102,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
 
     $group->get('/emailRecuperacion/{selector}/{token}','test');
-
-    
+ 
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
