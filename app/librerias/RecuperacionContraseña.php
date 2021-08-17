@@ -38,12 +38,12 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 
 function  generarTokenEmailRecuperacion($email){
     
+    /*
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE email_solicitante='$email'");
     $consulta->execute();
     $consultaSelector=$consulta->fetchAll(PDO::FETCH_ASSOC);
-
-
+    */
 
     $selector=base64_encode(random_bytes(8));
     $selector=str_replace("/","",$selector);
@@ -57,13 +57,15 @@ function  generarTokenEmailRecuperacion($email){
     ];
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');
-    //$fechaHoraActual=date('Y/m/d H:i:s');
-    //$fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
+    $fechaHoraActual=date('Y/m/d H:i:s');
+    $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
 
+    /*
     $fechaHoraActual=new DateTime();
     echo $fechaHoraActual;
     $fechaVencimiento=$fechaHoraActual->modify('+5 minutes');
     echo $fechacencimiento;
+    */
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
@@ -78,6 +80,8 @@ function  generarTokenEmailRecuperacion($email){
 function prepararEmailDeRecuperacion($email){
 
     $selectorMasToken=generarTokenEmailRecuperacion($email);
+
+    echo $selectorMasToken;
 
     $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$selectorMasToken["selector"]."/".$selectorMasToken["token"];
 
