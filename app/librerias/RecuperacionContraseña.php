@@ -9,8 +9,6 @@ function test($request,$response,$args){
 }
 
 
-
-
 function  generarTokenEmailRecuperacion($email){  
 
     $selector=base64_encode(random_bytes(8));
