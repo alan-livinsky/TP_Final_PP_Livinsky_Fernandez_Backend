@@ -55,24 +55,18 @@ function  generarTokenEmailRecuperacion($email){
         "selector"=>$selector,
         "token"=>$token
     ];
-/*
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $fechaHoraActual=date('Y/m/d H:i:s');
-    $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));*/
 
-    
     $fechaHoraActual=new DateTime();
     echo $fechaHoraActual->format('Y-m-d H:i:s');
-    $fechaVencimiento=$fechaHoraActual->modify('+5 minutes');
+    $fechaVencimiento=$fechaHoraActual->modify('+1 minutes');
     echo $fechaVencimiento->format('Y-m-d H:i:s');
-
+    $fechaVencimiento=$fechaVencimiento->format('Y-m-d H:i:s');
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                             VALUES
                                             (default,'$email','$selector','$token','$fechaVencimiento')");
     $consulta->execute();
-
 
     return $selectorMasToken;
 }
