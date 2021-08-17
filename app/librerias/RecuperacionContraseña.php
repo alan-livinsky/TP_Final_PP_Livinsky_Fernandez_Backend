@@ -1,5 +1,16 @@
 <?php
 
+
+function test($request,$response,$args){
+
+    $response->getBody()->write("vamos manaos");
+    return $response;
+
+}
+
+
+
+
 function  generarTokenEmailRecuperacion($email){  
 
     $selector=base64_encode(random_bytes(8));
@@ -31,7 +42,7 @@ function prepararEmailDeRecuperacion($email){
 
     $selectorMasToken=generarTokenEmailRecuperacion($email);
 
-    $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$selectorMasToken["token"];
+    $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$selectorMasToken["selector"]."/".$selectorMasToken["token"];
 
     $contenidoEmail='<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
                         <tbody>

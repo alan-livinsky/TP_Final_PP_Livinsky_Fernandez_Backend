@@ -101,13 +101,8 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
 
-    $group->get('/emailRecuperacion/{tokenRecuperacion}',function(Request $request, Response $response, array $args){
+    $group->get('/emailRecuperacion/{selector}/{token}','test');
 
-
-        echo $args['token'];
-
-        return $response->withHeader('Location', 'https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
-    });
     
 });
 
