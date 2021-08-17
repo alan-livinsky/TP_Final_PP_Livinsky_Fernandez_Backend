@@ -20,9 +20,11 @@ function generarTokenEmailRecuperacion($email){
                                             VALUES
                                             (default,'$email','$fechaVencimiento','$token')");
     $consulta->execute();
+
+    return $token;
 }
 
-/*
+
 function prepararEmailDeRecuperacion($email){
     
     $token=generarTokenEmailRecuperacion($email);
@@ -95,7 +97,7 @@ function prepararEmailDeRecuperacion($email){
                     </table>';
     return $contenidoEmail;
 }
-*/
+
 
 
 
@@ -196,7 +198,7 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
 
-        generarTokenEmailRecuperacion($email);
+        //generarTokenEmailRecuperacion($email);
 
        // SolicitudRecuperacion::generarTokenEmailRecuperacion($email);
 
@@ -225,7 +227,7 @@ class UsuariosController{
 
            // generarTokenEmailRecuperacion($email);
            // $test=generarTokenEmailRecuperacion($email);
-            $mail->Body="a";
+            $mail->Body=prepararEmailDeRecuperacion($email);
         
             $mail->isHTML(true); //Set email format to HTML
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
