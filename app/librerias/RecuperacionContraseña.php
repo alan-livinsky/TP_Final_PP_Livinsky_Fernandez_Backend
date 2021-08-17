@@ -62,10 +62,10 @@ function  generarTokenEmailRecuperacion($email){
 
     
     $fechaHoraActual=new DateTime();
-    echo $fechaHoraActual;
+    echo $fechaHoraActual->format('Y-m-d H:i:s');
     $fechaVencimiento=$fechaHoraActual->modify('+5 minutes');
-    echo $fechacencimiento;
-    
+    echo $fechacencimiento->format('Y-m-d H:i:s');
+
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
