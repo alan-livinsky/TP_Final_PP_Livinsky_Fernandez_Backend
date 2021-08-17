@@ -85,6 +85,14 @@ class UsuariosController{
         $datosDelUsuario=json_decode($datosDelUsuario);
         $email=$datosDelUsuario->email;
 
+        $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($email);
+
+        if($contenidoEmailRecuperacion=="Solicitud existente"){
+            $response->getBody()->write("Ya existe una solicitud vigente para esta cuenta de email");  
+            $response->withHeader('Content-type','text/html');
+            return $response;
+        }
+
         try {
             $mail=new PHPMailer;
             //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                
@@ -101,7 +109,7 @@ class UsuariosController{
             $mail->addAddress($email,'Usuario');                 
             //Content
             $mail->Subject = 'Recuperacion de acceso a cuenta';
-            $mail->Body=prepararEmailDeRecuperacion($email);
+            $mail->Body=$contenidoEmailRecuperacion;
             $mail->isHTML(true);
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
