@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 function generarTokenEmailRecuperacion($email){  
     $token=base64_encode(random_bytes(32));
+    $token=str_replace("/","",$token);
     echo $token;
     //$token="pepe";
     date_default_timezone_set('America/Argentina/Buenos_Aires');
