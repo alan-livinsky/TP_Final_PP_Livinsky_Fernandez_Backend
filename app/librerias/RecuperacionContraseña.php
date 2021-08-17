@@ -62,7 +62,7 @@ function  generarTokenEmailRecuperacion($email){
         echo $fechaHoraActual->format('Y-m-d H:i:s');
     $zonaHoraria=new DateTimeZone('America/Argentina/Buenos_Aires');
     $fechaHoraActual->setTimezone($zonaHoraria);
-    $fechaVencimiento=$fechaHoraActual->modify('+1 minutes');
+    $fechaVencimiento=$fechaHoraActual->modify('+2 minutes');
         echo $fechaVencimiento->format('Y-m-d H:i:s');
     $fechaVencimiento=$fechaVencimiento->format('Y-m-d H:i:s');
 
