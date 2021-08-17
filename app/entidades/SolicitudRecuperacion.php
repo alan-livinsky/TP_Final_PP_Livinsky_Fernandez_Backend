@@ -15,7 +15,7 @@
         $accesoDatos=Acceso_a_datos::obtenerConexionBD();
         $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                                 VALUES
-                                                (default,'$email','$token','$fechaVencimiento')");
+                                                (default,'$email','$fechaVencimiento','$token')");
         $consulta->execute();
     }
     
