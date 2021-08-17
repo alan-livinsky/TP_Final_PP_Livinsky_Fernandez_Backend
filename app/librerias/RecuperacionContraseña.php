@@ -60,6 +60,8 @@ function  generarTokenEmailRecuperacion($email){
 
     $fechaHoraActual=new DateTime();
         echo $fechaHoraActual->format('Y-m-d H:i:s');
+    $zonaHoraria=new DateTimeZone('America/Argentina/Buenos_Aires');
+    $fechaHoraActual->setTimezone($zonaHoraria);
     $fechaVencimiento=$fechaHoraActual->modify('+1 minutes');
         echo $fechaVencimiento->format('Y-m-d H:i:s');
     $fechaVencimiento=$fechaVencimiento->format('Y-m-d H:i:s');
@@ -79,7 +81,7 @@ function prepararEmailDeRecuperacion($email){
     $selectorMasToken=generarTokenEmailRecuperacion($email);
 
     if(!$selectorMasToken){
-        return "Solicitud existente";
+        return "Solicitud";
     }
 
     $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$selectorMasToken["selector"]."/".$selectorMasToken["token"];
