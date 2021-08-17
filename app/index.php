@@ -28,7 +28,6 @@ require __DIR__ . '/entidades/Cursos.php';
 require __DIR__ . '/entidades/MenuPrincipal.php';
 require __DIR__ . '/entidades/Opciones.php';
 require __DIR__ . '/entidades/Materiales.php';
-require __DIR__ . '/entidades/SolicitudRecuperacion.php';
 
 require __DIR__ . '/librerias/RecuperacionContraseña.php';
 

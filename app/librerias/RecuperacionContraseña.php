@@ -55,17 +55,17 @@ function  generarTokenEmailRecuperacion($email){
         "selector"=>$selector,
         "token"=>$token
     ];
-
+/*
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $fechaHoraActual=date('Y/m/d H:i:s');
-    $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));
+    $fechaVencimiento=date('Y/m/d H:i:s',strtotime("$fechaHoraActual +1 day"));*/
 
-    /*
+    
     $fechaHoraActual=new DateTime();
     echo $fechaHoraActual;
     $fechaVencimiento=$fechaHoraActual->modify('+5 minutes');
     echo $fechacencimiento;
-    */
+    
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
@@ -79,7 +79,7 @@ function  generarTokenEmailRecuperacion($email){
 
 
 function prepararEmailDeRecuperacion($email){
-/*
+
     $selectorMasToken=generarTokenEmailRecuperacion($email);
 
     echo $selectorMasToken;
@@ -150,7 +150,7 @@ function prepararEmailDeRecuperacion($email){
                             </tr>
                         </tbody>
                     </table>';
-    return $contenidoEmail;*/
+    return $contenidoEmail;
 }
 
 ?>
