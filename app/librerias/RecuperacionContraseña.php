@@ -73,13 +73,13 @@ function  generarTokenEmailRecuperacion($email){
                                             (default,'$email','$selector','$token','$fechaVencimiento')");
     $consulta->execute();
 
-    
+
     return $selectorMasToken;
 }
 
 
 function prepararEmailDeRecuperacion($email){
-
+/*
     $selectorMasToken=generarTokenEmailRecuperacion($email);
 
     echo $selectorMasToken;
@@ -150,7 +150,7 @@ function prepararEmailDeRecuperacion($email){
                             </tr>
                         </tbody>
                     </table>';
-    return $contenidoEmail;
+    return $contenidoEmail;*/
 }
 
 ?>
