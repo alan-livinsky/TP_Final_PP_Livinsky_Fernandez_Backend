@@ -32,22 +32,16 @@ require __DIR__ . '/entidades/SolicitudRecuperacion.php';
 
 require __DIR__ . '/librerias/RecuperacionContraseña.php';
 
-//use Firebase\JWT\JWT; Por Algun motivo los controllers no reconocen la dependencia
-//en el index
-
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
 $dotenv->load();
-
 
 //Instanciar App
 $app = AppFactory::create();
 
 //Middleware <<Error - Por defecto de Slim>>
-//$app->addErrorMiddleware(true,true,true);
-
-    //TESTEO PARA MANEJAR MEJOR LOS ERRORES DE SLIM
 $errorMiddleware=$app->addErrorMiddleware(true,true,true);
+//TEST PARA MANEJAR MEJOR LOS ERRORES DE SLIM
 //$errorHandler=$errorMiddleware->getDefaultErrorHandler();
 //$errorHandler->forceContentType('application/json');
 
@@ -70,7 +64,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
             /*Por Defecto el middleware retorna 401 pero por algun motivo en el front
               no comprende el 401 como tal si no lo aclaro con withStatus en la api*/
             ->withStatus(401)
-            ->withHeader("Content-Type", "application/json")
+            ->withHeader("Content-Type","application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     },
 ]));
@@ -84,7 +78,6 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $response=$response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
     return $response;
 });
-
 
 //<<Rutas>>
 $app->get('/',function(Request $request, Response $response, array $args) { 
@@ -109,6 +102,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
 
     $group->get('/emailRecuperacion/{tokenRecuperacion}',function(Request $request, Response $response, array $args){
+
 
         echo $args['token'];
 
