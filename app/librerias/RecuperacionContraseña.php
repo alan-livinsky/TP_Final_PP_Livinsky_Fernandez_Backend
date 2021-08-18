@@ -66,6 +66,8 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     //Se verifica si se obtuvieron datos a partir de la consulta realizada
     if($ConsultaDeSolicitudVigente){
 
+        var_dump($ConsultaDeSolicitudVigente);
+
         echo $ConsultaDeSolicitudVigente['token'];
 
         //Se prodece a evaluar los datos obtenidos validando el token
@@ -102,10 +104,10 @@ function  generarTokenEmailRecuperacion($email){
 
     //Se realiza una consulta para verificar si ya existe otra solicitud de recuperacion de contraseña para el email provisto
     //Se busca evitar duplicados
-    $consultaDeSolicitudExistente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","email_solicitante",$email);
+    $consultaDeSolicitudVigente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","email_solicitante",$email);
 
     //Si se obtiene un resultado de la consulta se retorna tokens vacios
-    if($consultaDeSolicitudExistente){
+    if($consultaDeSolicitudVigente){
         return $tokensGenerados=[];
     }
 
