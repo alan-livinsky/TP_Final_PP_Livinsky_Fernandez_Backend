@@ -74,11 +74,13 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
             return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html?s='.$selector)->withStatus(302);
         }
         else{
+            return $response;
             //Si el token no coincide se redirecciona a la pagina de error
             //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
         }
     }
     else{
+        return $response;
         //Si no se obtuvieron datos asociados al selector provisto se redirecciona a la pagina de error
         //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
     }
