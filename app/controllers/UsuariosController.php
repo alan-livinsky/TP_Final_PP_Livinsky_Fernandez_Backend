@@ -90,8 +90,7 @@ class UsuariosController{
 
         if($contenidoEmailRecuperacion=="Solicitud existente"){
             echo "pepe";
-            $response->withStatus(409)->withHeader("Content-Type","application/json");
-            return $response;
+            return $response->withStatus(409);
         }
 
         try {
@@ -115,13 +114,11 @@ class UsuariosController{
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
             
-           $response->withStatus(200)->withHeader("Content-Type","application/json");
-           return $response;
+           return $response->withStatus(200);
 
         }catch (\Exception $e){
             //No es lo suficientemente representativo.
-            $response->withStatus(500)->withHeader("Content-Type","application/json");
-            return $response;
+            return $response->withStatus(500);
         }
 
     }
