@@ -86,10 +86,12 @@ class UsuariosController{
         $email=$datosDelUsuario->email;
 
         $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($email);
+        echo $contenidoEmailRecuperacion;
 
         if($contenidoEmailRecuperacion=="Solicitud existente"){
             $response->getBody()->write("Ya existe una solicitud vigente para esta cuenta de email");  
             $response->withHeader('Content-type','text/html');
+            $response->withStatus(409);
             return $response;
         }
 

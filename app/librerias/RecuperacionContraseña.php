@@ -81,7 +81,7 @@ function prepararEmailDeRecuperacion($email){
     $selectorMasToken=generarTokenEmailRecuperacion($email);
 
     if(!$selectorMasToken){
-        return "Solicitud";
+        return "Solicitud existente";
     }
 
     $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$selectorMasToken["selector"]."/".$selectorMasToken["token"];
