@@ -76,7 +76,8 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
         }
         else{
             //mandar a pagina de error
-            return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
+            return $response;
+            //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
         }
     }
     else{
