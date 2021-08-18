@@ -151,6 +151,8 @@ function  generarTokenEmailRecuperacion($email){
                                             (default,'$email','$selector','$token','$fechaVencimiento')");
     $consulta->execute();
 
+    $consulta=null;
+
     //Se retornan los token generados
     return $tokensGenerados;
 }
