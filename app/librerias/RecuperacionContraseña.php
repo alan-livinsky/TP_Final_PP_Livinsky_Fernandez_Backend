@@ -54,6 +54,10 @@ function enviarEmailDeRecuperacion($request,$response,$args){
 
 function validarEnlaceRecuperContraseña($request,$response,$args){
 
+    //Se dispara la eliminacion de vencimientos de solicitudes
+    //TEMPORAL DESCONOCEMOS MEJOR FORMA DE HACERLO
+    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<","now()");
+
     //Se recuperan los tokens que llegaron a la ruta
     $selector=$args['selector'];
     $token=$args['token'];
@@ -82,12 +86,12 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     }
     else{
         //Si no se obtuvieron datos asociados al selector provisto se deriba a la pagina de error
-        $response->withHeader('Location','https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
+        $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
     }
 
 }
 
-function busquedaCondicionalSimple($tabla,$campoCondicion,$dato){
+function busquedaSimple($tabla,$campoCondicion,$dato){
 
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
@@ -98,11 +102,20 @@ function busquedaCondicionalSimple($tabla,$campoCondicion,$dato){
     return $resultadoConsulta;
 }
 
+function eliminacionSimple($tabla,$campo,$condicion,$dato){
+
+    //ACA IRIA UN FILTRO POR TIPO DE DATO
+
+    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo.$condicion.$dato");
+    $consulta->execute();
+}
+
 function  generarTokenEmailRecuperacion($email){
 
     //Se realiza una consulta para verificar si ya existe otra solicitud de recuperacion de contraseña para el email provisto
     //Se busca evitar duplicados
-    $consultaDeSolicitudVigente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","email_solicitante",$email);
+    $consultaDeSolicitudVigente=busquedaSimple("solicitudes_recuperar_contraseña","email_solicitante",$email);
 
     //Si se obtiene un resultado de la consulta se retorna tokens vacios
     if($consultaDeSolicitudVigente){
