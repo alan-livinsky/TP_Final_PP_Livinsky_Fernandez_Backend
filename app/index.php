@@ -98,10 +98,10 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     
-    
 
     
     $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
+    $group->post('/recuperarContraseña/modificar',\UsuariosController::class.':retornarEstadoRecuperarContraseña');
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
  
 });
@@ -109,8 +109,6 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
     $group->post('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
-
-    $group->post('/recuperacionContraseña',\UsuariosController::class.':retornarEstadoRecuperarContraseña');
 });
 
 $app->group('/Menu_principal', function (RouteCollectorProxy $group){
