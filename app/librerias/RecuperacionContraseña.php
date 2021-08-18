@@ -85,7 +85,7 @@ function busquedaCondicionalSimple($tabla,$campoCondicion,$dato){
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE $campo='$dato'");
+    $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE $campoCondicion='$dato'");
     $consulta->execute();
     $resultadoConsulta=$consulta->fetchAll(PDO::FETCH_ASSOC);
     return $resultadoConsulta;
