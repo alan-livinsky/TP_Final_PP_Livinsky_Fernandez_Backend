@@ -14,6 +14,8 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     //Llamado a la funcion encargada de generar los tokens de seguridad
     $tokensGenerados=generarTokenEmailRecuperacion($email);
 
+    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
+
     //Si no se retornan tokens se procede a retornar que ya existe una solicitud vigente
     if(!$tokensGenerados){
         //Se retorna la respuesta a la peticion.
@@ -56,7 +58,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 
     //Se dispara la eliminacion de vencimientos de solicitudes
     //TEMPORAL DESCONOCEMOS MEJOR FORMA DE HACERLO
-eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
+    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
 
     //Se recuperan los tokens que llegaron a la ruta
     $selector=$args['selector'];
