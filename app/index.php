@@ -53,7 +53,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "path" => ["/"], 
     "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin",
                 "/Usuarios/recuperarContrase","/cargaDeFuego/listaMateriales",
-                "/cargaDeFuego/datosMaterial","/Usuarios/emailRecuperacion/"],
+                "/cargaDeFuego/datosMaterial","/Usuarios/emailRecuperacion/","/recuperarContraseña/modificar"],
     
     "error" => function ($response, $arguments){
         $data["status"]="error";
@@ -99,7 +99,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     
 
-    
+
     $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
     $group->post('/recuperarContraseña/modificar',\UsuariosController::class.':retornarEstadoRecuperarContraseña');
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
