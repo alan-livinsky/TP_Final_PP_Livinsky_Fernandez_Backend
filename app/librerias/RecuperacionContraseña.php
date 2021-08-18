@@ -16,7 +16,6 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     //Llamado a la funcion encargada de generar los tokens de seguridad
     $tokensGenerados=generarTokenEmailRecuperacion($email);
 
-   
 
     //Si no se retornan tokens se procede a retornar que ya existe una solicitud vigente
     if(!$tokensGenerados){
