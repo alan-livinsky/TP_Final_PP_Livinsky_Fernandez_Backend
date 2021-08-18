@@ -89,8 +89,6 @@ class UsuariosController{
         echo $contenidoEmailRecuperacion;
 
         if($contenidoEmailRecuperacion=="Solicitud existente"){
-            $response->getBody()->write("Ya existe una solicitud vigente para esta cuenta de email");  
-            $response->withHeader('Content-type','text/html');
             $response->withStatus(409);
             return $response;
         }
@@ -116,14 +114,13 @@ class UsuariosController{
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
             
-           $response->withHeader('Content-type','application/json');
            $response->withStatus(200);
            return $response;
 
         }catch (\Exception $e){
-            $response->withHeader('Content-type','application/json');
             //No es lo suficientemente representativo.
             $response->withStatus(500);
+            return $response;
         }
 
     }
