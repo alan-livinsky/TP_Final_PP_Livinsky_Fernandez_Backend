@@ -1,8 +1,6 @@
 <?php
 
-
 function validarEnlaceRecuperContraseña($request,$response,$args){
-
     $selector=$args['selector'];
     $token=$args['token'];
 
@@ -14,25 +12,20 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     if($consultaSelector){
 
         if($token==$consultaSelector['token']){
-            $response->withHeader('Location','https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
-
+            return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html/?s='.$selector)->withStatus(302);
         }
         else{
             //mandar a pagina de error
-            $response->withHeader('Location','https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
+            return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
         }
-
     }
     else{
         //mandar a pagina de error
         $response->withHeader('Location','https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
     }
 
-    
-
     $response->getBody()->write("vamos manaos");
     return $response;
-
 }
 
 
@@ -115,6 +108,8 @@ function prepararEmailDeRecuperacion($email){
                                                                         style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
                                                                         Le enviamos este correo porque hemos recibido una solicitud de
                                                                         recuperacion de contraseña para esta cuenta de correo electronico.
+                                                                        Por favor utilice el enlace provisto a continuacion para restaurar su contraseña.
+                                                                        El mismo tendra una validez de 24hs.
                                                                     </p>
                                                                     <p
                                                                         style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">

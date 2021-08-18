@@ -77,8 +77,43 @@ class UsuariosController{
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
-    
-  
+
+    public static function retornarEstadoRecuperarContraseña($request,$response,$args){
+        $json=$request->getBody();
+        $json=json_decode($json);
+        $selector=$json->s;
+        $contraseña=$json->contraseña;
+
+        $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+        $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE selector='$selector'");
+        $consulta->execute();
+        $consultaSelector=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
+        if($consultaSelector){
+            $email=$consultaSelector['email_solicitante'];
+            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+            $consulta=$accesoDatos->prepararConsulta("SELECT email FROM usuarios WHERE email='$email'");
+            $consulta->execute();
+            $consultaEmailSolicitante=$consulta->fetchAll(PDO::FETCH_ASSOC);
+            
+            if($consultaEmailSolicitante){
+                $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+                $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
+                                                          SET contraseña='$contraseña'
+                                                          WHERE email='$email'");
+                $consulta->execute();
+
+                $estado="Actualizacion completada";
+                $response->getBody()->write(Json_encode($estado));                                    
+                return $response->withHeader('Content-type','application/json');
+            }
+        }
+
+        $estado="Error";
+        $response->getBody()->write(Json_encode($estado));                                    
+        return $response->withHeader('Content-type','application/json');  
+    }
+
     public static function retornarEmailDeRecuperacion($request,$response,$args){      
 
         $datosDelUsuario=$request->getBody();

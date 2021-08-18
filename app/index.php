@@ -100,13 +100,16 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
 
-    $group->get('/emailRecuperacion/{selector}/{token}','test');
+    $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
+    $group->get();
  
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
     $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
     $group->post('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
+
+    $group->post('/recuperacionContraseña',\UsuariosController::class.':retornarEstadoRecuperarContraseña');
 });
 
 $app->group('/Menu_principal', function (RouteCollectorProxy $group){
