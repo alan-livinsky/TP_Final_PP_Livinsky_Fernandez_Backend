@@ -75,12 +75,12 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
         }
         else{
             //Si el token no coincide se redirecciona a la pagina de error
-            return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
+            //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
         }
     }
     else{
         //Si no se obtuvieron datos asociados al selector provisto se redirecciona a la pagina de error
-        return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
+        //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
     }
 
 }
@@ -97,11 +97,12 @@ function busquedaSimple($tabla,$campoCondicion,$dato){
 }
 
 function eliminacionSimple($tabla,$campo,$condicion,$dato){
-
+    
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo$condicion$dato");
+    echo "DELETE FROM $tabla WHERE $campo$condicion$dato";
     $consulta->execute();
 }
 
