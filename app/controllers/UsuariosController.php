@@ -75,6 +75,7 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
 
+//------------------------------------------------------------------------------------------//
     public static function retornarEstadoRecuperarContraseña($request,$response,$args){
         $json=$request->getBody();
         $json=json_decode($json);
@@ -88,7 +89,7 @@ class UsuariosController{
         $consultaSelector=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
         if($consultaSelector){
-            $email=$consultaSelector['email_solicitante'];
+            $email=$consultaSelector[0]['email_solicitante'];
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("SELECT email FROM usuarios WHERE email='$email'");
             $consulta->execute();
