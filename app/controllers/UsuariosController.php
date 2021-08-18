@@ -89,6 +89,7 @@ class UsuariosController{
         echo $contenidoEmailRecuperacion;
 
         if($contenidoEmailRecuperacion=="Solicitud existente"){
+            echo "pepe";
             $response->withStatus(409)->withHeader("Content-Type","application/json");
             return $response;
         }
