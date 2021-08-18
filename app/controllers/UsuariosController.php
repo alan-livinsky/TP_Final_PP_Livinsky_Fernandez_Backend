@@ -78,8 +78,9 @@ class UsuariosController{
     public static function retornarEstadoRecuperarContraseña($request,$response,$args){
         $json=$request->getBody();
         $json=json_decode($json);
-        $selector=$json->s;
+        $selector=$json->selector;
         $contraseña=$json->contraseña;
+        $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE selector='$selector'");
