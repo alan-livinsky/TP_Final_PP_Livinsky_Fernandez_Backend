@@ -11,10 +11,12 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     $emailDelSolicitante=json_decode($emailDelSolicitante);
     $email=$emailDelSolicitante->email;
 
+    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
+
     //Llamado a la funcion encargada de generar los tokens de seguridad
     $tokensGenerados=generarTokenEmailRecuperacion($email);
 
-    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
+   
 
     //Si no se retornan tokens se procede a retornar que ya existe una solicitud vigente
     if(!$tokensGenerados){
