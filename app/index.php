@@ -99,9 +99,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
-
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
-    $group->get();
  
 });
 
