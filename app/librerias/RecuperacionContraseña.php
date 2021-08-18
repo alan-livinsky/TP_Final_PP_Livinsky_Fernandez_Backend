@@ -68,7 +68,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 
         var_dump($ConsultaDeSolicitudVigente);
 
-        echo $ConsultaDeSolicitudVigente['token'];
+        echo $ConsultaDeSolicitudVigente[0]['token'];
 
         //Se prodece a evaluar los datos obtenidos validando el token
         //Si el token que llego como parametro coincide con el token almacenado se deriva a la pagina de recuperacion,
