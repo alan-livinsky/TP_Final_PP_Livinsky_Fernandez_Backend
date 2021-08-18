@@ -5,7 +5,7 @@ function enviarEmailDeRecuperacion($request,$response,$args){
 
     //Se obtiene el email ingresado cuando se solicito la recuperacion de contraseña
     $emailDelSolicitante=$request->getBody();
-    $emailDelSolicitante=json_decode($datosDelUsuario);
+    $emailDelSolicitante=json_decode($emailDelSolicitante);
     $email=$emailDelSolicitante->email;
 
     //Llamado a la funcion encargada de generar los tokens de seguridad
