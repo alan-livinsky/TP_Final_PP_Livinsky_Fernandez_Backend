@@ -63,7 +63,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     $token=$args['token'];
 
     //Se valida el selector
-    $ConsultaDeSolicitudVigente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","selector",$selector);
+    $ConsultaDeSolicitudVigente=busquedaSimple("solicitudes_recuperar_contraseña","selector",$selector);
 
     //Se verifica si se obtuvieron datos a partir de la consulta realizada
     if($ConsultaDeSolicitudVigente){
