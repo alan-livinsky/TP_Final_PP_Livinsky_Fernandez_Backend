@@ -100,7 +100,7 @@ function busquedaSimple($tabla,$campoCondicion,$dato){
 
 function eliminacionSimple($tabla,$campo,$condicion,$dato){
 
-    $condicion=$campo.$condicion.$dato;
+    $condicion=$campo.''.$condicion.''.$dato;
     
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
