@@ -80,7 +80,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     }
     else{
         //Si no se obtuvieron datos asociados al selector provisto se redirecciona a la pagina de error
-        $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
+        return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
     }
 
 }
