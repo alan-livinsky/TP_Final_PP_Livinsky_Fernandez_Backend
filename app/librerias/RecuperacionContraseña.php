@@ -105,10 +105,10 @@ function eliminacionSimple($tabla,$campo/*,$condicion,$dato*/){
     //$condicion=$campo.''.$condicion.''.$dato;
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');
-    echo date('Y-m-d H:i:s');
+    $date=date('Y-m-d H:i:s');
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<now()");
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<$date");
     //echo "DELETE FROM $tabla WHERE $condicion";
     $consulta->execute();
 }
