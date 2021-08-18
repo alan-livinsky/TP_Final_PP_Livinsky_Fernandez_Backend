@@ -108,7 +108,7 @@ function eliminacionSimple($tabla,$campo/*,$condicion,$dato*/){
     $date=date('Y-m-d H:i:s');
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<$date");
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<'$date'");
     //echo "DELETE FROM $tabla WHERE $condicion";
     $consulta->execute();
 }
