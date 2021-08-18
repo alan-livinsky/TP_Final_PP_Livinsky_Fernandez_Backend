@@ -52,21 +52,27 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     }
 }
 
-
-
 function validarEnlaceRecuperContraseña($request,$response,$args){
+
+    //Se recuperan los tokens que llegaron a la ruta
     $selector=$args['selector'];
     $token=$args['token'];
 
-    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE selector='$selector'");
-    $consulta->execute();
-    $consultaSelector=$consulta->fetchAll(PDO::FETCH_ASSOC);
+    echo $selector." ".$token;
 
-    if($consultaSelector){
+    //Se valida el selector
+    $ConsultaDeSolicitudVigente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","selector",$selector);
 
-        if($token==$consultaSelector['token']){
-            return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html/?s='.$selector)->withStatus(302);
+    //Se verifica si se obtuvieron datos a partir de la consulta realizada
+    if($ConsultaDeSolicitudVigente){
+
+        echo $ConsultaDeSolicitudVigente['token'];
+
+        //Se prodece a evaluar los datos obtenidos validando el token
+        //Si el token que llego como parametro coincide con el token almacenado se deriva a la pagina de recuperacion,
+        if($token==$ConsultaDeSolicitudVigente['token']){
+            return $response;
+            //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html/?s='.$selector)->withStatus(302);
         }
         else{
             //mandar a pagina de error
@@ -74,14 +80,11 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
         }
     }
     else{
-        //mandar a pagina de error
+        //Si no se obtuvieron datos asociados al selector provisto se deriba a la pagina de error
         $response->withHeader('Location','https://www.geeksforgeeks.org/postgresql-delete/')->withStatus(302);
     }
 
-    $response->getBody()->write("vamos manaos");
-    return $response;
 }
-
 
 function busquedaCondicionalSimple($tabla,$campoCondicion,$dato){
 
@@ -94,15 +97,7 @@ function busquedaCondicionalSimple($tabla,$campoCondicion,$dato){
     return $resultadoConsulta;
 }
 
-
 function  generarTokenEmailRecuperacion($email){
-
-    /*
-    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE email_solicitante='$email'");
-    $consulta->execute();
-    $consultaEmail=$consulta->fetchAll(PDO::FETCH_ASSOC);
-    */
 
     //Se realiza una consulta para verificar si ya existe otra solicitud de recuperacion de contraseña para el email provisto
     //Se busca evitar duplicados
@@ -114,7 +109,6 @@ function  generarTokenEmailRecuperacion($email){
     }
 
     //Si no se obtiene un resultado de la consulta se procede a generar los tokens
-
     $selector=base64_encode(random_bytes(8));
     $selector=str_replace("/","",$selector);
 
@@ -144,7 +138,6 @@ function  generarTokenEmailRecuperacion($email){
     //Se retornan los token generados
     return $tokensGenerados;
 }
-
 
 function prepararEmailDeRecuperacion($tokensGenerados){
 
