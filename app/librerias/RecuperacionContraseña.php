@@ -97,12 +97,14 @@ function busquedaSimple($tabla,$campoCondicion,$dato){
 }
 
 function eliminacionSimple($tabla,$campo,$condicion,$dato){
+
+    $condicion=$campo.$condicion.$dato;
     
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo$condicion$dato");
-    echo "DELETE FROM $tabla WHERE $campo$condicion$dato";
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $condicion");
+    echo "DELETE FROM $tabla WHERE $condicion";
     $consulta->execute();
 }
 
