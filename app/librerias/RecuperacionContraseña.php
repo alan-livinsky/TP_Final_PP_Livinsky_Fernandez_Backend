@@ -62,30 +62,24 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     $selector=$args['selector'];
     $token=$args['token'];
 
-    echo $selector." ".$token;
-
     //Se valida el selector
     $ConsultaDeSolicitudVigente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","selector",$selector);
 
     //Se verifica si se obtuvieron datos a partir de la consulta realizada
     if($ConsultaDeSolicitudVigente){
 
-        var_dump($ConsultaDeSolicitudVigente);
-
-        echo $ConsultaDeSolicitudVigente[0]['token'];
-
         //Se prodece a evaluar los datos obtenidos validando el token
-        //Si el token que llego como parametro coincide con el token almacenado se deriva a la pagina de recuperacion,
+        //Si el token que llego como parametro coincide con el token almacenado se deriva a la pagina de recuperacion
         if($token==$ConsultaDeSolicitudVigente[0]['token']){
             return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html?s='.$selector)->withStatus(302);
         }
         else{
-            //mandar a pagina de error
+            //Si el token no coincide se redirecciona a la pagina de error
             return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
         }
     }
     else{
-        //Si no se obtuvieron datos asociados al selector provisto se deriba a la pagina de error
+        //Si no se obtuvieron datos asociados al selector provisto se redirecciona a la pagina de error
         $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
     }
 
@@ -107,7 +101,7 @@ function eliminacionSimple($tabla,$campo,$condicion,$dato){
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo.$condicion.$dato");
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo$condicion$dato");
     $consulta->execute();
 }
 
