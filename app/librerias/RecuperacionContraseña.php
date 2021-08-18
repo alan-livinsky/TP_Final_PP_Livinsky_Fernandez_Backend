@@ -72,7 +72,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 
         //Se prodece a evaluar los datos obtenidos validando el token
         //Si el token que llego como parametro coincide con el token almacenado se deriva a la pagina de recuperacion,
-        if($token==$ConsultaDeSolicitudVigente['token']){
+        if($token==$ConsultaDeSolicitudVigente[0]['token']){
             return $response;
             //return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html/?s='.$selector)->withStatus(302);
         }
