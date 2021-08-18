@@ -92,13 +92,16 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
-    
     //AREGLAR GIONES BAJOS MINUSCULA MAYUSCULA
     $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
     $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
-    $group->post('/recuperarContrase',\UsuariosController::class.':retornarEmailDeRecuperacion');
+    
+    
+
+    
+    $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
  
 });

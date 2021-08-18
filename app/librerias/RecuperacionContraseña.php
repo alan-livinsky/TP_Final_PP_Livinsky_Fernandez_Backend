@@ -1,5 +1,56 @@
 <?php
 
+
+function enviarEmailDeRecuperacion($request,$response,$args){ 
+
+    //Se obtiene el email ingresado cuando se solicito la recuperacion de contraseña
+    $emailDelSolicitante=$request->getBody();
+    $emailDelSolicitante=json_decode($datosDelUsuario);
+    $email=$emailDelSolicitante->email;
+
+    //Llamado a la funcion encargada de generar los tokens de seguridad
+    $tokensGenerados=generarTokenEmailRecuperacion($email);
+
+    //Si no se retornan tokens se procede a retornar que ya existe una solicitud vigente
+    if(!$tokensGenerados){
+        //Se retorna la respuesta a la peticion.
+        return $response->withStatus(409);
+    }
+
+    //Si se retornaron tokens se procede al llamado a la funcion que prepara el contenido del email de recuperacion.
+    $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($tokensGenerados);
+
+    //Se procede a configurar el Email que se enviara al usuario.
+    try {
+        $mail=new PHPMailer;
+        //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                
+        //Por algun motivo genera error de cors
+        $mail->isSMTP();                                    
+        $mail->Host='smtp.gmail.com';                       
+        $mail->SMTPAuth=true;                                 
+        $mail->Username='SAESHitbeltran@gmail.com';         
+        $mail->Password='rwbiofucouofrvth';            //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
+        $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;      
+        $mail->Port=465;     
+        //Recipientes
+        $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH'); 
+        $mail->addAddress($email,'Usuario');                 
+        //Contenido
+        $mail->Subject = 'Recuperacion de acceso a cuenta';
+        $mail->Body=$contenidoEmailRecuperacion;
+        $mail->isHTML(true);
+        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->send();
+        
+        return $response->withStatus(200);
+
+    }catch (\Exception $e){
+        return $response->withStatus(500);
+    }
+}
+
+
+
 function validarEnlaceRecuperContraseña($request,$response,$args){
     $selector=$args['selector'];
     $token=$args['token'];
@@ -29,16 +80,37 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 }
 
 
+function busquedaCondicionalSimple($tabla,$campoCondicion,$dato){
+
+    //ACA IRIA UN FILTRO POR TIPO DE DATO
+
+    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+    $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE $campo='$dato'");
+    $consulta->execute();
+    $resultadoConsulta=$consulta->fetchAll(PDO::FETCH_ASSOC);
+    return $resultadoConsulta;
+}
+
+
 function  generarTokenEmailRecuperacion($email){
-    
+
+    /*
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE email_solicitante='$email'");
     $consulta->execute();
     $consultaEmail=$consulta->fetchAll(PDO::FETCH_ASSOC);
-    
-    if($consultaEmail){
-        return $selectorMasToken=[];
+    */
+
+    //Se realiza una consulta para verificar si ya existe otra solicitud de recuperacion de contraseña para el email provisto
+    //Se busca evitar duplicados
+    $consultaDeSolicitudExistente=busquedaCondicionalSimple("solicitudes_recuperar_contraseña","email_solicitante",$email);
+
+    //Si se obtiene un resultado de la consulta se retorna tokens vacios
+    if($consultaDeSolicitudExistente){
+        return $tokensGenerados=[];
     }
+
+    //Si no se obtiene un resultado de la consulta se procede a generar los tokens
 
     $selector=base64_encode(random_bytes(8));
     $selector=str_replace("/","",$selector);
@@ -46,38 +118,35 @@ function  generarTokenEmailRecuperacion($email){
     $token=base64_encode(random_bytes(32));
     $token=str_replace("/","",$token);
 
-    $selectorMasToken=[
+    $tokensGenerados=[
         "selector"=>$selector,
         "token"=>$token
     ];
 
+    //Se establece la fecha de vencimiento del token en x cantidad de tiempo a partir de la fecha actual.
     $fechaHoraActual=new DateTime();
-        echo $fechaHoraActual->format('Y-m-d H:i:s');
     $zonaHoraria=new DateTimeZone('America/Argentina/Buenos_Aires');
     $fechaHoraActual->setTimezone($zonaHoraria);
+
     $fechaVencimiento=$fechaHoraActual->modify('+2 minutes');
-        echo $fechaVencimiento->format('Y-m-d H:i:s');
     $fechaVencimiento=$fechaVencimiento->format('Y-m-d H:i:s');
 
+    //Se procede a dar de alta la solicitud en la base de datos
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                             VALUES
                                             (default,'$email','$selector','$token','$fechaVencimiento')");
     $consulta->execute();
 
-    return $selectorMasToken;
+    //Se retornan los token generados
+    return $tokensGenerados;
 }
 
 
-function prepararEmailDeRecuperacion($email){
+function prepararEmailDeRecuperacion($tokensGenerados){
 
-    $selectorMasToken=generarTokenEmailRecuperacion($email);
-
-    if(!$selectorMasToken){
-        return "Solicitud existente";
-    }
-
-    $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$selectorMasToken["selector"]."/".$selectorMasToken["token"];
+    //Se prepara el enlace que se encontra dentro del email el cual permitira el acceso a la pagina de recuperacion de contraseña
+    $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$tokensGenerados["selector"]."/".$tokensGenerados["token"];
 
     $contenidoEmail='<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
                         <tbody>
@@ -138,7 +207,6 @@ function prepararEmailDeRecuperacion($email){
                                                     </table>
                                                 </td>
                                             </tr>
-                    
                                         </tbody>
                                     </table>
                                 </td>

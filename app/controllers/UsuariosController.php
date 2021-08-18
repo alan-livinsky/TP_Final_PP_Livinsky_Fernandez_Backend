@@ -114,49 +114,6 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');  
     }
 
-    public static function retornarEmailDeRecuperacion($request,$response,$args){      
-
-        $datosDelUsuario=$request->getBody();
-        $datosDelUsuario=json_decode($datosDelUsuario);
-        $email=$datosDelUsuario->email;
-
-        $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($email);
-        echo $contenidoEmailRecuperacion;
-
-        if($contenidoEmailRecuperacion=="Solicitud existente"){
-            echo "pepe";
-            return $response->withStatus(409);
-        }
-
-        try {
-            $mail=new PHPMailer;
-            //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                
-            //Por algun motivo genera error de cors
-            $mail->isSMTP();                                    
-            $mail->Host='smtp.gmail.com';                       
-            $mail->SMTPAuth=true;                                 
-            $mail->Username='SAESHitbeltran@gmail.com';         
-            $mail->Password='rwbiofucouofrvth';           //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
-            $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;      
-            $mail->Port=465;     
-            //Recipients
-            $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH'); 
-            $mail->addAddress($email,'Usuario');                 
-            //Content
-            $mail->Subject = 'Recuperacion de acceso a cuenta';
-            $mail->Body=$contenidoEmailRecuperacion;
-            $mail->isHTML(true);
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-            $mail->send();
-            
-           return $response->withStatus(200);
-
-        }catch (\Exception $e){
-            //No es lo suficientemente representativo.
-            return $response->withStatus(500);
-        }
-
-    }
 }
 
   
