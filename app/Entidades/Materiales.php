@@ -10,7 +10,7 @@
 
     function buscarDatosMaterial($nombreMaterial){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD();
-        $consulta=$accesoDatos->prepararConsulta("SELECT * FROM materiales WHERE nombre='$nombre'");
+        $consulta=$accesoDatos->prepararConsulta("SELECT * FROM materiales WHERE nombre='$nombreMaterial'");
         $consulta->execute(); 
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
