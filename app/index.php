@@ -17,11 +17,11 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/Acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/Acceso_a_datos/Consultas.php';
 
-require __DIR__ . '/controllers/UsuariosController.php';
-require __DIR__ . '/controllers/MenuPrincipalController.php';
-require __DIR__ . '/controllers/EjerciciosController.php';
-require __DIR__ . '/controllers/OpcionesController.php';
-require __DIR__ . '/controllers/MaterialesController.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosUsuarios.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMenuPrincipal.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosEjercicios.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
 
 require __DIR__ . '/entidades/Usuarios.php';
 require __DIR__ . '/entidades/Ejercicios.php';

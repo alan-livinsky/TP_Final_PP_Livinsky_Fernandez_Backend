@@ -38,7 +38,6 @@ use Firebase\JWT\JWT;
         }
     }
 
-
     function retornarEstadoRegistro($request,$response,$args){
         $json= $request->getBody();
         $datos_usuario = json_decode($json,true);
@@ -72,7 +71,6 @@ use Firebase\JWT\JWT;
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
-
 
     function retornarEstadoRecuperarContraseña($request,$response,$args){
         $json=$request->getBody();
