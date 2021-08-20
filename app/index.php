@@ -90,6 +90,21 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 });
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group){
+
+    $group->get('[/]','retornarListaUsuarios');
+    $group->get('/lista','retornarListaUsuarios');
+    $group->post('/registro','retornarEstadoRegistro');
+    $group->post('/loguin','retornarTokenAcceso');
+    $group->delete('/borrar_cuenta','retornarEstadoEliminacionC');
+    $group->put('/actualizar_contraseña','retornarEstadoActualizacionContraseña');
+    
+    $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
+    $group->post('/recuperarContrase/modificar','retornarEstadoRecuperarContraseña');
+    $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
+
+
+
+/*
     $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
     $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
     //AREGLAR GIONES BAJOS MINUSCULA MAYUSCULA
@@ -98,11 +113,10 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
     $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
     
-
-
     $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
     $group->post('/recuperarContrase/modificar',\UsuariosController::class.':retornarEstadoRecuperarContraseña');
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
+*/
  
 });
 
