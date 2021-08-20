@@ -9,8 +9,8 @@
         $extraerAños=$arr = explode(",",$extraerAños);
 
         $extraerComisiones=$listaCursos[0]["col2_values"];
-            str_replace("{","",$extraerAños);
-            str_replace("}","",$extraerAños);
+            str_replace("{","",$extraerComisiones);
+            str_replace("}","",$extraerComisiones);
         $extraerComisiones=$arr = explode(",",$extraerComisiones);
        
         $ExtraerTurnos=$listaCursos[0]["col3_values"];
