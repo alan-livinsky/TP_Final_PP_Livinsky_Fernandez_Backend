@@ -20,7 +20,7 @@
 
             var_dump($hash);
 
-            echo $hash['contraseña'];
+            echo $hash[0]['nombre'];
 
             $hash=$hash['contraseña'];
 
