@@ -17,6 +17,8 @@
             $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
             $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
+
+            echo $hash;
         
             if (password_verify($contraseña,$hash[0]['contraseña'])){
                 $contraseña=$hash[0]->contraseña;
