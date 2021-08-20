@@ -14,7 +14,8 @@ use Slim\Routing\RouteContext;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-require __DIR__ . '/acceso_a_datos/Acceso_a_datos.php';
+require __DIR__ . '/Acceso_a_datos/Acceso_a_datos.php';
+require __DIR__ . '/Acceso_a_datos/Consultas.php';
 
 require __DIR__ . '/controllers/UsuariosController.php';
 require __DIR__ . '/controllers/MenuPrincipalController.php';

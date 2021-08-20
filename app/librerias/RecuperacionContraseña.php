@@ -11,7 +11,10 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     $emailDelSolicitante=json_decode($emailDelSolicitante);
     $email=$emailDelSolicitante->email;
 
-    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $fechaActual=date('Y-m-d H:i:s');
+
+    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<",$fechaActual);
 
     //Llamado a la funcion encargada de generar los tokens de seguridad
     $tokensGenerados=generarTokenEmailRecuperacion($email);
@@ -88,31 +91,6 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 
 }
 
-function busquedaSimple($tabla,$campoCondicion,$dato){
-
-    //ACA IRIA UN FILTRO POR TIPO DE DATO
-
-    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE $campoCondicion='$dato'");
-    $consulta->execute();
-    $resultadoConsulta=$consulta->fetchAll(PDO::FETCH_ASSOC);
-    return $resultadoConsulta;
-}
-
-function eliminacionSimple($tabla,$campo/*,$condicion,$dato*/){
-
-    //ACA IRIA UN FILTRO POR TIPO DE DATO
-
-    //$condicion=$campo.''.$condicion.''.$dato;
-
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $date=date('Y-m-d H:i:s');
-
-    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<'$date'");
-    //echo "DELETE FROM $tabla WHERE $condicion";
-    $consulta->execute();
-}
 
 function  generarTokenEmailRecuperacion($email){
 
