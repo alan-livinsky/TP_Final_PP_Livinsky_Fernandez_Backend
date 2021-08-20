@@ -102,7 +102,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     
     $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
     $group->post('/recuperarContrase/modificar','retornarEstadoRecuperarContraseña');
-    $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
+    $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecContraseña');
 
 
 

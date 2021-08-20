@@ -21,10 +21,10 @@ function enviarEmailDeRecuperacion($request,$response,$args){
         return $response->withStatus(409);//409 - The HTTP 409 Conflict response status code indicates a request conflict with current state of the target resource.
     }
 
-
     $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($tokensDeSeguridad);
 
     //Se procede a configurar el Email que se enviara al usuario.
+    //Tal vez Reutilizable en un futuro
     try {
         $mail=new PHPMailer;
         //$mail->SMTPDebug=SMTP::DEBUG_SERVER; Por algun motivo genera error de cors
@@ -53,54 +53,43 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     }
 }
 
-function validarEnlaceRecuperContraseña($request,$response,$args){
+function validarEnlaceRecContraseña($request,$response,$args){
 
     //Se dispara la eliminacion de vencimientos de solicitudes - TEMPORAL DESCONOCEMOS MEJOR FORMA DE HACERLO
-
     $fechaActual=obtenerFechaActual();
-
     eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<",$fechaActual,"String");
 
     //Se recuperan los tokens que llegaron a la ruta
     $selector=$args['selector'];
     $token=$args['token'];
 
-    //Se valida el selector
     $ConsultaDeSolicitudVigente=busquedaSimple("solicitudes_recuperar_contraseña","selector",$selector);
 
-    //Se verifica si se obtuvieron datos a partir de la consulta realizada
     if($ConsultaDeSolicitudVigente){
-
-        //Se prodece a evaluar los datos obtenidos validando el token
-        //Si el token que llego como parametro coincide con el token almacenado se deriva a la pagina de recuperacion
         if($token==$ConsultaDeSolicitudVigente[0]['token']){
             return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Recuperar_Contraseña.html?s='.$selector)->withStatus(302);
         }
         else{
-            //Si el token no coincide se redirecciona a la pagina de error
             return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
         }
     }
     else{
-        //Si no se obtuvieron datos asociados al selector provisto se redirecciona a la pagina de error
         return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Error.html')->withStatus(302);
     }
 
 }
 
+function generarTokensEmailRecuperacion($email){
 
-function  generarTokensEmailRecuperacion($email){
-
-    //Se realiza una consulta para verificar si ya existe otra solicitud de recuperacion de contraseña para el email provisto
-    //Se busca evitar duplicados
     $consultaDeSolicitudVigente=busquedaSimple("solicitudes_recuperar_contraseña","email_solicitante",$email);
 
-    //Si se obtiene un resultado de la consulta se retorna tokens vacios
     if($consultaDeSolicitudVigente){
         return $tokensDeSeguridad=[];
     }
 
     //Si no se obtiene un resultado de la consulta se procede a generar los tokens
+
+    //$token = bin2hex(random_bytes($length)); // bin2hex output is url safe.
     $selector=base64_encode(random_bytes(8));
     $selector=str_replace("/","",$selector);
 
@@ -120,7 +109,7 @@ function  generarTokensEmailRecuperacion($email){
     $fechaVencimiento=$fechaHoraActual->modify('+3 minutes');
     $fechaVencimiento=$fechaVencimiento->format('Y-m-d H:i:s');
 
-    //Se procede a dar de alta la solicitud en la base de datos
+
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
                                             VALUES
@@ -129,7 +118,6 @@ function  generarTokensEmailRecuperacion($email){
 
     $consulta=null;
 
-    //Se retornan los token generados
     return $tokensDeSeguridad;
 }
 
