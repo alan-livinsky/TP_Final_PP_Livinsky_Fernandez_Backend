@@ -3,7 +3,7 @@
 use Firebase\JWT\JWT;
 
     function retornarListaUsuarios($request,$response,$args){
-        $listaUsuarios=Usuarios::buscar_lista_usuarios();
+        $listaUsuarios=buscar_lista_usuarios();
         $response->getBody()->write(json_encode($listaUsuarios));
         return $response;
     }
@@ -42,8 +42,7 @@ use Firebase\JWT\JWT;
         $json= $request->getBody();
         $datos_usuario = json_decode($json,true);
 
-        $usuario=new Usuarios();
-        $estadoRegistro=$usuario->registrar_usuario($datos_usuario);
+        $estadoRegistro=registrar_usuario($datos_usuario);
 
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');
@@ -52,8 +51,7 @@ use Firebase\JWT\JWT;
     function retornarEstadoEliminacionC($request,$response,$args){
         $data=$request->getAttribute("token");
 
-        $usuario=new Usuarios();
-        $estadoactualizacion=$usuario->eliminar_usuario($data['email']);
+        $estadoactualizacion=eliminar_usuario($data['email']);
 
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
@@ -65,8 +63,7 @@ use Firebase\JWT\JWT;
         
         $data=$request->getAttribute("token");
 
-        $usuario=new Usuarios();
-        $estadoactualizacion=$usuario->actualizar_contraseña($data['email'],$json_contraseñas->nueva,);
+        $estadoactualizacion=actualizar_contraseña($data['email'],$json_contraseñas->nueva,);
 
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
