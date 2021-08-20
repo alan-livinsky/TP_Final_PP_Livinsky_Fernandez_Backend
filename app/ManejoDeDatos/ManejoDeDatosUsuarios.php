@@ -48,7 +48,7 @@ use Firebase\JWT\JWT;
         return $response->withHeader('Content-type','application/json');
     }
 
-    function retornarEstadoEliminacionC($request,$response,$args){
+    function retornarEstadoEliminacionCuenta($request,$response,$args){
         $data=$request->getAttribute("token");
 
         $estadoactualizacion=eliminar_usuario($data['email']);
@@ -58,15 +58,23 @@ use Firebase\JWT\JWT;
     }
 
     function retornarEstadoActualizacionContraseña($request,$response,$args){
-        $json_contraseñas=$request->getBody();
-        $json_contraseñas=json_decode($json_contraseñas);
         
-        $data=$request->getAttribute("token");
+        $datosUsuario=$request->getAttribute("token");
+        $json_contraseñas=$request->getBody();
+        $contraseñas=json_decode($json_contraseñas);
 
-        $estadoactualizacion=actualizar_contraseña($data['email'],$json_contraseñas->nueva,);
+        $validacionDeContraseñaAntigua=buscarUsuario($datosUsuario['email'],$contraseñas->antigua);
 
-        $response->getBody()->write(Json_encode($estadoactualizacion));                                    
-        return $response->withHeader('Content-type','application/json');
+        if($validacionDeContraseñaAntigua){
+            $estadoactualizacion=actualizar_contraseña($datosUsuario['email'],$contraseñas->nueva,);
+            $response->getBody()->write(Json_encode($estadoactualizacion));                                    
+            return $response->withHeader('Content-type','application/json');
+
+        }
+        else{
+            return $response>withStatus(401);
+        }
+
     }
 
     function retornarEstadoRecuperarContraseña($request,$response,$args){
