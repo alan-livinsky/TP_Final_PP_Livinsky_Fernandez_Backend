@@ -24,11 +24,11 @@
 
             $hash=$hash[0]['contraseña'];
 
-
+            //$2y$10$C.F1WCBHkL6shy10DQ73OureqnGVpyD9XXDTG9f2bwFOzqorB1NeK
             echo $hash;
 
             
-            if (password_verify($contraseña,$hash[0]['contraseña'])){
+            if (password_verify($contraseña,$hash)){
                 $contraseña=$hash[0]->contraseña;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
                 $consulta->execute();
