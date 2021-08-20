@@ -2,32 +2,27 @@
 
     class Usuarios{
 
-        
+        public $id_usuario;
+        public $email;
+        public $contraseña;
+        public $nombre;
+        public $apellido;
+        public $tipo_usuario;
 
         public static function buscar_lista_usuarios(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
             $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+            return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
         }
 
         //PASAR A NO STATIC
         public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $buscarHash=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email'");
+            $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
-            $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
-
-            var_dump($hash);
-
-            echo $hash[0]['nombre'];
-
-            //$hash=$hash[0]['contraseña'];
-
-            //$2y$10$C.F1WCBHkL6shy10DQ73OureqnGVpyD9XXDTG9f2bwFOzqorB1NeK
-            echo $hash;
-
-            
+            $hash=$buscarHash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+        
             if (password_verify($contraseña,$hash[0]['contraseña'])){
                 $contraseña=$hash[0]['contraseña'];
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
