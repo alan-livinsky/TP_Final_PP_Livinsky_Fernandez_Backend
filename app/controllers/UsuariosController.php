@@ -2,15 +2,13 @@
 
 use Firebase\JWT\JWT;
 
-class UsuariosController{
-
-    public static function retornarListaUsuarios($request,$response,$args){
+    function retornarListaUsuarios($request,$response,$args){
         $listaUsuarios=Usuarios::buscar_lista_usuarios();
         $response->getBody()->write(json_encode($listaUsuarios));
         return $response;
     }
 
-    public static function retornarTokenAcceso($request,$response,$args){
+    function retornarTokenAcceso($request,$response,$args){
         $json = $request->getBody();
         $buscar = json_decode($json,true);
         $usuario=Usuarios::buscar_usuario($buscar['email'],$buscar['contraseña']);
@@ -41,7 +39,7 @@ class UsuariosController{
     }
 
 
-    public static function retornarEstadoRegistro($request,$response,$args){
+    function retornarEstadoRegistro($request,$response,$args){
         $json= $request->getBody();
         $datos_usuario = json_decode($json,true);
 
@@ -52,7 +50,7 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
 
-    public static function retornarEstadoEliminacionC($request,$response,$args){
+    function retornarEstadoEliminacionC($request,$response,$args){
         $data=$request->getAttribute("token");
 
         $usuario=new Usuarios();
@@ -62,7 +60,7 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
 
-    public static function retornarEstadoActualizacionContraseña($request,$response,$args){
+    function retornarEstadoActualizacionContraseña($request,$response,$args){
         $json_contraseñas=$request->getBody();
         $json_contraseñas=json_decode($json_contraseñas);
         
@@ -75,8 +73,8 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');
     }
 
-//------------------------------------------------------------------------------------------//
-    public static function retornarEstadoRecuperarContraseña($request,$response,$args){
+
+    function retornarEstadoRecuperarContraseña($request,$response,$args){
         $json=$request->getBody();
         $json=json_decode($json);
         $selector=$json->selector;
@@ -113,6 +111,6 @@ class UsuariosController{
         return $response->withHeader('Content-type','application/json');  
     }
 
-}
+
 
   
