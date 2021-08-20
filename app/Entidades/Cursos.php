@@ -1,6 +1,5 @@
 <?php
 
-
     function buscarlistaDeCursos(){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD();
         $consulta=$accesoDatos->prepararConsulta("SELECT 
@@ -10,7 +9,6 @@
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     function buscarCurso($año,$comision,$turno){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD();
