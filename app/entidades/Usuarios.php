@@ -16,7 +16,7 @@
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
-            $hash=$buscarHash->fetch(PDO::FETCH_ASSOC);
+            $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
 
        
 
@@ -27,7 +27,7 @@
 
             print_r($hash);
         
-            if (password_verify($contraseña,$hash['contraseña'])){
+            if (password_verify($contraseña,$hash[0][0])){
                 $contraseña=$hash[0]->contraseña;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
                 $consulta->execute();
