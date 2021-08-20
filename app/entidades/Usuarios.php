@@ -20,7 +20,9 @@
 
             var_dump($hash);
 
-            $hash=$hash[0]['contraseña'];
+            echo $hash['contraseña'];
+
+            $hash=$hash['contraseña'];
 
             if (password_verify($contraseña,$hash)){
                 $contraseña=$hash[0]->contraseña;
