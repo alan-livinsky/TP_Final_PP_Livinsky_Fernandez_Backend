@@ -23,15 +23,15 @@ require __DIR__ . '/ManejoDeDatos/ManejoDeDatosEjercicios.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
 
-require __DIR__ . '/entidades/Usuarios.php';
-require __DIR__ . '/entidades/Ejercicios.php';
-require __DIR__ . '/entidades/Cursos.php';
-require __DIR__ . '/entidades/MenuPrincipal.php';
-require __DIR__ . '/entidades/Opciones.php';
-require __DIR__ . '/entidades/Materiales.php';
+require __DIR__ . '/Entidades/Usuarios.php';
+require __DIR__ . '/Entidades/Ejercicios.php';
+require __DIR__ . '/Entidades/Cursos.php';
+require __DIR__ . '/Entidades/MenuPrincipal.php';
+require __DIR__ . '/Entidades/Opciones.php';
+require __DIR__ . '/Entidades/Materiales.php';
 
-require __DIR__ . '/librerias/RecuperacionContraseña.php';
-require __DIR__ . '/librerias/LibreriaGeneral.php';
+require __DIR__ . '/Librerias/RecuperacionContraseña.php';
+require __DIR__ . '/Librerias/LibreriaGeneral.php';
 
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
