@@ -12,6 +12,7 @@
             str_replace("{","",$extraerComisiones);
             str_replace("}","",$extraerComisiones);
         $extraerComisiones=$arr = explode(",",$extraerComisiones);
+        var_dump($extraerComisiones);
        
         $ExtraerTurnos=$listaCursos[0]["col3_values"];
             str_replace("{","",$ExtraerTurnos);
