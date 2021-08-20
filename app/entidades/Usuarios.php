@@ -18,7 +18,7 @@
             $buscarHash->execute();
             $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
 
-            $hash=$hash[0]['contraseña'];
+            $hash=$hash[0][contraseña];
 
             if (password_verify($contraseña,$hash)){
                 $contraseña=$hash[0]->contraseña;
