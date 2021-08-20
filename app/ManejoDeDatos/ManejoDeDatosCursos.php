@@ -20,6 +20,8 @@
 
         $listaOpcionesDeCurso=[$extraerAños,$extraerComisiones,$ExtraerTurnos];
 
+        print_r($listaOpcionesDeCurso);
+
         $response->getBody()->write(json_encode($listaOpcionesDeCurso));
         return $response;
     }
