@@ -6,36 +6,34 @@ use PHPMailer\PHPMailer\Exception;
 
 function enviarEmailDeRecuperacion($request,$response,$args){ 
 
-    //Se obtiene el email ingresado cuando se solicito la recuperacion de contraseña
     $emailDelSolicitante=$request->getBody();
     $emailDelSolicitante=json_decode($emailDelSolicitante);
     $email=$emailDelSolicitante->email;
 
+    $fechaActual=obtenerFechaActual();
+
     eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<",$fechaActual,"String");
 
-    //Llamado a la funcion encargada de generar los tokens de seguridad
-    $tokensGenerados=generarTokenEmailRecuperacion($email);
+    $tokensDeSeguridad=generarTokensEmailRecuperacion($email);
 
-
-    //Si no se retornan tokens se procede a retornar que ya existe una solicitud vigente
-    if(!$tokensGenerados){
-        //Se retorna la respuesta a la peticion.
-        return $response->withStatus(409);
+    //Si no se recibieron tokens se procede a retornar debido a  que ya existe una solicitud vigente
+    if(!$tokensDeSeguridad){
+        return $response->withStatus(409);//409 - The HTTP 409 Conflict response status code indicates a request conflict with current state of the target resource.
     }
 
-    //Si se retornaron tokens se procede al llamado a la funcion que prepara el contenido del email de recuperacion.
-    $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($tokensGenerados);
+
+    $contenidoEmailRecuperacion=prepararEmailDeRecuperacion($tokensDeSeguridad);
 
     //Se procede a configurar el Email que se enviara al usuario.
     try {
         $mail=new PHPMailer;
-        //$mail->SMTPDebug=SMTP::DEBUG_SERVER;                
-        //Por algun motivo genera error de cors
+        //$mail->SMTPDebug=SMTP::DEBUG_SERVER; Por algun motivo genera error de cors
+        //Habilitar en caso de comportamiento inesperado del envio de email para debuguear
         $mail->isSMTP();                                    
         $mail->Host='smtp.gmail.com';                       
         $mail->SMTPAuth=true;                                 
         $mail->Username='SAESHitbeltran@gmail.com';         
-        $mail->Password='rwbiofucouofrvth';            //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
+        $mail->Password='rwbiofucouofrvth'; //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
         $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;      
         $mail->Port=465;     
         //Recipientes
@@ -59,8 +57,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 
     //Se dispara la eliminacion de vencimientos de solicitudes - TEMPORAL DESCONOCEMOS MEJOR FORMA DE HACERLO
 
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $fechaActual=date('Y-m-d H:i:s');   
+    $fechaActual=obtenerFechaActual();
 
     eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<",$fechaActual,"String");
 
@@ -92,7 +89,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
 }
 
 
-function  generarTokenEmailRecuperacion($email){
+function  generarTokensEmailRecuperacion($email){
 
     //Se realiza una consulta para verificar si ya existe otra solicitud de recuperacion de contraseña para el email provisto
     //Se busca evitar duplicados
@@ -100,7 +97,7 @@ function  generarTokenEmailRecuperacion($email){
 
     //Si se obtiene un resultado de la consulta se retorna tokens vacios
     if($consultaDeSolicitudVigente){
-        return $tokensGenerados=[];
+        return $tokensDeSeguridad=[];
     }
 
     //Si no se obtiene un resultado de la consulta se procede a generar los tokens
@@ -110,7 +107,7 @@ function  generarTokenEmailRecuperacion($email){
     $token=base64_encode(random_bytes(32));
     $token=str_replace("/","",$token);
 
-    $tokensGenerados=[
+    $tokensDeSeguridad=[
         "selector"=>$selector,
         "token"=>$token
     ];
@@ -133,13 +130,13 @@ function  generarTokenEmailRecuperacion($email){
     $consulta=null;
 
     //Se retornan los token generados
-    return $tokensGenerados;
+    return $tokensDeSeguridad;
 }
 
-function prepararEmailDeRecuperacion($tokensGenerados){
+function prepararEmailDeRecuperacion($tokensDeSeguridad){
 
     //Se prepara el enlace que se encontra dentro del email el cual permitira el acceso a la pagina de recuperacion de contraseña
-    $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$tokensGenerados["selector"]."/".$tokensGenerados["token"];
+    $urlRecuperacion="https://tp-final-pp-liv-ferz-backend.herokuapp.com/Usuarios/emailRecuperacion/".$tokensDeSeguridad["selector"]."/".$tokensDeSeguridad["token"];
 
     $contenidoEmail='<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
                         <tbody>

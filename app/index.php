@@ -31,6 +31,7 @@ require __DIR__ . '/entidades/Opciones.php';
 require __DIR__ . '/entidades/Materiales.php';
 
 require __DIR__ . '/librerias/RecuperacionContraseña.php';
+require __DIR__ . '/librerias/LibreriaGeneral.php';
 
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable('../');
