@@ -42,7 +42,7 @@ use Firebase\JWT\JWT;
         $json= $request->getBody();
         $datos_usuario = json_decode($json,true);
 
-        $estadoRegistro=registrar_usuario($datos_usuario);
+        $estadoRegistro=registrarUsuario($datos_usuario);
 
         $response->getBody()->write(Json_encode($estadoRegistro));                                    
         return $response->withHeader('Content-type','application/json');

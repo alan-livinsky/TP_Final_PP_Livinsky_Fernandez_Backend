@@ -106,6 +106,14 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
 
 });
 
+$app->group('/Cursos', function (RouteCollectorProxy $group){
+    $group->get('/Lista','retornarListaCursos');
+});
+
+
+
+
+
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
     $group->get('/menu_principal','retornarAccesoMenuPrincipal');
     $group->post('/menu_principal/validarToken','mantenerAccesoMenuPrincipal');

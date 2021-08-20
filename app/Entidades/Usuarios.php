@@ -24,13 +24,13 @@
         }
     }
 
-    function registrar_usuario($data){
-        $id_usuario=$data['id_usuario'];
-        $email=$data['email'];
-        $contraseña=password_hash($data['contraseña'],PASSWORD_DEFAULT);
-        $nombre=$data['nombre'];
-        $apellido=$data['apellido'];
-        $tipo_usuario=$data['tipo_usuario'];
+    function registrarUsuario($datosUsuario){
+        $id_usuario=$datosUsuario['id_usuario'];
+        $email=$datosUsuario['email'];
+        $contraseña=password_hash($datosUsuario['contraseña'],PASSWORD_DEFAULT);
+        $nombre=$datosUsuario['nombre'];
+        $apellido=$datosUsuario['apellido'];
+        $tipo_usuario=$datosUsuario['tipo_usuario'];
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
@@ -39,11 +39,10 @@
         $consulta->execute();
 
         //VERIFICAR REGISTRO EXITOSO
-        $id_usuario_registrado=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
+        $idUltimoRegistro=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
-        if($data['tipo_usuario']=="Alumno" && $id_usuario_registrado!=null){
-            $cursos=new Cursos();
-            $cursos->asociarUsuarioCurso($data['año'],$data['comision'],$data['turno'],$id_usuario_registrado);  
+        if($datosUsuario['tipo_usuario']=="Alumno" && $idUltimoRegistro!=null){
+            asociarAlumnoCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno'],$idUltimoRegistro);  
         }
     
         $estado="Registro completado";
