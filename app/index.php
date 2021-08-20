@@ -15,13 +15,14 @@ use Slim\Routing\RouteContext;
 require __DIR__ . '/../vendor/autoload.php';
 
 require __DIR__ . '/Acceso_a_datos/Acceso_a_datos.php';
-require __DIR__ . '/Acceso_a_datos/Consultas.php';
+require __DIR__ . '/Acceso_a_datos/ConsultasGenericas.php';
 
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosUsuarios.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMenuPrincipal.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosEjercicios.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosCursos.php';
 
 require __DIR__ . '/Entidades/Usuarios.php';
 require __DIR__ . '/Entidades/Ejercicios.php';
@@ -29,6 +30,7 @@ require __DIR__ . '/Entidades/Cursos.php';
 require __DIR__ . '/Entidades/MenuPrincipal.php';
 require __DIR__ . '/Entidades/Opciones.php';
 require __DIR__ . '/Entidades/Materiales.php';
+require __DIR__ . '/Entidades/UsuariosPorCurso.php';
 
 require __DIR__ . '/Librerias/RecuperacionContraseña.php';
 require __DIR__ . '/Librerias/LibreriaGeneral.php';
