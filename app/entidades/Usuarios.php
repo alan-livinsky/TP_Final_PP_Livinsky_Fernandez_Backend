@@ -13,7 +13,7 @@
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
             $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
         //PASAR A NO STATIC
@@ -21,7 +21,7 @@
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
-            $hash=$buscarHash->fetchAll(PDO::FETCH_CLASS,'Usuarios');
+            $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
         
             if (password_verify($contraseña,$hash[0]['contraseña'])){
                 $contraseña=$hash[0]['contraseña'];
