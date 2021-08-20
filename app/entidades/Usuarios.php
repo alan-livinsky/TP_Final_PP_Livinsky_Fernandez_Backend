@@ -2,13 +2,6 @@
 
     class Usuarios{
 
-        public $id_usuario;
-        public $email;
-        public $contraseña;
-        public $nombre;
-        public $apellido;
-        public $tipo_usuario;
-
         public static function buscar_lista_usuarios(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
@@ -16,7 +9,7 @@
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        //PASAR A NO STATIC
+        
         public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");

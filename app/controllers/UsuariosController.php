@@ -1,6 +1,6 @@
 <?php
 
-use Firebase\JWT\JWT;//Por algun motivo no toma la dependencia desde el index
+use Firebase\JWT\JWT;
 
 class UsuariosController{
 
@@ -24,10 +24,10 @@ class UsuariosController{
             $privateKey=$_ENV['JWT_SECRET'];
 
             $payload = array(
-                "email" =>$usuario[0]->email,//INSEGURO
-                "nom" => $usuario[0]->nombre,
-                "ape" => $usuario[0]->apellido,
-                "tu" =>$usuario[0]->tipo_usuario
+                "email" =>$usuario[0]["email"],//INSEGURO
+                "nom" => $usuario[0]["nombre"],
+                "ape" => $usuario[0]["apellido"],
+                "tu" =>$usuario[0]["tipo_usuario"]
             );
        
             JWT::$leeway = 240; 
