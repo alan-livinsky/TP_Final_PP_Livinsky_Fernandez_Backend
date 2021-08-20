@@ -14,11 +14,13 @@
         //PASAR A NO STATIC
         public static function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-            $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
+            $buscarHash=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
             $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
 
-            $hash=$hash[0][contraseña];
+            var_dump($hash);
+
+            $hash=$hash[0]['contraseña'];
 
             if (password_verify($contraseña,$hash)){
                 $contraseña=$hash[0]->contraseña;
