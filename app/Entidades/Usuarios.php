@@ -52,9 +52,11 @@
 
     function eliminar_usuario($email){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+        
         $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuarios 
                                                       WHERE email='$email'");
         $consulta->execute();
+
         $estado="Cuenta Eliminada";
         return $estado;
     }
@@ -70,7 +72,7 @@
 
         //VER MEJOR FORMA DE VALIDAR EL RESULTADO DE ESTE TIPO DE CONSULTA
         $estado="Actualizacion completada";
-        
+
         return $estado;  
     }
 
