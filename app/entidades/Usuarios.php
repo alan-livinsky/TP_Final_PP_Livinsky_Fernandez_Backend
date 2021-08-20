@@ -21,9 +21,8 @@
             var_dump($hash);
 
             echo $hash[0]['nombre'];
-
-            $hash=$hash['contraseña'];
-
+            echo $hash[0]['contraseña'];
+            
             if (password_verify($contraseña,$hash)){
                 $contraseña=$hash[0]->contraseña;
                 $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
