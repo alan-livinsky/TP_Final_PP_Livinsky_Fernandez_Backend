@@ -11,7 +11,7 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     $emailDelSolicitante=json_decode($emailDelSolicitante);
     $email=$emailDelSolicitante->email;
 
-    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento"/*,"<","now()"*/);
+    eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<",$fechaActual,"String");
 
     //Llamado a la funcion encargada de generar los tokens de seguridad
     $tokensGenerados=generarTokenEmailRecuperacion($email);
