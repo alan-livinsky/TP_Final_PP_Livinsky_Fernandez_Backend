@@ -55,7 +55,8 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "path" => ["/"], 
     "ignore" => ["/Bienvenido","/Usuarios/registro","/Usuarios/loguin",
                 "/Usuarios/recuperarContrase","/cargaDeFuego/listaMateriales",
-                "/cargaDeFuego/datosMaterial","/Usuarios/emailRecuperacion/","/Usuarios/recuperarContrase/modificar"],
+                "/cargaDeFuego/datosMaterial","/Usuarios/emailRecuperacion/",
+                "/Usuarios/recuperarContrase/modificar","/Cursos/Lista"],
 
     "error" => function ($response, $arguments){
         $data["status"]="error";
@@ -109,9 +110,6 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
 $app->group('/Cursos', function (RouteCollectorProxy $group){
     $group->get('/Lista','retornarListaCursos');
 });
-
-
-
 
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
