@@ -12,20 +12,28 @@ function busquedaSimple($tabla,$campoCondicion,$dato){
     return $resultadoConsulta;
 }
 
-function eliminacionSimple($tabla,$campo/*,$condicion,$dato*/){
+function eliminacionSimple($tabla,$campo,$condicion,$datoAcomparar,$tipoDeDato){//TIPO DE DATO ->String,Number,etc
 
-    //ACA IRIA UN FILTRO POR TIPO DE DATO
-
-    //$condicion=$campo.''.$condicion.''.$dato;
-
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $date=date('Y-m-d H:i:s');
+    $datoAcomparar=prepararDatoParaConsulta($datoAcomparar,$tipoDeDato);
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<'$date'");
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento $condicion $datoAcomparar");
     //echo "DELETE FROM $tabla WHERE $condicion";
     $consulta->execute();
 }
+
+function prepararDatoParaConsulta($datoAPreparar,$tipoDeDato){
+
+    if($tipoDeDato=="String"){
+        $datoAPreparar="'".$datoAPreparar."'";
+        return $datoAPreparar;
+    }
+    else{
+        return $datoAPreparar;
+    }
+  
+}
+
 
 ?>
 
