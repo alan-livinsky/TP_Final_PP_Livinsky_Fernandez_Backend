@@ -6,7 +6,7 @@
         $extraerAños=$listaCursos[0]["col1_values"];
         $extraerAños=$arr = explode(",", $extraerAños);
 
-        echo($extraerAños);
+        var_dump($extraerAños);
 
 
         $extraerComisiciones=$listaCursos[0]["col2_values"];
