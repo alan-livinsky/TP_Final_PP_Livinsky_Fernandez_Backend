@@ -3,7 +3,7 @@
 function busquedaSimple($tabla,$campoCondicion,$dato){
 
     //ACA IRIA UN FILTRO POR TIPO DE DATO
-    
+
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE $campoCondicion='$dato'");
     $consulta->execute();
@@ -11,17 +11,20 @@ function busquedaSimple($tabla,$campoCondicion,$dato){
     return $resultadoConsulta;
 }
 
-function eliminacionSimple($tabla,$campo,$tipoCondicion,$datoAEvaluar){
+function eliminacionSimple($tabla,$campo/*,$condicion,$dato*/){
 
     //ACA IRIA UN FILTRO POR TIPO DE DATO
 
-    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    echo "DELETE FROM $tabla WHERE vencimiento".$condicion."'$datoAEvaluar'";
-   /*
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento".$condicion."'$datoAEvaluar'");
+    //$condicion=$campo.''.$condicion.''.$dato;
 
-    echo "DELETE FROM $tabla WHERE vencimiento".$condicion."'$datoAEvaluar'";
-    $consulta->execute();*/
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $date=date('Y-m-d H:i:s');
+
+    $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento<'$date'");
+    //echo "DELETE FROM $tabla WHERE $condicion";
+    $consulta->execute();
 }
+
 
 ?>
