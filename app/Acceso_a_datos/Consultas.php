@@ -17,7 +17,7 @@ function eliminacionSimple($tabla,$campo,$condicion,$datoAcomparar,$tipoDeDato){
     $datoAcomparar=prepararDatoParaConsulta($datoAcomparar,$tipoDeDato);
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE vencimiento $condicion $datoAcomparar");
+    $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo $condicion $datoAcomparar");
     //echo "DELETE FROM $tabla WHERE $condicion";
     $consulta->execute();
 }

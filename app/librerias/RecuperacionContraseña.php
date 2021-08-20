@@ -60,7 +60,7 @@ function validarEnlaceRecuperContraseña($request,$response,$args){
     //Se dispara la eliminacion de vencimientos de solicitudes - TEMPORAL DESCONOCEMOS MEJOR FORMA DE HACERLO
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $fechaActual=date('Y-m-d H:i:s');
+    $fechaActual=date('Y-m-d H:i:s');   
 
     eliminacionSimple("solicitudes_recuperar_contraseña","vencimiento","<",$fechaActual,"String");
 
