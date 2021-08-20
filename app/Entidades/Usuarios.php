@@ -60,13 +60,17 @@
     }
 
     function actualizar_contraseña($email,$contraseña){
+        $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
+
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                   SET contraseña='$contraseña'
                                                   WHERE email='$email'");
         $consulta->execute();
+
         //VER MEJOR FORMA DE VALIDAR EL RESULTADO DE ESTE TIPO DE CONSULTA
         $estado="Actualizacion completada";
+        
         return $estado;  
     }
 
