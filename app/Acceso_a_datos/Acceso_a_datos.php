@@ -37,15 +37,4 @@ class Acceso_a_datos{
         return $this->objetoPDO->lastInsertId($secuencia_autoincremento_postgress);
     }
 
-    /*
-    public function obtenerUltimoId()
-    {
-        return $this->objetoPDO->lastInsertId();
-    }
-
-    public function __clone(){
-        trigger_error('ERROR: La clonación de este objeto no está permitida', E_USER_ERROR);
-    }
-    */
-
 }

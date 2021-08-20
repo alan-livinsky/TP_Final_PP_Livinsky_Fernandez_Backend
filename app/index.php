@@ -127,8 +127,8 @@ $app->group('/Menu_principal', function (RouteCollectorProxy $group){
 });
 
 $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
-    $group->get('/listaMateriales',\MaterialesController::class.':retornarListaMateriales');
-    $group->get('/datosMaterial/{material}',\MaterialesController::class.':retornarDatosMaterial');
+    $group->get('/listaMateriales','retornarListaMateriales');
+    $group->get('/datosMaterial/{material}','retornarDatosMaterial');
 });
 
 

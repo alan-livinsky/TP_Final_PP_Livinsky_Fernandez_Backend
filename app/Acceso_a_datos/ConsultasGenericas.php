@@ -1,6 +1,5 @@
 <?php
 
-
 function busquedaSimple($tabla,$campoCondicion,$dato){
 
     //ACA IRIA UN FILTRO POR TIPO DE DATO
@@ -33,7 +32,6 @@ function prepararDatoParaConsulta($datoAPreparar,$tipoDeDato){
     }
   
 }
-
 
 ?>
 

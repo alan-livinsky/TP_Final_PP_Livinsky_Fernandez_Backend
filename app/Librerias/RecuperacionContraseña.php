@@ -27,7 +27,7 @@ function enviarEmailDeRecuperacion($request,$response,$args){
     //Tal vez Reutilizable en un futuro
     try {
         $mail=new PHPMailer;
-        //$mail->SMTPDebug=SMTP::DEBUG_SERVER; Por algun motivo genera error de cors
+        $mail->SMTPDebug=SMTP::DEBUG_SERVER; 
         //Habilitar en caso de comportamiento inesperado del envio de email para debuguear
         $mail->isSMTP();                                    
         $mail->Host='smtp.gmail.com';                       

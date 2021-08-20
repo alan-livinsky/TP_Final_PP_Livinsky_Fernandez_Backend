@@ -103,7 +103,9 @@ use Firebase\JWT\JWT;
                                                           WHERE email='$email'");
                 $consulta->execute();
 
-                $estado="Actualizacion completada";
+                //Falta la eliminacion de la solicitud ante recuperacion exitosa.
+
+                $estado="Recuperacion completada";
                 $response->getBody()->write(Json_encode($estado));                                    
                 return $response->withHeader('Content-type','application/json');
             }
