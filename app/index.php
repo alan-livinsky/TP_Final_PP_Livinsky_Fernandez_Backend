@@ -80,6 +80,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     return $response;
 });
 
+
 //<<Rutas>>
 $app->get('/',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Token Test");
@@ -93,7 +94,6 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group){
 
-    $group->get('[/]','retornarListaUsuarios');
     $group->get('/lista','retornarListaUsuarios');
     $group->post('/registro','retornarEstadoRegistro');
     $group->post('/loguin','retornarTokenAcceso');
@@ -104,41 +104,24 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/recuperarContrase/modificar','retornarEstadoRecuperarContraseña');
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecContraseña');
 
-
-
-/*
-    $group->get('[/]',\UsuariosController::class.':retornarListaUsuarios');
-    $group->get('/lista',\UsuariosController::class.':retornarListaUsuarios');
-    //AREGLAR GIONES BAJOS MINUSCULA MAYUSCULA
-    $group->post('/registro',\UsuariosController::class.':retornarEstadoRegistro');
-    $group->post('/loguin',\UsuariosController::class.':retornarTokenAcceso');
-    $group->delete('/borrar_cuenta',\UsuariosController::class.':retornarEstadoEliminacionC');
-    $group->put('/actualizar_contraseña',\UsuariosController::class.':retornarEstadoActualizacionContraseña');
-    
-    $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
-    $group->post('/recuperarContrase/modificar',\UsuariosController::class.':retornarEstadoRecuperarContraseña');
-    $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecuperContraseña');
-*/
- 
 });
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
-    $group->get('/menu_principal',\MenuPrincipalController::class.':retornarAccesoMenuPrincipal');
-    $group->post('/menu_principal/validarToken',\MenuPrincipalController::class.':mantenerAccesoMenuPrincipal');
+    $group->get('/menu_principal','retornarAccesoMenuPrincipal');
+    $group->post('/menu_principal/validarToken','mantenerAccesoMenuPrincipal');
 });
 
+
 $app->group('/Menu_principal', function (RouteCollectorProxy $group){
-    $group->get('/lista_ejercicios/cargar',\EjerciciosController::class.':retornarListaEjerciciosMenu');
-    $group->get('/lista_opciones_profesor/cargar',\OpcionesController::class.':retornarOpciones_profesor');
-    $group->get('/lista_opciones_alumno/cargar',\EjerciciosController::class.':retornarOpcionesMenuPrincipal');
+    $group->get('/lista_ejercicios/cargar','retornarListaEjerciciosMenu');
+    $group->get('/lista_opciones_profesor/cargar','retornarOpciones_profesor');
+    $group->get('/lista_opciones_alumno/cargar','retornarOpcionesMenuPrincipal');
 });
 
 $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
     $group->get('/listaMateriales',\MaterialesController::class.':retornarListaMateriales');
     $group->get('/datosMaterial/{material}',\MaterialesController::class.':retornarDatosMaterial');
 });
-
-
 
 
 $app->run();

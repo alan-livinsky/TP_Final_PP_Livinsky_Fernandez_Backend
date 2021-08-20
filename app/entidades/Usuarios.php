@@ -1,16 +1,16 @@
 <?php
 
-    class Usuarios{
 
-        public static function buscar_lista_usuarios(){
+
+        function buscar_lista_usuarios(){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta('SELECT * FROM usuarios');
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        
-        public static function buscar_usuario($email,$contraseña){
+
+        function buscar_usuario($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
             $buscarHash->execute();
@@ -27,7 +27,7 @@
             }
         }
 
-        public function registrar_usuario($data){
+        function registrar_usuario($data){
             $id_usuario=$data['id_usuario'];
             $email=$data['email'];
             $contraseña=password_hash($data['contraseña'],PASSWORD_DEFAULT);
@@ -53,7 +53,7 @@
             return $estado;     
         }
 
-        public function eliminar_usuario($email){
+        function eliminar_usuario($email){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuarios 
                                                       WHERE email='$email'");
@@ -62,7 +62,7 @@
             return $estado;
         }
 
-        public function actualizar_contraseña($email,$contraseña){
+        function actualizar_contraseña($email,$contraseña){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                       SET contraseña='$contraseña'
@@ -72,5 +72,5 @@
             return $estado;  
         }
 
-    }
+    
 ?>
