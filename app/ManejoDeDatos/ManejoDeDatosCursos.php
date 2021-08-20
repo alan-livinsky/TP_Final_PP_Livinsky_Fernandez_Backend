@@ -10,6 +10,9 @@
 
 
         $extraerComisiciones=$listaCursos[0]["col2_values"];
+        $extraerComisiciones=$arr = explode(",", $extraerComisiciones);
+        var_dump($extraerComisiciones);
+
         $ExtraerTurnos=$listaCursos[0]["col3_values"];
 
         $response->getBody()->write(json_encode($listaCursos));
