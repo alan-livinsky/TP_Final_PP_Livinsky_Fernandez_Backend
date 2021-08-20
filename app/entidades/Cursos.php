@@ -6,7 +6,6 @@
         public $comision;
         public $turno;
         
-
         public function buscarCurso($año,$comision,$turno){
             $accesoDatos=Acceso_a_datos::obtenerConexionBD();
             $consulta=$accesoDatos->prepararConsulta("SELECT id_curso FROM cursos Where año='$año' and comision='$comision' and turno='$turno'");
