@@ -6,7 +6,7 @@
         $consulta=$accesoDatos->prepararConsulta("SELECT 
                                                     ARRAY(SELECT DISTINCT(año) FROM cursos) AS col1_values,
                                                     ARRAY(SELECT DISTINCT(comision) FROM cursos) AS col2_values,
-                                                    ARRAY(SELECT DISTINCT(turno) FROM cursos) AS col2_values");
+                                                    ARRAY(SELECT DISTINCT(turno) FROM cursos) AS col3_values");
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
