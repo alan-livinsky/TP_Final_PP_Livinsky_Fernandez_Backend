@@ -86,6 +86,7 @@ use Firebase\JWT\JWT;
         $json=$request->getBody();
         $json=json_decode($json);
         $selector=$json->selector;
+        echo $contraseña;
         $contraseña=$json->contraseña;
         $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
@@ -109,6 +110,8 @@ use Firebase\JWT\JWT;
             
             if($consultaEmailSolicitante){
                 $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+                echo $contraseña;
+
                 $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                           SET contraseña='$contraseña'
                                                           WHERE email='$email'");
