@@ -27,6 +27,8 @@
 
     function registrarUsuario($datosUsuario){
 
+        var_dump($datosUsuario);
+
         $verificarCursoExistente=buscarCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno']);
 
         if($verificarCursoExistente){
