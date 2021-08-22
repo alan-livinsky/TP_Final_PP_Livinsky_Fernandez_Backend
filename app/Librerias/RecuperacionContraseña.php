@@ -90,13 +90,13 @@ function generarTokensEmailRecuperacion($email){
     //Si no se obtiene un resultado de la consulta se procede a generar los tokens
 
     //$token = bin2hex(random_bytes($length)); // bin2hex output is url safe.
-    //$selector= bin2hex(random_bytes(8));
-    $selector=base64_encode(random_bytes(8));
-    $selector=str_replace("/","",$selector);
+    $selector= bin2hex(random_bytes(8));
+    //$selector=base64_encode(random_bytes(8));
+    //$selector=str_replace("/","",$selector);
 
-    //$token=bin2hex(random_bytes(32));
-    $token=base64_encode(random_bytes(32));
-    $token=str_replace("/","",$token);
+    $token=bin2hex(random_bytes(32));
+    //$token=base64_encode(random_bytes(32));
+    //$token=str_replace("/","",$token);
 
     $tokensDeSeguridad=[
         "selector"=>$selector,
