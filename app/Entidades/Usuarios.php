@@ -27,17 +27,17 @@
 
     function registrarUsuario($datosUsuario){
 
-        var_dump($datosUsuario);
+        $tipo_usuario=$datosUsuario['tipo_usuario'];
 
         $verificarCursoExistente=buscarCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno']);
 
-        if($verificarCursoExistente){
+        if(($verificarCursoExistente && $tipo_usuario=="Alumno") || $tipo_usuario=="Profesor"){
             $id_usuario=$datosUsuario['id_usuario'];
             $email=$datosUsuario['email'];
             $contraseña=password_hash($datosUsuario['contraseña'],PASSWORD_DEFAULT);
             $nombre=$datosUsuario['nombre'];
             $apellido=$datosUsuario['apellido'];
-            $tipo_usuario=$datosUsuario['tipo_usuario'];
+           
     
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
