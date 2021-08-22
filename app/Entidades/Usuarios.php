@@ -8,10 +8,18 @@
     }
 
     function buscar_usuario($email,$contraseña){
+
+        echo $email;
+        echo $contraseña;
+
+
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
         $buscarHash->execute();
         $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
+
+        echo $hash[0]['contraseña'];
+        var_dump($hash[0]['contraseña']);
         
         if (password_verify($contraseña,$hash[0]['contraseña'])){
             $contraseña=$hash[0]['contraseña'];
