@@ -13,6 +13,8 @@ use Firebase\JWT\JWT;
         $buscar=json_decode($json,true);
         var_dump($buscar);
         $usuario=buscar_usuario($buscar['email'],$buscar['contraseña']);
+
+        var_dump($usuario);
   
         if($usuario==false){
            return $response
