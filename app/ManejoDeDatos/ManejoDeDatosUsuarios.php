@@ -68,7 +68,7 @@ use Firebase\JWT\JWT;
         $json_contraseñas=$request->getBody();
         $contraseñas=json_decode($json_contraseñas);
 
-        $validacionDeContraseñaAntigua=buscarUsuario($datosUsuario['email'],$contraseñas->antigua);
+        $validacionDeContraseñaAntigua=buscar_usuario($datosUsuario['email'],$contraseñas->antigua);
 
         if($validacionDeContraseñaAntigua){
             $estadoactualizacion=actualizar_contraseña($datosUsuario['email'],$contraseñas->nueva,);
