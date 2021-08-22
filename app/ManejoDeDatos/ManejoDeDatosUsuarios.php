@@ -11,11 +11,8 @@ use Firebase\JWT\JWT;
     function retornarTokenAcceso($request,$response,$args){
         $json=$request->getBody();
         $buscar=json_decode($json,true);
-        var_dump($buscar);
         $usuario=buscar_usuario($buscar['email'],$buscar['contraseña']);
 
-        var_dump($usuario);
-  
         if($usuario==false){
            return $response
                         ->withStatus(401)
