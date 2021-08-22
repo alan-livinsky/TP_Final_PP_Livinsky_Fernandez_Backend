@@ -86,8 +86,9 @@ use Firebase\JWT\JWT;
         $json=$request->getBody();
         $json=json_decode($json);
         $selector=$json->selector;
-        echo $contraseña;
+     
         $contraseña=$json->contraseña;
+        echo $contraseña;
         $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
         echo $selector;
