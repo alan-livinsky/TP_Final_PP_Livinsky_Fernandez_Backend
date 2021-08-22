@@ -42,13 +42,18 @@
         $idUltimoRegistro=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
 
         if($datosUsuario['tipo_usuario']=="Alumno" && $idUltimoRegistro!=null){
-            asociarAlumnoCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno'],$idUltimoRegistro);  
-        }
-    
-        $estado="Registro completado";
-        return $estado;     
+            $resultadoAsociacion=asociarAlumnoCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno'],$idUltimoRegistro);  
+            if($resultadoAsociacion=="Exito"){
+                $estado="Registro completado";
+                return $estado;
+            }
+            else{
+                $estado="El curso ingresado no existe.";
+                return $estado;   
+            }
+        } 
     }
-
+    
     function eliminar_usuario($email){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         
