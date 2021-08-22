@@ -22,10 +22,12 @@
         var_dump($hash[0]['contraseña']);
         
         if (password_verify($contraseña,$hash[0]['contraseña'])){
+            echo "pepe";
             $contraseña=$hash[0]['contraseña'];
             $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
+            echo "lol";
         }
         else{
             return;
