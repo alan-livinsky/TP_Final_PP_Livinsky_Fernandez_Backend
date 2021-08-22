@@ -89,10 +89,14 @@ use Firebase\JWT\JWT;
         $contraseña=$json->contraseña;
         $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
+        echo $selector;
+
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         $consulta=$accesoDatos->prepararConsulta("SELECT * FROM solicitudes_recuperar_contraseña WHERE selector='$selector'");
         $consulta->execute();
         $consultaSelector=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
+        var_dump($consultaSelector);
 
         if($consultaSelector){
             $email=$consultaSelector[0]['email_solicitante'];
@@ -100,6 +104,8 @@ use Firebase\JWT\JWT;
             $consulta=$accesoDatos->prepararConsulta("SELECT email FROM usuarios WHERE email='$email'");
             $consulta->execute();
             $consultaEmailSolicitante=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            var_dump($consultaEmailSolicitante);
             
             if($consultaEmailSolicitante){
                 $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
