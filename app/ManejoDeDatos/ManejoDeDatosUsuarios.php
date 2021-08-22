@@ -44,8 +44,13 @@ use Firebase\JWT\JWT;
 
         $estadoRegistro=registrarUsuario($datos_usuario);
 
-        $response->getBody()->write(Json_encode($estadoRegistro));                                    
-        return $response->withHeader('Content-type','application/json');
+        if($estadoRegistro=="Curso inexistente"){
+            return $response->withStatus(404);
+        }
+
+        //$response->getBody()->write(Json_encode($estadoRegistro));                                    
+        //return $response->withHeader('Content-type','application/json');
+        return $response;
     }
 
     function retornarEstadoEliminacionCuenta($request,$response,$args){

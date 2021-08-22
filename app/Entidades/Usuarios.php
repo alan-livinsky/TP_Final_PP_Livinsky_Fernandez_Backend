@@ -25,32 +25,32 @@
     }
 
     function registrarUsuario($datosUsuario){
-        $id_usuario=$datosUsuario['id_usuario'];
-        $email=$datosUsuario['email'];
-        $contraseña=password_hash($datosUsuario['contraseña'],PASSWORD_DEFAULT);
-        $nombre=$datosUsuario['nombre'];
-        $apellido=$datosUsuario['apellido'];
-        $tipo_usuario=$datosUsuario['tipo_usuario'];
 
-        $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-        $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
-                                                  values 
-                                                  ($id_usuario,'$email','$contraseña','$nombre','$apellido','$tipo_usuario')");
-        $consulta->execute();
+        $verificarCursoExistente=buscarCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno']);
 
-        //VERIFICAR REGISTRO EXITOSO
-        $idUltimoRegistro=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
-
-        if($datosUsuario['tipo_usuario']=="Alumno" && $idUltimoRegistro!=null){
-            $resultadoAsociacion=asociarAlumnoCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno'],$idUltimoRegistro);  
-            if($resultadoAsociacion=="Exito"){
-                $estado="Registro completado";
-                return $estado;
-            }
-            else{
-                $estado="El curso ingresado no existe.";
-                return $estado;   
-            }
+        if($verificarCursoExistente){
+            $id_usuario=$datosUsuario['id_usuario'];
+            $email=$datosUsuario['email'];
+            $contraseña=password_hash($datosUsuario['contraseña'],PASSWORD_DEFAULT);
+            $nombre=$datosUsuario['nombre'];
+            $apellido=$datosUsuario['apellido'];
+            $tipo_usuario=$datosUsuario['tipo_usuario'];
+    
+            $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+            $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
+                                                      values 
+                                                      ($id_usuario,'$email','$contraseña','$nombre','$apellido','$tipo_usuario')");
+            $consulta->execute();
+    
+            //VERIFICAR REGISTRO EXITOSO
+            $idUltimoRegistro=$accesoDatos->obtenerUltimaIdInsertada('usuarios_id_usuario_seq');
+    
+            if($datosUsuario['tipo_usuario']=="Alumno" && $idUltimoRegistro!=null){
+                $resultadoAsociacion=asociarAlumnoCurso($datosUsuario['año'],$datosUsuario['comision'],$datosUsuario['turno'],$idUltimoRegistro);  
+            } 
+        }
+        else{
+            return "Curso inexistente";
         } 
     }
     

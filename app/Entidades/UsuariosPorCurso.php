@@ -13,7 +13,7 @@ function asociarAlumnoCurso($año,$comision,$turno,$id_usuario){
         return "Exito";
     }
     else{
-        return "Curso inexistente";
+        return "Error";
     }
 
 }
