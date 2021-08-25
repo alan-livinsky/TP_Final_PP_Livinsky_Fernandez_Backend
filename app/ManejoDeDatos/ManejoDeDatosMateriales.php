@@ -1,7 +1,5 @@
 <?php
 
-class MaterialesController{
-
   function retornarListaMateriales($request,$response,$args){
     $listaMateriales=buscar_lista_materiales();
     $response->getBody()->write(json_encode($listaMateriales));
@@ -14,5 +12,4 @@ class MaterialesController{
     return $response;
   }
 
-}
 ?>
