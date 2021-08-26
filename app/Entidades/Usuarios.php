@@ -25,6 +25,24 @@
         }
     }
 
+    function buscarUsuarioPorID($id_usuario,$contraseña){
+
+        $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+        $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE id_usuario='$id_usuario'");
+        $buscarHash->execute();
+        $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
+
+        if (password_verify($contraseña,$hash[0]['contraseña'])){
+            $contraseña=$hash[0]['contraseña'];
+            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND contraseña='$contraseña'");
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+        else{
+            return;
+        }
+    }
+
     function registrarUsuario($datosUsuario){
 
         $tipo_usuario=$datosUsuario['tipo_usuario'];

@@ -22,7 +22,7 @@ use Firebase\JWT\JWT;
             $privateKey=$_ENV['JWT_SECRET'];
 
             $payload = array(
-                "email" =>$usuario[0]["id_usuario"],
+                "sub" =>$usuario[0]["id_usuario"],
                 "nom" => $usuario[0]["nombre"],
                 "ape" => $usuario[0]["apellido"],
                 "tu" =>$usuario[0]["tipo_usuario"]
@@ -68,18 +68,16 @@ use Firebase\JWT\JWT;
         $json_contraseñas=$request->getBody();
         $contraseñas=json_decode($json_contraseñas);
 
-        $validacionDeContraseñaAntigua=buscar_usuario($datosUsuario['email'],$contraseñas->antigua);
+        $validacionDeContraseñaAntigua=buscarUsuarioPorID($datosUsuario['id_usuario'],$contraseñas->antigua);
 
         if($validacionDeContraseñaAntigua){
-            $estadoactualizacion=actualizar_contraseña($datosUsuario['email'],$contraseñas->nueva,);
+            $estadoactualizacion=actualizar_contraseña($datosUsuario['id_usuario'],$contraseñas->nueva,);
             $response->getBody()->write(Json_encode($estadoactualizacion));                                    
             return $response->withHeader('Content-type','application/json');
-
         }
         else{
             return $response>withStatus(401);
         }
-
     }
 
     function retornarEstadoRecuperarContraseña($request,$response,$args){
