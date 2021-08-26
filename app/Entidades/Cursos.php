@@ -25,7 +25,7 @@
         $consulta->execute();
     }
 
-    $estadoCreacion;
+    $estadoCreacion="";
     return $estadoCreacion;
 
 ?>
