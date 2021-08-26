@@ -4,7 +4,7 @@ use Firebase\JWT\JWT;
 
   function retornarAccesoMenuPrincipal($request,$response,$args){
    // return $response->withStatus(200); 
-  return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Menu_Principal.html')->withStatus(302);
+  return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Menu_Principal.html')->withStatus(305);
   }
 
   function mantenerAccesoMenuPrincipal($request,$response,$args){
@@ -15,5 +15,5 @@ use Firebase\JWT\JWT;
   }
 
 
-  
+
 ?>
