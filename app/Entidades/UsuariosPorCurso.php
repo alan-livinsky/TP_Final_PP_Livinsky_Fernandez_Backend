@@ -22,7 +22,6 @@ function asociarProfesorCurso($id_cursos,$id_usuario){
     $prepararInsert="";
 
 
-
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_por_curso
                                               VALUES ($id_usuario,$id_curso)");
     $consulta->execute(); 
