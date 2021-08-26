@@ -2,7 +2,7 @@
 
     function retornarListaCursos($request,$response,$args){
         $listaCursos=buscarlistaDeCursos();
-        $response->getBody()->write(json_encode($listaOpcionesDeCurso));
+        $response->getBody()->write(json_encode($listaCursos));
         return $response;
     }
 
