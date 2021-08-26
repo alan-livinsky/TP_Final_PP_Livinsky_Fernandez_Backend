@@ -1,6 +1,12 @@
 <?php
 
     function retornarListaCursos($request,$response,$args){
+        $listaCursos=buscarlistaDeCursos();
+        $response->getBody()->write(json_encode($listaOpcionesDeCurso));
+        return $response;
+    }
+
+    function retornarListaCursosFiltrada($request,$response,$args){
         $listaCursos=buscarlistaDeCursosFiltrada();
 
         $extraerAños=$listaCursos[0]["col1_values"];
@@ -20,12 +26,6 @@
 
         $listaOpcionesDeCurso=[$extraerAños,$extraerComisiones,$ExtraerTurnos];
 
-        $response->getBody()->write(json_encode($listaOpcionesDeCurso));
-        return $response;
-    }
-
-    function retornarListaCursosFiltrada($request,$response,$args){
-        $listaCursos=buscarlistaDeCursos();
         $response->getBody()->write(json_encode($listaOpcionesDeCurso));
         return $response;
     }
