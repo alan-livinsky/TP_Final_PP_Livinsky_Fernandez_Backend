@@ -22,7 +22,7 @@ use Firebase\JWT\JWT;
             $privateKey=$_ENV['JWT_SECRET'];
 
             $payload = array(
-                "email" =>$usuario[0]["email"],//INSEGURO
+                "email" =>$usuario[0]["id_usuario"],
                 "nom" => $usuario[0]["nombre"],
                 "ape" => $usuario[0]["apellido"],
                 "tu" =>$usuario[0]["tipo_usuario"]

@@ -30,4 +30,16 @@
         return $response;
     }
 
+    function retornarEstadoCreacionCurso($request,$response,$args){
+        $json=$request->getBody();
+        $datosCurso=json_decode($json,true);
+
+        $año=$datosCurso->año;
+        $comision=$datosCurso->comision;
+        $turno=$datosCurso->turno;
+
+        $crearCurso=crearCurso($año,$comision,$turno);
+
+    }
+
 ?>

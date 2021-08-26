@@ -15,6 +15,20 @@ function asociarAlumnoCurso($año,$comision,$turno,$id_usuario){
     else{
         return "Error";
     }
+}
+
+function asociarProfesorCurso($id_cursos,$id_usuario){
+    $accesoDatos=Acceso_a_datos::obtenerConexionBD();
+    $prepararInsert="";
+
+
+
+    $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_por_curso
+                                              VALUES ($id_usuario,$id_curso)");
+    $consulta->execute(); 
+    return "Exito";
+
+
 
 }
 

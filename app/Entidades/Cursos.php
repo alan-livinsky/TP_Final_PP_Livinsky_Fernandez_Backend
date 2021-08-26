@@ -17,4 +17,15 @@
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function crearCurso($año,$comision,$turno){
+        $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+        $consulta=$accesoDatos->prepararConsulta("INSERT INTO cursos
+                                                  VALUES
+                                                  (default,'$año','$comision','$turno'");
+        $consulta->execute();
+    }
+
+    $estadoCreacion;
+    return $estadoCreacion;
+
 ?>
