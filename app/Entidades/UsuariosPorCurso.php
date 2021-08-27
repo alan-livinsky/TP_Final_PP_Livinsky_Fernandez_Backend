@@ -17,18 +17,11 @@ function asociarAlumnoCurso($año,$comision,$turno,$id_usuario){
     }
 }
 
-function asociarProfesorCurso($id_cursos,$id_usuario){
+function asociarProfesorCurso($insertPreparado){
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
-    $prepararInsert="";
-
-
-    $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios_por_curso
-                                              VALUES ($id_usuario,$id_curso)");
+    $consulta=$accesoDatos->prepararConsulta("$insertPreparado");
     $consulta->execute(); 
     return "Exito";
-
-
-
 }
 
 ?>
