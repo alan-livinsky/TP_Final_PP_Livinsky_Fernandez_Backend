@@ -7,7 +7,7 @@
         $CursosAsociar=json_decode($jsonCursos);
 
         echo "pepe";
-        echo $CursosAsociar;
+        var_dump($CursosAsociar);
       
 
         $estadoAsociacion=asociarProfesorCurso($insertPreparado);
