@@ -6,6 +6,7 @@
         $jsonCursos=$request->getBody();
         $CursosAsociar=json_decode($jsonCursos);
 
+        echo "pepe";
         echo $CursosAsociar;
       
 
