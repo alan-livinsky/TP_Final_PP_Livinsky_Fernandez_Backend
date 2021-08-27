@@ -23,6 +23,7 @@ require __DIR__ . '/ManejoDeDatos/ManejoDeDatosEjercicios.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosCursos.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosUsuariosPorCurso.php';
 
 require __DIR__ . '/Entidades/Usuarios.php';
 require __DIR__ . '/Entidades/Ejercicios.php';
