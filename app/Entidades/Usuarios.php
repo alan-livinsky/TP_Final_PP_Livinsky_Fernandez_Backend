@@ -97,7 +97,7 @@
         $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-        $echo "UPDATE usuarios SET contraseña='$contraseña' WHERE email='$email'";
+        echo "UPDATE usuarios SET contraseña='$contraseña' WHERE email='$email'";
         $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                   SET contraseña='$contraseña'
                                                   WHERE email='$email'");
