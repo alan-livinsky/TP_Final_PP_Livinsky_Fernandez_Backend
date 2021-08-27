@@ -65,6 +65,7 @@ use Firebase\JWT\JWT;
     function retornarEstadoActualizacionContraseña($request,$response,$args){
         
         $datosUsuario=$request->getAttribute("token");
+        var_dump($datosUsuario);
         $json_contraseñas=$request->getBody();
         $contraseñas=json_decode($json_contraseñas);
 
