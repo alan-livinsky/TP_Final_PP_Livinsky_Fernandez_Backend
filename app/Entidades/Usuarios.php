@@ -27,6 +27,9 @@
 
     function buscarUsuarioPorID($id_usuario,$contraseña){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+
+        echo "SELECT contraseña FROM usuarios WHERE id_usuario=$id_usuario";
+
         $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE id_usuario=$id_usuario");
         $buscarHash->execute();
         $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
@@ -34,8 +37,10 @@
 
 
         if (password_verify($contraseña,$hash[0]['contraseña'])){
-            echo "pepe";
             $contraseña=$hash[0]['contraseña'];
+
+            echo "SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND contraseña='$contraseña'";
+
             $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND contraseña='$contraseña'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -92,6 +97,7 @@
         $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
+        $echo "UPDATE usuarios SET contraseña='$contraseña' WHERE email='$email'";
         $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                   SET contraseña='$contraseña'
                                                   WHERE email='$email'");
