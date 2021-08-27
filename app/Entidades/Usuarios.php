@@ -82,11 +82,11 @@
         } 
     }
     
-    function eliminar_usuario($email){
+    function eliminar_usuario($id_usuario){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         
         $consulta=$accesoDatos->prepararConsulta("DELETE FROM usuarios 
-                                                      WHERE email='$email'");
+                                                      WHERE id_usuario=$id_usuario");
         $consulta->execute();
 
         $estado="Cuenta Eliminada";
