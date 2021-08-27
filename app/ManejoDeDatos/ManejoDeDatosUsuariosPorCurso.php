@@ -1,6 +1,6 @@
 <?php
 
-    function retornarEstadoActualizacionContraseña($request,$response,$args){
+    function retornarEstadoAsociarCurso($request,$response,$args){
         
         $datosUsuario=$request->getAttribute("token");
         $jsonCursos=$request->getBody();
