@@ -56,7 +56,7 @@ use Firebase\JWT\JWT;
     function retornarEstadoEliminacionCuenta($request,$response,$args){
         $data=$request->getAttribute("token");
 
-        $estadoactualizacion=eliminar_usuario($data['email']);
+        $estadoactualizacion=eliminar_usuario($data['sub']);
 
         $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
