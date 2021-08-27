@@ -18,7 +18,7 @@
                 $insertPreparado=$insertPreparado."($id_usuario,$curso),";
             }
             else{
-                $insertPreparado=$insertPreparado."()";
+                $insertPreparado=$insertPreparado."($id_usuario,$curso)";
             }
         }
 
