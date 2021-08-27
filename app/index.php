@@ -96,7 +96,6 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
 });
 
 $app->group('/Usuarios', function (RouteCollectorProxy $group){
-
     $group->get('/lista','retornarListaUsuarios');
     $group->post('/registro','retornarEstadoRegistro');
     $group->post('/loguin','retornarTokenAcceso');
@@ -106,13 +105,14 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->post('/recuperarContrase','enviarEmailDeRecuperacion');
     $group->post('/recuperarContrase/modificar','retornarEstadoRecuperarContraseña');
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecContraseña');
-
 });
 
 $app->group('/Cursos', function (RouteCollectorProxy $group){
     $group->get('/Lista','retornarListaCursos');
     $group->get('/ListaFiltrada','retornarListaCursosFiltrada');
+    $group->post('/Asociar','retornarListaCursosFiltrada');
 });
+
 
 
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
