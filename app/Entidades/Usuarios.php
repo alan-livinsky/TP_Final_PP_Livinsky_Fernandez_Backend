@@ -93,14 +93,14 @@
         return $estado;
     }
 
-    function actualizar_contraseña($email,$contraseña){
+    function actualizar_contraseña($id_usuario,$contraseña){
         $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         echo "UPDATE usuarios SET contraseña='$contraseña' WHERE email='$email'";
         $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                   SET contraseña='$contraseña'
-                                                  WHERE email='$email'");
+                                                  WHERE id_usuario='$id_usuario'");
         $consulta->execute();
 
         //VER MEJOR FORMA DE VALIDAR EL RESULTADO DE ESTE TIPO DE CONSULTA
