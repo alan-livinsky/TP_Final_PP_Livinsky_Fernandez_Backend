@@ -102,7 +102,7 @@
         WHERE id_usuario='$id_usuario'";
         $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                   SET contraseña='$contraseña'
-                                                  WHERE id_usuario='$id_usuario'");
+                                                  WHERE id_usuario=$id_usuario");
         $consulta->execute();
 
         //VER MEJOR FORMA DE VALIDAR EL RESULTADO DE ESTE TIPO DE CONSULTA
