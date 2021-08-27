@@ -110,7 +110,7 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
 $app->group('/Cursos', function (RouteCollectorProxy $group){
     $group->get('/Lista','retornarListaCursos');
     $group->get('/ListaFiltrada','retornarListaCursosFiltrada');
-    $group->post('/Asociar','retornarListaCursosFiltrada');
+    $group->post('/Asociar','retornarEstadoActualizacionContraseña');
 });
 
 
