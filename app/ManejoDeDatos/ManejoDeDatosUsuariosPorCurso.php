@@ -3,11 +3,26 @@
     function retornarEstadoAsociarCurso($request,$response,$args){
         
         $datosUsuario=$request->getAttribute("token");
+        $id_usuario=$datosUsuario['sub'];
         $jsonCursos=$request->getBody();
         $CursosAsociar=json_decode($jsonCursos);
 
         echo "pepe";
         var_dump($CursosAsociar);
+
+        $insertPreparado="INSERT INTO usuarios_por_curso values";
+
+        for($i=0;$i<count($CursosAsociar);$i++){
+            $curso=$CursosAsociar[$i];
+            if($i<(count($CursosAsociar)-1)){
+                $insertPreparado=$insertPreparado."($id_usuario,$curso),";
+            }
+            else{
+                $insertPreparado=$insertPreparado."()";
+            }
+        }
+
+        echo $insertPreparado;
       
 
         $estadoAsociacion=asociarProfesorCurso($insertPreparado);
