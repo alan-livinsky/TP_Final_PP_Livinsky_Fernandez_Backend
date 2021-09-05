@@ -12,4 +12,12 @@
     return $response;
   }
 
+  function retornarEstadoCargaMaterial($request,$response,$args){
+    $material=$request->getBody();
+    $material=json_decode($material);
+    $estadoCargaMaterial=cargarNuevoMaterial($material);
+    $response->getBody()->write(json_encode($estadoCargaMaterial));
+    return $response;
+  }
+
 ?>

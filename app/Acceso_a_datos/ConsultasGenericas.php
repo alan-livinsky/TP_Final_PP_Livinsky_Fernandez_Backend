@@ -23,7 +23,7 @@ function eliminacionSimple($tabla,$campo,$condicion,$datoAcomparar,$tipoDeDato){
 
 function prepararDatoParaConsulta($datoAPreparar,$tipoDeDato){
 
-    if($tipoDeDato=="String"){
+    if($tipoDeDato=="String" && $tipoDeDato!="default"){
         $datoAPreparar="'".$datoAPreparar."'";
         return $datoAPreparar;
     }
