@@ -27,7 +27,7 @@
 
             echo  ("$id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion'");
 
-            $consulta=$accesoDatos->prepararConsulta("SELECT max(id) FROM materiales");
+            $consulta=$accesoDatos->prepararConsulta("SELECT max(id_material) FROM materiales");
             $consulta->execute();
             $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
