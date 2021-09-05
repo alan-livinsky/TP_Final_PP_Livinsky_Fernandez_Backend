@@ -29,7 +29,7 @@
 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
                                                     VALUES
-                                                    ($id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion'");
+                                                    ($id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion')");
             $consulta->execute();
 
             return $estadoCreacion="200";
