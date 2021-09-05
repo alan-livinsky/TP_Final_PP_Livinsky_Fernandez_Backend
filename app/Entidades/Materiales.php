@@ -17,7 +17,7 @@
 
     function cargarNuevoMaterial($material){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-        $id_material=$material->id_material;
+        
         $nombre=$material->nombre;
         $riesgo=$material->riesgo;
         $poder_calorifico=$material->poder_calorifico;
@@ -31,12 +31,7 @@
             $consulta->execute();
             $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
-            var_dump($ultimaId);
-
-            echo $ultimaId[0]['max'];
-
-            echo $ultimaId->max;
-
+            $id_material=($ultimaId[0]['max'])+1;
 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
                                                     VALUES
