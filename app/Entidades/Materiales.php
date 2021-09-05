@@ -32,7 +32,11 @@
             $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
             var_dump($ultimaId);
-            echo $ultimaId[0];
+
+            echo $ultimaId[0]['max'];
+
+            echo $ultimaId->max;
+
 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
                                                     VALUES
