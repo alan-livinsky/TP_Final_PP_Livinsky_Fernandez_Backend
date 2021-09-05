@@ -23,27 +23,18 @@
         $poder_calorifico=$material->poder_calorifico;
         $fuente_de_informacion=$material->fuente_de_informacion;
 
-        try{
+        $consulta=$accesoDatos->prepararConsulta("SELECT max(id_material) FROM materiales");
+        $consulta->execute();
+        $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
-            echo  ("$id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion'");
+         $id_material=($ultimaId[0]['max'])+1;
 
-            $consulta=$accesoDatos->prepararConsulta("SELECT max(id_material) FROM materiales");
-            $consulta->execute();
-            $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
+        $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
+                                                  VALUES
+                                                  ($id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion')");
+        $consulta->execute();
 
-            $id_material=($ultimaId[0]['max'])+1;
-
-            $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
-                                                    VALUES
-                                                    ($id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion')");
-            $consulta->execute();
-
-            return $estadoCreacion="200";
-
-        }catch(\PDOExeption $e){
-            var_dump($e);
-            return $e;
-        }
+        return $estadoCreacion="200";
 
     }
 
