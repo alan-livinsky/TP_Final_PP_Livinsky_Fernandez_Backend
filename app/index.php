@@ -46,8 +46,8 @@ $app = AppFactory::create();
 //Middleware <<Error - Por defecto de Slim>>
 $errorMiddleware=$app->addErrorMiddleware(true,true,true);
 //TEST PARA MANEJAR MEJOR LOS ERRORES DE SLIM
-//$errorHandler=$errorMiddleware->getDefaultErrorHandler();
-$errorMiddleware->forceContentType('application/json');
+$errorHandler=$errorMiddleware->getDefaultErrorHandler();
+$errorHandler->forceContentType('application/json');
 
 //Middleware <<Validacion JWT - tuupola/slim-jwt-auth>>
 //Automaticamente decodifica el token y lo guarda en $request->get_getAttribute("token");
