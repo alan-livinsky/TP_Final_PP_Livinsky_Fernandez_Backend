@@ -31,7 +31,7 @@
             $consulta->execute();
             $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
 
-            echo $ultimaID;
+            echo $ultimaId;
 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
                                                     VALUES
