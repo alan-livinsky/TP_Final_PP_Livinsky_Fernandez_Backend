@@ -25,6 +25,8 @@
 
         try{
 
+            echo  ("$id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion'");
+
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
                                                     VALUES
                                                     ($id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion'");
