@@ -27,6 +27,12 @@
 
             echo  ("$id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion'");
 
+            $consulta=$accesoDatos->prepararConsulta("SELECT max(id) FROM materiales");
+            $consulta->execute();
+            $ultimaId=$consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            echo $ultimaID;
+
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO materiales
                                                     VALUES
                                                     ($id_material,'$nombre','$riesgo',$poder_calorifico,'$fuente_de_informacion')");
