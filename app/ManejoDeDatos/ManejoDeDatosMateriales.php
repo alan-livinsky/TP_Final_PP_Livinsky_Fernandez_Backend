@@ -17,8 +17,8 @@
     $material=json_decode($material);
     $estadoCargaMaterial=cargarNuevoMaterial($material);
     $response->getBody()->write(json_encode($estadoCargaMaterial));
-    var_dump("error");
-    return $response;
+    return $response->withStatus(500);
+    //return $response;
   }
 
 ?>
