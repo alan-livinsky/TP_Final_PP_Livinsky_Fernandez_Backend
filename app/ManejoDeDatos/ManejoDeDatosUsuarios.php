@@ -11,7 +11,7 @@ use Firebase\JWT\JWT;
     function retornarTokenAcceso($request,$response,$args){
         $json=$request->getBody();
         $buscar=json_decode($json,true);
-        $usuario=buscar_usuario($buscar['email'],$buscar['contraseña']);
+        $usuario=buscar_usuario($buscar['email'],$buscar['password']);
 
         if($usuario==false){
            return $response
@@ -106,7 +106,7 @@ use Firebase\JWT\JWT;
                 echo $contraseña;
 
                 $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
-                                                          SET contraseña='$contraseña'
+                                                          SET password='$contraseña'
                                                           WHERE email='$email'");
                 $consulta->execute();
 
