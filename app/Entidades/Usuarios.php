@@ -7,16 +7,16 @@
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function buscar_usuario($email,$contraseña){
+    function buscar_usuario($email,$password){
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-        $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE email='$email'");
+        $buscarHash=$accesoDatos->prepararConsulta("SELECT password FROM usuarios WHERE email='$email'");
         $buscarHash->execute();
         $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
 
-        if (password_verify($contraseña,$hash[0]['contraseña'])){
-            $contraseña=$hash[0]['contraseña'];
-            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND contraseña='$contraseña'");
+        if (password_verify($password,$hash[0]['password'])){
+            $password=$hash[0]['password'];
+            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE email='$email' AND password='$password'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -25,23 +25,23 @@
         }
     }
 
-    function buscarUsuarioPorID($id_usuario,$contraseña){
+    function buscarUsuarioPorID($id_usuario,$password){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
 
-        echo "SELECT contraseña FROM usuarios WHERE id_usuario=$id_usuario";
+        echo "SELECT password FROM usuarios WHERE id_usuario=$id_usuario";
 
-        $buscarHash=$accesoDatos->prepararConsulta("SELECT contraseña FROM usuarios WHERE id_usuario=$id_usuario");
+        $buscarHash=$accesoDatos->prepararConsulta("SELECT password FROM usuarios WHERE id_usuario=$id_usuario");
         $buscarHash->execute();
         $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-        if (password_verify($contraseña,$hash[0]['contraseña'])){
-            $contraseña=$hash[0]['contraseña'];
+        if (password_verify($password,$hash[0]['password'])){
+            $password=$hash[0]['password'];
 
-            echo "SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND contraseña='$contraseña'";
+            echo "SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND password='$password'";
 
-            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND contraseña='$contraseña'");
+            $consulta=$accesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE id_usuario='$id_usuario' AND password='$password'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -59,7 +59,7 @@
         if(($verificarCursoExistente && $tipo_usuario=="Alumno") || $tipo_usuario=="Profesor"){
             $id_usuario=$datosUsuario['id_usuario'];
             $email=$datosUsuario['email'];
-            $contraseña=password_hash($datosUsuario['contraseña'],PASSWORD_DEFAULT);
+            $password=password_hash($datosUsuario['password'],PASSWORD_DEFAULT);
             $nombre=$datosUsuario['nombre'];
             $apellido=$datosUsuario['apellido'];
            
@@ -67,7 +67,7 @@
             $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
             $consulta=$accesoDatos->prepararConsulta("INSERT INTO usuarios 
                                                       values 
-                                                      ($id_usuario,'$email','$contraseña','$nombre','$apellido','$tipo_usuario')");
+                                                      ($id_usuario,'$email','$password','$nombre','$apellido','$tipo_usuario')");
             $consulta->execute();
     
             //VERIFICAR REGISTRO EXITOSO
@@ -93,15 +93,15 @@
         return $estado;
     }
 
-    function actualizar_contraseña($id_usuario,$contraseña){
-        $contraseña=password_hash($contraseña,PASSWORD_DEFAULT);
+    function actualizar_password($id_usuario,$password){
+        $password=password_hash($password,PASSWORD_DEFAULT);
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         echo "UPDATE usuarios 
-        SET contraseña='$contraseña'
+        SET password='$password'
         WHERE id_usuario='$id_usuario'";
         $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
-                                                  SET contraseña='$contraseña'
+                                                  SET password='$password'
                                                   WHERE id_usuario=$id_usuario");
         $consulta->execute();
 
