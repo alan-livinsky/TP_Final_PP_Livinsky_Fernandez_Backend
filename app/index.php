@@ -24,6 +24,8 @@ require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosCursos.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosUsuariosPorCurso.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosTeoriaSistema.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosTeoriaCursos.php';
 
 require __DIR__ . '/Entidades/Usuarios.php';
 require __DIR__ . '/Entidades/Ejercicios.php';
@@ -32,6 +34,8 @@ require __DIR__ . '/Entidades/MenuPrincipal.php';
 require __DIR__ . '/Entidades/Opciones.php';
 require __DIR__ . '/Entidades/Materiales.php';
 require __DIR__ . '/Entidades/UsuariosPorCurso.php';
+require __DIR__ . '/Entidades/TeoriaSistema.php';
+require __DIR__ . '/Entidades/TeoriaCursos.php';
 
 require __DIR__ . '/Librerias/RecuperacionContraseña.php';
 require __DIR__ . '/Librerias/LibreriaGeneral.php';
@@ -86,6 +90,8 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 
 //<<Rutas>>
+
+//<<Root>>
 $app->get('/',function(Request $request, Response $response, array $args) { 
     $response->getBody()->write("Token Test");
     return $response;
@@ -96,6 +102,7 @@ $app->get('/Bienvenido',function(Request $request, Response $response, array $ar
     return $response;
 });
 
+//<<Usuarios>>
 $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('/lista','retornarListaUsuarios');
     $group->post('/registro','retornarEstadoRegistro');
@@ -108,32 +115,43 @@ $app->group('/Usuarios', function (RouteCollectorProxy $group){
     $group->get('/emailRecuperacion/{selector}/{token}','validarEnlaceRecContraseña');
 });
 
+//<<Cursos>>
 $app->group('/Cursos', function (RouteCollectorProxy $group){
     $group->get('/Lista','retornarListaCursos');
     $group->get('/ListaFiltrada','retornarListaCursosFiltrada');
     $group->post('/Asociar','retornarEstadoAsociarCurso');
 });
 
-
-
-$app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
-    $group->get('/menu_principal','retornarAccesoMenuPrincipal');
-    $group->post('/menu_principal/validarToken','mantenerAccesoMenuPrincipal');
-});
-
-
+//<<Ejercicios(Menu Principal)>>
 $app->group('/Menu_principal', function (RouteCollectorProxy $group){
     $group->get('/lista_ejercicios/cargar','retornarListaEjerciciosMenu');
     $group->get('/lista_opciones_profesor/cargar','retornarOpciones_profesor');
     $group->get('/lista_opciones_alumno/cargar','retornarOpcionesMenuPrincipal');
 });
 
+//<<Materiales (Carga de fuego)>>
 $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
     $group->get('/listaMateriales','retornarListaMateriales');
     $group->get('/datosMaterial/{material}','retornarDatosMaterial');
     $group->put('/cargarMaterial','retornarEstadoCargaMaterial');
 });
 
+//<<Validaciones de acceso a pagina>>
+$app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
+    $group->get('/menu_principal','retornarAccesoMenuPrincipal');
+    $group->post('/menu_principal/validarToken','mantenerAccesoMenuPrincipal');
+});
+
+//<<Teoria Sistema>>
+$app->group('/Teoria_Sistema', function (RouteCollectorProxy $group) {
+    $group->get('/lista/{id_ejercicio}','retornarListaDeTitulos');
+    $group->get('/contenido/{titulo}','retornarContenidoTeoriaSistema');
+    $group->get('/lista','retornarBuscarTeorias');
+    $group->post('/crear','retornarResultadoCrearTeoria');
+    $group->put('/editar/{titulo}/{contenidonuevo}','retornarEstadoActualizacionContenido');
+    $group->delete('/contenido/borrar/{titulo}','retornarEstadoBorrarTeoria');      
+});
+   
 $app->run();
 
 ?>
