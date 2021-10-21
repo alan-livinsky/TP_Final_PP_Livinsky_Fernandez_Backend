@@ -29,7 +29,6 @@ require __DIR__ . '/ManejoDeDatos/ManejoDeDatosTeoria.php';
 require __DIR__ . '/Entidades/Usuarios.php';
 require __DIR__ . '/Entidades/Ejercicios.php';
 require __DIR__ . '/Entidades/Cursos.php';
-require __DIR__ . '/Entidades/MenuPrincipal.php';
 require __DIR__ . '/Entidades/Opciones.php';
 require __DIR__ . '/Entidades/Materiales.php';
 require __DIR__ . '/Entidades/UsuariosPorCurso.php';
