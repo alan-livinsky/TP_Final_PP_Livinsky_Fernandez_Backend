@@ -134,7 +134,7 @@ $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
     $group->put('/cargarMaterial','retornarEstadoCargaMaterial');
 });
 
-//<<Validaciones de acceso a pagina>>
+//<<Validaciones de usuario logueado>>
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
     $group->get('/menu_principal','retornarAccesoMenuPrincipal');
     $group->post('/validarToken','mantenerAccesoMenuPrincipal');
