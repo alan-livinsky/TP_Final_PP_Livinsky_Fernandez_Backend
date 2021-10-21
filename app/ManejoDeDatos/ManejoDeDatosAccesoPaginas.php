@@ -10,7 +10,9 @@ use Firebase\JWT\JWT;
   function mantenerAccesoPagina($request,$response,$args){
     //El token llega por el header,autorization bearer.
     $JWT = $request->getBody();
-    $datosUsuario= JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
+    $datosUsuario=JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
+
+    var_dump($datosUsuario);
 
     $cursosAsociados=buscarCursosAsociados($datosUsuario->sub);
     $datosUsuario->cua=$cursosAsociados;
