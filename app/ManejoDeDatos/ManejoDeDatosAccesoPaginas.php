@@ -12,14 +12,14 @@ use Firebase\JWT\JWT;
     $JWT = $request->getBody();
 
     $datosUsuario=JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
+
+    $cursosAsociados=buscarCursosAsociados($datosUsuario->sub);
+    $datosUsuario->cua=$cursosAsociados;
     $datosUsuario=json_encode($datosUsuario);
 
     var_dump($datosUsuario);
 
-    $cursosAsociados=buscarCursosAsociados($datosUsuario->sub);
-    $datosUsuario->cua=$cursosAsociados;
-
-    $response->getBody()->write($datosUsuario);
+    $response->getBody()->write(json_encode($datosUsuario));
     return $response;
   }
 
