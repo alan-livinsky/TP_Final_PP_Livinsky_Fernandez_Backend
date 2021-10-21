@@ -10,14 +10,16 @@ use Firebase\JWT\JWT;
   function mantenerAccesoPagina($request,$response,$args){
     //El token llega por el header,autorization bearer.
     $JWT = $request->getBody();
+
     $datosUsuario=JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
+    $datosUsuario=json_encode($datosUsuario);
 
     var_dump($datosUsuario);
 
     $cursosAsociados=buscarCursosAsociados($datosUsuario->sub);
     $datosUsuario->cua=$cursosAsociados;
 
-    $response->getBody()->write(json_encode($datosUsuario));
+    $response->getBody()->write($datosUsuario);
     return $response;
   }
 
