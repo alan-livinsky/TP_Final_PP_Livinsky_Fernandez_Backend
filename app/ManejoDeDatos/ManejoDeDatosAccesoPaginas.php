@@ -17,8 +17,6 @@ use Firebase\JWT\JWT;
     $datosUsuario->cua=$cursosAsociados;
     $datosUsuario=json_encode($datosUsuario);
 
-    var_dump($datosUsuario);
-
     $response->getBody()->write($datosUsuario);
     return $response;
   }
