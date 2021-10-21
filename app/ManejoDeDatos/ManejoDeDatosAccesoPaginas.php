@@ -11,7 +11,7 @@ use Firebase\JWT\JWT;
     //El token llega por el header,autorization bearer.
     $JWT = $request->getBody();
     $datosUsuario= JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
-    echo($datosUsuario);
+    var_dump($datosUsuario);
     $response->getBody()->write(json_encode($datosUsuario));
     return $response;
   }
