@@ -24,8 +24,7 @@ require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosCursos.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosUsuariosPorCurso.php';
-require __DIR__ . '/ManejoDeDatos/ManejoDeDatosTeoriaSistema.php';
-require __DIR__ . '/ManejoDeDatos/ManejoDeDatosTeoriaCursos.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosTeoria.php';
 
 require __DIR__ . '/Entidades/Usuarios.php';
 require __DIR__ . '/Entidades/Ejercicios.php';
@@ -34,8 +33,7 @@ require __DIR__ . '/Entidades/MenuPrincipal.php';
 require __DIR__ . '/Entidades/Opciones.php';
 require __DIR__ . '/Entidades/Materiales.php';
 require __DIR__ . '/Entidades/UsuariosPorCurso.php';
-require __DIR__ . '/Entidades/TeoriaSistema.php';
-require __DIR__ . '/Entidades/TeoriaCursos.php';
+require __DIR__ . '/Entidades/Teoria.php';
 
 require __DIR__ . '/Librerias/RecuperacionContraseña.php';
 require __DIR__ . '/Librerias/LibreriaGeneral.php';
@@ -139,7 +137,7 @@ $app->group('/cargaDeFuego', function (RouteCollectorProxy $group){
 //<<Validaciones de acceso a pagina>>
 $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
     $group->get('/menu_principal','retornarAccesoMenuPrincipal');
-    $group->post('/menu_principal/validarToken','mantenerAccesoMenuPrincipal');
+    $group->post('/validarToken','mantenerAccesoMenuPrincipal');
 });
 
 //<<Teoria Sistema>>

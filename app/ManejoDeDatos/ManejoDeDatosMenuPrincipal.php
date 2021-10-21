@@ -2,14 +2,9 @@
 
 use Firebase\JWT\JWT;
 
+//SI PASA LA VALIDACION DEL TOKEN EL ACCESO ES VALIDO
   function retornarAccesoMenuPrincipal($request,$response,$args){
     return $response->withStatus(200); 
-  /*
-  return $response->withHeader('Location','https://tp-final-pp-liv-ferz-frontend.herokuapp.com/Menu_Principal.html')
-                  ->withHeader('Access-Control-Allow-Origin', '*')
-                  ->withHeader('Access-Control-Allow-Methods', 'get,post,PUT,DELETE,options')
-                  ->withStatus(302);
-  */
   }
 
   function mantenerAccesoMenuPrincipal($request,$response,$args){

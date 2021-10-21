@@ -1,5 +1,8 @@
 <?php
 
+    //SE MANEJAN LOS DATOS TANTO DE LA TEORIA DEL SISTEMA COMO DE LA TEORIA DEL CURSO.
+
+
     function retornarListaDeTitulos($request,$response,$args){
         $teoria_sistema=buscarListaDeTitulos($args['id_ejercicio']);
         $response->getBody()->write(json_encode($teoria_sistema));
@@ -21,7 +24,6 @@
     function retornarResultadoCrearTeoria($request,$response,$args){
         $json = $request->getBody();
         $data = json_decode($json,true);
-       
         $resultado_crear_teoria=crearTeoriaSistema($data);
         $response->getBody()->write(json_encode( $resultado_crear_teoria));
         return $response->withHeader('Content-type','application/json');
