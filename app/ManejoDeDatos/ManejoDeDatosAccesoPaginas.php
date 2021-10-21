@@ -19,7 +19,7 @@ use Firebase\JWT\JWT;
 
     var_dump($datosUsuario);
 
-    $response->getBody()->write(json_encode($datosUsuario));
+    $response->getBody()->write($datosUsuario);
     return $response;
   }
 
