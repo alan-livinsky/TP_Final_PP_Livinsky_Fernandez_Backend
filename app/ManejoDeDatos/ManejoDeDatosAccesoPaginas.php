@@ -7,13 +7,12 @@ use Firebase\JWT\JWT;
     return $response->withStatus(200); 
   }
 
-  function mantenerAccesoMenuPrincipal($request,$response,$args){
+  function mantenerAccesoPagina($request,$response,$args){
+    //El token llega por el header,autorization bearer.
     $JWT = $request->getBody();
     $datosUsuario= JWT::decode($JWT,$_ENV['JWT_SECRET'],array('HS256'));
     $response->getBody()->write(json_encode($datosUsuario));
     return $response;
   }
-
-
 
 ?>

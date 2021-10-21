@@ -24,4 +24,13 @@ function asociarProfesorCurso($insertPreparado){
     return "Exito";
 }
 
+function buscarCursosAsociados($id_usuario){
+    $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+    $consulta = $accesoDatos->prepararConsulta("SELECT id_curso
+                                                FROM usuarios_por_curso
+                                                WHERE id_usuario=$id_usuario");
+    $consulta->execute();
+    return $consulta->fetchAll(PDO::FETCH_ASSOC);
+}
+
 ?>

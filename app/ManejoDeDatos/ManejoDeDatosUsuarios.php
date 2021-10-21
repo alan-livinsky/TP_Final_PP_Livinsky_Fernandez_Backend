@@ -21,11 +21,14 @@ use Firebase\JWT\JWT;
         else{
             $privateKey=$_ENV['JWT_SECRET'];
 
+            $cursosAsociados=buscarCursosAsociados($usuario[0]["id_usuario"]);
+
             $payload = array(
                 "sub" =>$usuario[0]["id_usuario"],
                 "nom" => $usuario[0]["nombre"],
                 "ape" => $usuario[0]["apellido"],
-                "tu" =>$usuario[0]["tipo_usuario"]
+                "tu" =>$usuario[0]["tipo_usuario"],
+                "cua" =>$cursosAsociados
             );
        
             JWT::$leeway = 240; 

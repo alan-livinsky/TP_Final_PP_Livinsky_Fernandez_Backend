@@ -7,8 +7,8 @@
         $jsonCursos=$request->getBody();
         $CursosAsociar=json_decode($jsonCursos);
 
-        echo "pepe";
-        var_dump($CursosAsociar);
+        //echo "pepe";
+        //var_dump($CursosAsociar);
 
         $insertPreparado="INSERT INTO usuarios_por_curso values";
 
@@ -22,12 +22,18 @@
             }
         }
 
-        echo $insertPreparado;
+        //echo $insertPreparado;
       
-
         $estadoAsociacion=asociarProfesorCurso($insertPreparado);
         $response->getBody()->write(Json_encode($estadoAsociacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
+
+    /*Me parece que el metodo deve invocarce
+    function retornarEstadoBuscarCursosAsociados($request,$response,$args){
+        $cursosAsociados=
+
+    }
+    */
 
 ?>

@@ -18,7 +18,7 @@ require __DIR__ . '/Acceso_a_datos/Acceso_a_datos.php';
 require __DIR__ . '/Acceso_a_datos/ConsultasGenericas.php';
 
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosUsuarios.php';
-require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMenuPrincipal.php';
+require __DIR__ . '/ManejoDeDatos/ManejoDeDatosAccesoPaginas.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosEjercicios.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosOpciones.php';
 require __DIR__ . '/ManejoDeDatos/ManejoDeDatosMateriales.php';
