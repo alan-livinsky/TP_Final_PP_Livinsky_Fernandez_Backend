@@ -4,7 +4,7 @@
 
     //AMBOS TIPOS DE TEORIA
         function retornarListaGeneralDeTitulos($request,$response,$args){
-            $listaGeneral=buscarListaGenaralDeTitulos($args['id_ejercicio']);
+            $listaGeneral=buscarListaGenaralDeTitulos();
             $response->getBody()->write(json_encode($listaGeneral));
             return $response->withHeader('Content-type','application/json');
         }
