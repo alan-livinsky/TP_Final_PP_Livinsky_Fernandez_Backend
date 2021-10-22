@@ -5,9 +5,9 @@
         //BUSCAR TODOS LOS CONCEPTOS EXISTENTES(PARA EDITAR TEORIA);
         function buscarListaGenaralDeTitulos(){
             $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-            $consulta = $accesoDatos->prepararConsulta("SELECT 
-                                                        DISTINCT titulo
-                                                        FROM teoria_sistema,teoria_cursos
+            $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
+                                                        UNION
+                                                        SELECT titulo FROM teoria_cursos
                                                         ORDER BY titulo ASC");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -16,10 +16,11 @@
         //BUSCAR TODOS LOS CONCEPTOS DISPONIBLES PARA UN TIPO DE EJERCICIO PARTICULAR.
         function buscarTitulosSengunEjercicio($id_ejercicio){
             $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-            $consulta = $accesoDatos->prepararConsulta("SELECT 
-                                                        DISTINCT titulo
-                                                        FROM teoria_sistema,teoria_cursos
-                                                        WHERE teoria_sistema.id_ejercicio=$id_ejercicio
+            $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
+                                                            WHERE teoria_sistema.id_ejercicio=$id_ejercicio
+                                                        UNION
+                                                        SELECT titulo FROM teoria_cursos
+                                                            WHERE teoria_cursos.id_ejercicio=$id_ejercicio
                                                         ORDER BY titulo ASC'");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
