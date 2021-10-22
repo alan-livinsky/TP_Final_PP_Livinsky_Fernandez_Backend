@@ -25,18 +25,47 @@
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function crearTeoriaSistema($teoria){
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
+        $id_teoria=$teoria["id_teoria"];
+        $id_ejercicio=$teoria["id_ejercicio"];
+        $titulo=$teoria["titulo"]; 
+        $contenido=$teoria["contenido"];
+        $tipo=$teoria["tipo"];
+
+        $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_sistema
+                                                    VALUES
+                                                    ($id_teoria,$id_ejercicio,'$titulo', '$contenido','$tipo')");
+        $consulta->execute();
+        return $consulta;
+    }
+
+    function crearTeoriaCurso($teoria){
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
+        $id_teoria=$teoria["id_teoria"];
+        $id_ejercicio=$teoria["id_ejercicio"];
+        $id_usuario=$teoria["id_usuario"];
+        $titulo=$teoria["titulo"]; 
+        $contenido=$teoria["contenido"];
+        $tipo=$teoria["tipo"];
+        $lista_cursos=$teoria["lista_cursos"];
+      
+
+        $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_sistema
+                                                    VALUES
+                                                    ($id_teoria,$id_ejercicio,$id_usuario,'$titulo','$contenido','$tipo',' $lista_cursos')");
+        $consulta->execute();
+        return $consulta;
+    }
+
+
+
 
 
 
     /*
-    function buscarTeorias(){
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-        $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema" );                                         
-        $consulta->execute();
-        return $consulta->fetchAll(PDO::FETCH_ASSOC);
-    }
-    */
-
     function buscarContenidoTeoriaSistema($titulo){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
         $consulta = $accesoDatos->prepararConsulta("SELECT contenido
@@ -90,6 +119,7 @@
         $consulta->execute();
         return $consulta;
     }
+    */
 
 ?>
 
