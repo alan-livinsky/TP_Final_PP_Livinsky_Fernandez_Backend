@@ -50,7 +50,7 @@
         $titulo=$teoria["titulo"]; 
         $contenido=$teoria["contenido"];
         $tipo=$teoria["tipo"];
-        $lista_cursos=json_ecode($teoria["lista_cursos"]);
+        $lista_cursos=json_encode($teoria["lista_cursos"]);
       
         $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                     VALUES
