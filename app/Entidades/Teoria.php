@@ -53,6 +53,8 @@
         $contenido=$teoria["contenido"];
         $tipo=$teoria["tipo"];
         $lista_cursos=json_encode($teoria["lista_cursos"]);
+
+        var_dump($id_usuario);
       
         $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                     VALUES
