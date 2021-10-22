@@ -26,6 +26,24 @@
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        function buscarTeoria($titulo){
+
+            $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+            $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema
+                                                        WHERE teoria_sistema.titulo='$titulo'");
+            $consulta->execute();
+
+            var_dump($consulta->rowCount());
+
+            if ($consulta->rowCount() > 0) {
+                
+            }else{
+                echo 'nothing';
+            }
+
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        }
+
 
 
 
@@ -67,6 +85,21 @@
         $consulta->execute();
         return $consulta;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /*

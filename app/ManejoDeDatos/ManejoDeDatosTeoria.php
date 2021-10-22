@@ -11,8 +11,15 @@
 
         function retornarListaTitulosEjercicios($request,$response,$args){
             $id_ejercicio=$args['id_ejercicio'];
-            $listaTitulosEjercicio=buscarTitulosSengunEjercicio($args['id_ejercicio']);
+            $listaTitulosEjercicio=buscarTitulosSengunEjercicio($id_ejercicio);
             $response->getBody()->write(json_encode($listaTitulosEjercicio));
+            return $response->withHeader('Content-type','application/json');
+        }
+
+        function retornarTeoria($request,$response,$args){
+            $titulo=$args['titulo'];
+            $teoria=buscarTeoria($titulo);
+            $response->getBody()->write(json_encode($teoria));
             return $response->withHeader('Content-type','application/json');
         }
 
