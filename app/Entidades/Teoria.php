@@ -58,7 +58,7 @@
       
         $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                     VALUES
-                                                    ($id_teoria,$id_ejercicio,$id_usuario,'$titulo','$contenido','$tipo','$lista_cursos')");
+                                                    ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
         $consulta->execute();
         return $consulta;
     }
