@@ -1,20 +1,35 @@
 <?php
 
-    //SE MANEJAN LOS DATOS TANTO DE LA TEORIA DEL SISTEMA COMO DE LA TEORIA DEL CURSO.
+//SE MANEJAN LOS DATOS TANTO DE LA TEORIA DEL SISTEMA COMO DE LA TEORIA DEL CURSO.
 
-//AMBOS TIPOS DE TEORIA
-    function retornarListaDeTitulos($request,$response,$args){
-        $teoria_sistema=buscarListaDeTitulos($args['id_ejercicio']);
-        $response->getBody()->write(json_encode($teoria_sistema));
-        return $response->withHeader('Content-type','application/json');
-    }
+    //AMBOS TIPOS DE TEORIA
+        function retornarListaGeneralDeTitulos($request,$response,$args){
+            $listaGeneral=buscarListaGenaralDeTitulos($args['id_ejercicio']);
+            $response->getBody()->write(json_encode($listaGeneral));
+            return $response->withHeader('Content-type','application/json');
+        }
 
-    function retornarBuscarTeorias($request,$response,$args){
-        $teorias=buscarTeorias();
-        $response->getBody()->write(json_encode($teorias));
-        return $response->withHeader('Content-type','application/json');
-    }
-//
+        function retornarListaTitulosEjercicios($request,$response,$args){
+            $id_ejercicio=$args['id_ejercicio'];
+            $listaTitulosEjercicio=buscarTitulosSengunEjercicio($args['id_ejercicio']);
+            $response->getBody()->write(json_encode($listaTitulosEjercicio));
+            return $response->withHeader('Content-type','application/json');
+        }
+
+
+
+
+
+
+
+        /*
+        function retornarBuscarTeorias($request,$response,$args){
+            $teorias=buscarTeorias();
+            $response->getBody()->write(json_encode($teorias));
+            return $response->withHeader('Content-type','application/json');
+        }
+        */
+    //
 
 
 //TEORIA SISTEMA

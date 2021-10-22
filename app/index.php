@@ -150,13 +150,20 @@ $app->group('/Teoria_Sistema', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/TeoriaCurso', function (RouteCollectorProxy $group) {
-    $group->get('/lista/{id_ejercicio}','retornarListaDeTitulos');
+    //$group->get('/lista/{id_ejercicio}','retornarListaDeTitulos');
     $group->post('/crear','retornarResultadoCrearTeoriaCurso');
     //$group->get('/lista','retornarBuscarTeorias');
     $group->get('/contenido/{titulo}','retornarContenidoTeoriaSistema');
     $group->put('/editar/{titulo}/{contenidonuevo}','retornarEstadoActualizacionContenido');
     $group->delete('/contenido/borrar/{titulo}','retornarEstadoBorrarTeoria');      
 });
+
+$app->group('/Teorias', function (RouteCollectorProxy $group) {
+    $group->get('/listaGeneral','retornarListaGeneralDeTitulos');
+    $group->get('/listaEjercicio/{id_ejercicio}','retornarListaTitulosEjercicios');
+});
+
+
 
 
 
