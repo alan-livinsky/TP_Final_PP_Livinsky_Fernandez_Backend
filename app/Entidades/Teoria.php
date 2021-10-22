@@ -44,6 +44,8 @@
     function crearTeoriaCurso($teoria){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
+        var_dump($teoria);
+
         $id_teoria=$teoria["id_teoria"];
         $id_ejercicio=$teoria["id_ejercicio"];
         $id_usuario=$teoria["id_usuario"];
