@@ -18,6 +18,7 @@
 
         function retornarTeoria($request,$response,$args){
             $datosUsuario=$request->getBody();
+            $datosUsuario=json_decode($datosUsuario,true);
             var_dump($datosUsuario);
             $titulo=$args['titulo'];
 
