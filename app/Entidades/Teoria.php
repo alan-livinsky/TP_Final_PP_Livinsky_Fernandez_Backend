@@ -32,10 +32,10 @@
             $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema
                                                         WHERE teoria_sistema.titulo='$titulo'");
             $consulta->execute();
-            $consulta->fetchAll(PDO::FETCH_ASSOC);
+            
 
             if ($consulta->rowCount() > 0){
-                return $consulta;
+                return $consulta->fetchAll(PDO::FETCH_ASSOC);;
             }
             else{
                 return 'error';
