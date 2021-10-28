@@ -142,9 +142,9 @@ $app->group('/Acceder_pagina', function (RouteCollectorProxy $group){
 //<<Teoria Sistema>>
 $app->group('/Teoria_Sistema', function (RouteCollectorProxy $group) {
     //$group->get('/lista/{id_ejercicio}','retornarListaDeTitulos');
+    $group->post('/crear','retornarResultadoCrearTeoria');
     $group->get('/contenido/{titulo}','retornarContenidoTeoriaSistema');
     //$group->get('/lista','retornarBuscarTeorias');
-    //$group->post('/crear','retornarResultadoCrearTeoria');
     //$group->put('/editar/{titulo}/{contenidonuevo}','retornarEstadoActualizacionContenido');
     //$group->delete('/contenido/borrar/{titulo}','retornarEstadoBorrarTeoria');      
 });
