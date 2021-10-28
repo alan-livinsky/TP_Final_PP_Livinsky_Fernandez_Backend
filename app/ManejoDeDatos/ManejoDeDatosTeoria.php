@@ -18,7 +18,7 @@
 
         function retornarTeoria($request,$response,$args){
             $datosUsuario=$request->getBody();
-            echo $datosUsuario;
+            var_dump($datosUsuario);
             $titulo=$args['titulo'];
 
             $teoria=buscarTeoria($titulo,$datosUsuario);
