@@ -18,8 +18,9 @@
 
         function retornarTeoria($request,$response,$args){
             $datosUsuario=$request->getBody();
+            var_dump($datosUsuario->sub);
             $titulo=$args['titulo'];
-            
+
             $teoria=buscarTeoria($titulo,$datosUsuario);
             $response->getBody()->write(json_encode($teoria));
             return $response->withHeader('Content-type','application/json');
