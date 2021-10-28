@@ -26,7 +26,9 @@
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        function buscarTeoria($titulo){
+        function buscarTeoria($titulo,$datosUsuario){
+
+            var_dump($datosUsuario);
 
             $accesoDatos = Acceso_a_datos::obtenerConexionBD();
             $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema
@@ -34,7 +36,7 @@
             $consulta->execute();
             
 
-            if ($consulta->rowCount() > 0){
+            if ($consulta->rowCount()>0){
                 return $consulta->fetchAll(PDO::FETCH_ASSOC);;
             }
             else{
