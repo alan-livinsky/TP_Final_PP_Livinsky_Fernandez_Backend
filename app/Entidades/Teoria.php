@@ -27,15 +27,11 @@
         }
 
         function buscarTeoria($titulo,$datosUsuario){
-            
-            var_dump($datosUsuario);
-
             $accesoDatos = Acceso_a_datos::obtenerConexionBD();
             $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema
                                                         WHERE teoria_sistema.titulo='$titulo'");
             $consulta->execute();
             
-
             if ($consulta->rowCount()>0){
                 return $consulta->fetchAll(PDO::FETCH_ASSOC);;
             }
