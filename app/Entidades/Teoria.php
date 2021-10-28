@@ -28,6 +28,7 @@
 
         function buscarTeoria($titulo,$datosUsuario){
 
+            $datosUsuario=json_decode($datosUsuario);
             var_dump($datosUsuario);
 
             $accesoDatos = Acceso_a_datos::obtenerConexionBD();
