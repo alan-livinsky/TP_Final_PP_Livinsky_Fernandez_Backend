@@ -17,12 +17,11 @@
         }
 
         function retornarTeoria($request,$response,$args){
-            $datosUsuario=$request->getBody();
-            $datosUsuario=json_decode($datosUsuario,true);
-            var_dump($datosUsuario);
+            $id_usuario=$request->getBody();
+            $id_usuario=json_decode($id_usuario,true);
             $titulo=$args['titulo'];
 
-            $teoria=buscarTeoria($titulo,$datosUsuario);
+            $teoria=buscarTeoria($titulo,$id_usuario);
             $response->getBody()->write(json_encode($teoria));
             return $response->withHeader('Content-type','application/json');
         }

@@ -26,17 +26,22 @@
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        function buscarTeoria($titulo,$datosUsuario){
+        function buscarTeoria($titulo,$id_usuario){
             $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-            $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema
-                                                        WHERE teoria_sistema.titulo='$titulo'");
+            $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_cursos
+                                                        WHERE teoria_cursos.titulo='$titulo'
+                                                        AND teoria_cursos.id_usuario=$id_usuario");
             $consulta->execute();
             
             if ($consulta->rowCount()>0){
-                return $consulta->fetchAll(PDO::FETCH_ASSOC);;
+                return $consulta->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
-                return 'error';
+                $consulta=null;
+                $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_sistema
+                                                            WHERE teoria_sistema.titulo='$titulo'");
+                $consulta->execute();
+                return $consulta->fetchAll(PDO::FETCH_ASSOC);
             }    
         }
 
