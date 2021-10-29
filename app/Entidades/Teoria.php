@@ -114,6 +114,8 @@
             return $consulta;
         }
 
+        $consulta=null;
+
         $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
                                                     SET contenido='$contenido' 
                                                     WHERE titulo='$titulo'
