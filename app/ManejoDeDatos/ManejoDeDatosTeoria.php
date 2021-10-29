@@ -22,6 +22,12 @@
             $titulo=$args['titulo'];
 
             $teoria=buscarTeoria($titulo,$id_usuario);
+
+            if($teoria=="error"){
+                return $response->withStatus(404);
+            }
+
+
             $response->getBody()->write(json_encode($teoria));
             return $response->withHeader('Content-type','application/json');
         }
