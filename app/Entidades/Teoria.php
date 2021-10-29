@@ -102,7 +102,7 @@
         $teoria=buscarTeoria($titulo,$id_usuario);
 
         var_dump($teoria->id_usuario);
-        var_dump($teoria[0]->id_usuario);
+        var_dump($teoria[0]['id_usuario']);
         var_dump(isset($teoria[0]->id_usuario));
 
         if($teoria=="error" || isset($teoria[0]->id_usuario)==false){
