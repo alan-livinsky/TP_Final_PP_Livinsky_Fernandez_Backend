@@ -57,7 +57,7 @@
 
         $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_sistema
                                                     VALUES
-                                                    ($id_teoria,$id_ejercicio,'$titulo', '$contenido','$tipo')");
+                                                    ($id_teoria,$id_ejercicio,'$titulo','$contenido','$tipo')");
         $consulta->execute();
         return $consulta;
     }
@@ -85,8 +85,8 @@
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
         $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
-                                                    SET contenido = '$contenido' 
-                                                    WHERE titulo = '$titulo'
+                                                    SET contenido='$contenido' 
+                                                    WHERE titulo='$titulo'
                                                     AND id_usuario=$id_usuario");
         $consulta->execute();
         return $consulta;

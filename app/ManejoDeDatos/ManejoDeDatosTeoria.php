@@ -55,8 +55,8 @@
 
 
     function retornarEstadoActualizacionContenido($request,$response,$args){
-        $datosTeoriaEditar = $request->getBody();
-        $datosTeoriaEditar = json_decode($json,true);
+        $datosTeoriaEditar=$request->getBody();
+        $datosTeoriaEditar=json_decode($datosTeoriaEditar,true);
 
         $titulo=$datosTeoriaEditar->titulo;
         $contenido=$datosTeoriaEditar->contenido;
