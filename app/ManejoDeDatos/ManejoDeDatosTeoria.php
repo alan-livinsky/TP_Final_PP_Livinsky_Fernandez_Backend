@@ -64,11 +64,7 @@
         $datosTeoriaEditar=$request->getBody();
         $datosTeoriaEditar=json_decode($datosTeoriaEditar,true);
 
-        $titulo=$datosTeoriaEditar['titulo'];
-        $contenido=$datosTeoriaEditar['contenido'];
-        $id_usuario=$datosTeoriaEditar['id_usuario'];
-
-        $estadoActualizacionContenido=actualizarContenidoTeoriaCursos($titulo,$contenido,$id_usuario);
+        $estadoActualizacionContenido=actualizarContenidoTeoriaCursos($datosTeoriaEditar);
         $response->getBody()->write(json_encode($estadoActualizacionContenido));
         return $response->withHeader('Content-type','application/json');
     }

@@ -87,8 +87,28 @@
     }
 
 
-    function actualizarContenidoTeoriaCursos($titulo,$contenido,$id_usuario){
+    function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
+
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
+        $id_teoria=$datosTeoriaEditar['id_teoria'];
+        $id_usuario=$datosTeoriaEditar['id_usuario'];
+        $id_ejercicio=$datosTeoriaEditar['id_ejercicio'];
+        $titulo=$datosTeoriaEditar['titulo'];
+        $contenido=$datosTeoriaEditar['contenido'];
+        $tipo=$datosTeoriaEditar['tipo'];
+        $lista_cursos=$datosTeoriaEditar['lista_cursos'];
+       
+        $teoria=buscarTeoria($titulo,$id_usuario);
+
+        if($teoria=="error" || !isset($teoria->id_usuario)){
+            $id_teoria='default';
+            $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
+                                                        VALUES
+                                                        ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
+            $consulta->execute();
+            return $consulta;
+        }
 
         $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
                                                     SET contenido='$contenido' 
