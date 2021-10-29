@@ -62,7 +62,7 @@
 
 
 
-        $estadoActualizacionContenido=actualizarContenidoTeoriaSistema();
+        $estadoActualizacionContenido=actualizarContenidoTeoriaCursos();
         $response->getBody()->write(json_encode($estadoActualizacionContenido));
         return $response->withHeader('Content-type','application/json');
     }

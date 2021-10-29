@@ -81,6 +81,18 @@
     }
 
 
+    function actualizarContenidoTeoriaCursos($titulo,$contenido,$id_usuario){
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
+        $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
+                                                    SET contenido = '$contenido' 
+                                                    WHERE titulo = '$titulo'
+                                                    AND id_usuario=$id_usuario");
+        $consulta->execute();
+        return $consulta;
+    }
+
+
 
 
 
@@ -122,14 +134,7 @@
         return $consulta;
     }
 
-    function actualizarContenidoTeoriaSistema($titulo, $contenido){
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-
-        $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_sistema
-                                                    SET contenido = '$contenido' WHERE titulo = '$titulo'");
-        $consulta->execute();
-        return $consulta;
-    }
+ 
 
     function borrarTeoria($titulo){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
