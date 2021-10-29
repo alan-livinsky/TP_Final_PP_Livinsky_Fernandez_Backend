@@ -103,7 +103,11 @@
 
         $teoria=buscarTeoria($titulo,$id_usuario);
 
-        var_dump($teoria);
+        var_dump(isset($teoria[0]->id_usuario));
+
+
+
+
 
         if($teoria=="error" || isset($teoria[0]->id_usuario)==false){
             $id_teoria='default';
