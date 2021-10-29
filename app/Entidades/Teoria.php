@@ -99,15 +99,15 @@
         $tipo=$datosTeoriaEditar['tipo'];
         $lista_cursos=json_encode($datosTeoriaEditar['lista_cursos']);
 
+        
         $teoria=buscarTeoria($titulo,$id_usuario);
+        $objetoTeoria=json_decode($teoria);
 
-        var_dump($teoria->id_usuario);
-        var_dump($teoria[0]->id_usuario);
-        var_dump(isset($teoria[0]->id_usuario));
+        var_dump($objetoTeoria->id_usuario);
+        var_dump($objetoTeoria[0]->id_usuario);
+        var_dump(isset($objetoTeoria[0]->id_usuario));
 
-
-
-        if($teoria=="error" || isset($teoria[0]->id_usuario)==false){
+        if($teoria=="error" || isset($objetoTeoria[0]->id_usuario)==false){
             $id_teoria='default';
             $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                         VALUES
