@@ -105,7 +105,7 @@
 
         var_dump($teoria);
 
-        if($teoria=="error" || isset($teoria->id_usuario)==false){
+        if($teoria=="error" || isset($teoria[0]->id_usuario)==false){
             $id_teoria='default';
             $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                         VALUES
