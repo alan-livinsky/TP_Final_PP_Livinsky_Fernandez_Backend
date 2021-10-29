@@ -89,8 +89,6 @@
 
     function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 
-            var_dump($datosTeoriaEditar);
-
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
         $id_teoria=$datosTeoriaEditar['id_teoria'];
@@ -99,7 +97,11 @@
         $titulo=$datosTeoriaEditar['titulo'];
         $contenido=$datosTeoriaEditar['contenido'];
         $tipo=$datosTeoriaEditar['tipo'];
-        $lista_cursos=$datosTeoriaEditar['lista_cursos'];
+        $lista_cursos=json_encode($datosTeoriaEditar['lista_cursos']);
+
+        var_dump($datosTeoriaEditar['lista_cursos']);
+
+        
        
         $teoria=buscarTeoria($titulo,$id_usuario);
 
