@@ -101,9 +101,9 @@
 
         var_dump($datosTeoriaEditar['lista_cursos']);
 
-        
-       
         $teoria=buscarTeoria($titulo,$id_usuario);
+
+        var_dump($teoria);
 
         if($teoria=="error" || isset($teoria->id_usuario)==false){
             $id_teoria='default';
