@@ -105,7 +105,7 @@
        
         $teoria=buscarTeoria($titulo,$id_usuario);
 
-        if($teoria=="error" || !isset($teoria->id_usuario)){
+        if($teoria=="error" || isset($teoria->id_usuario)==false){
             $id_teoria='default';
             $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                         VALUES
