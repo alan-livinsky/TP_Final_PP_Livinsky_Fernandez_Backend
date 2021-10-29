@@ -99,13 +99,11 @@
         $tipo=$datosTeoriaEditar['tipo'];
         $lista_cursos=json_encode($datosTeoriaEditar['lista_cursos']);
 
-        var_dump($datosTeoriaEditar['lista_cursos']);
-
         $teoria=buscarTeoria($titulo,$id_usuario);
 
+        var_dump($teoria->id_usuario);
+        var_dump($teoria[0]->id_usuario);
         var_dump(isset($teoria[0]->id_usuario));
-
-
 
 
 
