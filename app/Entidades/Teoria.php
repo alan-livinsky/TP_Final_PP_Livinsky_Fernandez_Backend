@@ -89,6 +89,8 @@
 
     function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 
+            var_dump($datosTeoriaEditar);
+
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
         $id_teoria=$datosTeoriaEditar['id_teoria'];
