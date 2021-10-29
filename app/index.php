@@ -154,8 +154,8 @@ $app->group('/TeoriaCurso', function (RouteCollectorProxy $group) {
     $group->post('/crear','retornarResultadoCrearTeoriaCurso');
     //$group->get('/lista','retornarBuscarTeorias');
     $group->get('/contenido/{titulo}','retornarContenidoTeoriaSistema');
-    $group->put('/editar/{titulo}/{contenidonuevo}','retornarEstadoActualizacionContenido');
-    $group->delete('/contenido/borrar/{titulo}','retornarEstadoBorrarTeoria');      
+    $group->put('/editar','retornarEstadoActualizacionContenido');
+    //$group->delete('/contenido/borrar/{titulo}','retornarEstadoBorrarTeoria');      
 });
 
 $app->group('/Teorias', function (RouteCollectorProxy $group) {

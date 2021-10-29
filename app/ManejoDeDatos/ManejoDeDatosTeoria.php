@@ -26,22 +26,6 @@
             return $response->withHeader('Content-type','application/json');
         }
 
-
-
-
-
-
-
-        /*
-        function retornarBuscarTeorias($request,$response,$args){
-            $teorias=buscarTeorias();
-            $response->getBody()->write(json_encode($teorias));
-            return $response->withHeader('Content-type','application/json');
-        }
-        */
-    //
-
-
 //TEORIA SISTEMA
 
     function retornarResultadoCrearTeoria($request,$response,$args){
@@ -70,26 +54,19 @@
     }
 
 
-
-    
-
-    /*
-    function retornarResultadoCrearTeoria($request,$response,$args){
-        $json = $request->getBody();
-        $data = json_decode($json,true);
-        $resultado_crear_teoria=crearTeoriaSistema($data);
-        $response->getBody()->write(json_encode( $resultado_crear_teoria));
-        return $response->withHeader('Content-type','application/json');
-    }
-    */
-
-    /*EN TEORIA TODA EDICION SE VUELVE CUSTOM
     function retornarEstadoActualizacionContenido($request,$response,$args){
-        $estadoActualizacionContenido=actualizarContenidoTeoriaSistema($args['titulo'], $args['contenidonuevo']);
+        $datosTeoriaEditar = $request->getBody();
+        $datosTeoriaEditar = json_decode($json,true);
+
+        var_dump($datos);
+
+
+
+        $estadoActualizacionContenido=actualizarContenidoTeoriaSistema();
         $response->getBody()->write(json_encode($estadoActualizacionContenido));
         return $response->withHeader('Content-type','application/json');
     }
-    */
+    
     
     /*EN TEORIA BORRAR TEORIA SISTEMA NO TIENE SENTIDO
     function retornarEstadoBorrarTeoria($request,$response,$args){
