@@ -8,6 +8,9 @@
     }
 
     function buscar_usuario($email,$password){
+        var_dump($password);
+
+
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
         $buscarHash=$accesoDatos->prepararConsulta("SELECT password FROM usuarios WHERE email='$email'");
