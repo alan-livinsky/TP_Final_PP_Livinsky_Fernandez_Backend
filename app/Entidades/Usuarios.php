@@ -93,7 +93,7 @@
         return $estado;
     }
 
-    function actualizar_password($id_usuario,$password){
+    function actualizar_contraseña($id_usuario,$password){
         $password=password_hash($password,PASSWORD_DEFAULT);
 
         $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
