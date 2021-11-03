@@ -59,9 +59,9 @@ use Firebase\JWT\JWT;
     function retornarEstadoEliminacionCuenta($request,$response,$args){
         $data=$request->getAttribute("token");
 
-        $estadoEliminacion=eliminar_usuario($data['sub']);
+        $estadoactualizacion=eliminar_usuario($data['sub']);
 
-        $response->getBody()->write(Json_encode($estadoEliminacion));                                    
+        $response->getBody()->write(Json_encode($estadoactualizacion));                                    
         return $response->withHeader('Content-type','application/json');
     }
 
@@ -74,8 +74,8 @@ use Firebase\JWT\JWT;
         $validacionDeContraseñaAntigua=buscarUsuarioPorID($datosUsuario['sub'],$contraseñas->antigua);
 
         if($validacionDeContraseñaAntigua){
-            $estadoactualizacion=actualizar_password($datosUsuario['sub'],$contraseñas->nueva,);
-            //echo $estadoactualizacion;
+            $estadoactualizacion=actualizar_contraseña($datosUsuario['sub'],$contraseñas->nueva,);
+            echo $estadoactualizacion;
             $response->getBody()->write(Json_encode($estadoactualizacion));                                    
             return $response->withHeader('Content-type','application/json');
         }
