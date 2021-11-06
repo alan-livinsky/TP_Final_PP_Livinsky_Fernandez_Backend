@@ -16,10 +16,12 @@
             return $response->withHeader('Content-type','application/json');
         }
 
-        function retornarTeoria($request,$response,$args){
-            $id_usuario=$request->getBody();
-            $id_usuario=json_decode($id_usuario,true);
-            $titulo=$args['titulo'];
+        function retornarTeoriaAEditar($request,$response,$args){
+            $datos=$request->getBody();
+            $datos=json_decode($datos,true);
+
+            $id_usuario=$datos->id_usuario;
+            $titulo=$datos->titulo;
 
             $teoria=buscarTeoria($titulo,$id_usuario);
 
@@ -33,7 +35,6 @@
         }
 
 //TEORIA SISTEMA
-
     function retornarResultadoCrearTeoria($request,$response,$args){
         $json = $request->getBody();
         $data = json_decode($json,true);
