@@ -20,8 +20,8 @@
             $datos=$request->getBody();
             $datos=json_decode($datos,true);
 
-            $id_usuario=$datos[0]->id_usuario;
-            $titulo=$datos[0]->titulo;
+            $id_usuario=$datos['id_usuario'];
+            $titulo=$datos['titulo'];
 
             $teoria=buscarTeoria($titulo,$id_usuario);
 
