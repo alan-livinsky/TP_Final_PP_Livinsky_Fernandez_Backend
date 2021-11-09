@@ -13,7 +13,6 @@
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
 //BUSCA LA TEORIA QUE EL USUARIO DESEA EDITAR
     function buscarTeoriaAEditar($titulo,$id_usuario){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
@@ -40,7 +39,6 @@
         }    
     }
 
-
 //BUSCA UNA TEORIA PARTICULAR CREADA POR UN PROFESOR PARTICULAR
     function buscarTeoriaCreadaProfesor($titulo,$id_usuario,$accesoDatos){
         $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_cursos
@@ -50,12 +48,7 @@
         return $consulta;
     }
 
-
-
-
-
-
-    //CREAR TEORIA SISTEMA
+//CREAR TEORIA SISTEMA
     function crearTeoriaSistema($teoria){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
@@ -72,7 +65,7 @@
         return $consulta;
     }
 
-    //CREAR TEORIA CURSO
+//CREAR TEORIA CURSO
     function crearTeoriaCurso($teoria){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
@@ -91,7 +84,7 @@
         return $consulta;
     }
 
-    //ACTUALIZAR CONTENIDO TEORIA CURSO
+//ACTUALIZAR CONTENIDO TEORIA CURSO
     function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
@@ -105,8 +98,6 @@
         $lista_cursos=json_encode($datosTeoriaEditar['lista_cursos']);
 
         $consulta=buscarTeoriaCreadaProfesor($titulo,$id_usuario,$accesoDatos);
-        //$teoria=buscarTeoria($titulo,$id_usuario);
-        //if($teoria=="error" || isset($teoria[0]['id_usuario'])==false){
 
         if($consulta->rowCount()<=0){
             $id_teoria='default';
@@ -117,7 +108,6 @@
             $consulta->execute();
             return $consulta;
         }
-        
         else if($consulta->rowCount()>0){
             $consulta=null;
             $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
@@ -129,6 +119,20 @@
         }
        
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     function buscarListaConceptosApoyo($id_usuario,$tipo_usuario){
@@ -163,31 +167,21 @@
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
-
-
-
-
-
-
-        /*
-        //BUSCAR TODOS LOS CONCEPTOS DISPONIBLES PARA UN TIPO DE EJERCICIO PARTICULAR.
-        function buscarTitulosSengunEjercicio($id_ejercicio){
-            $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-            $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
-                                                            WHERE teoria_sistema.id_ejercicio=$id_ejercicio
-                                                        UNION
-                                                        SELECT titulo FROM teoria_cursos
-                                                            WHERE teoria_cursos.id_ejercicio=$id_ejercicio
-                                                            AND
-                                                        ORDER BY titulo ASC'");
-            $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_ASSOC);
-        }
-        */
-
-    /*
+//BUSCAR TODOS LOS CONCEPTOS DISPONIBLES PARA UN TIPO DE EJERCICIO PARTICULAR.
+    function buscarTitulosSengunEjercicio($id_ejercicio){
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+        $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
+                                                    WHERE teoria_sistema.id_ejercicio=$id_ejercicio
+                                                    UNION
+                                                    SELECT titulo FROM teoria_cursos
+                                                    WHERE teoria_cursos.id_ejercicio=$id_ejercicio
+                                                    AND
+                                                    ORDER BY titulo ASC'");
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+        
+//BUSCAR CONTENIDO TEORIA SISTEMA.
     function buscarContenidoTeoriaSistema($titulo){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
         $consulta = $accesoDatos->prepararConsulta("SELECT contenido
@@ -197,44 +191,7 @@
           return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function crearTeoriaSistema($teoria){
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-
-        $id_teoria=$teoria["id_teoria"];
-        $id_ejercicio=$teoria["id_ejercicio"];
-        $titulo=$teoria["titulo"]; 
-        $contenido=$teoria["contenido"];
-        $tipo=$teoria["tipo"];
-
-        $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_sistema
-                                                    VALUES
-                                                    ($id_teoria,$id_ejercicio,'$titulo', '$contenido','$tipo')");
-        $consulta->execute();
-        return $consulta;
-    }
-
- 
-
-    function borrarTeoria($titulo){
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-
-        $consulta = $accesoDatos->prepararConsulta("DELETE from  teoria_sistema 
-                                                    WHERE titulo = '$titulo'");
-        $consulta->execute();
-        return $consulta;
-    }
     
-
-    //POSIBLEMENTE NO SE USEN ESTAS FUNCIONES
-    function actualizarTipoTeoria($tipo,$tipo_nuevo){
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-
-        $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_sistema
-                                                    SET tipo = '$tipo_nuevo' WHERE tipo = '$tipo'");
-        $consulta->execute();
-        return $consulta;
-    }
-    */
 
 ?>
 
