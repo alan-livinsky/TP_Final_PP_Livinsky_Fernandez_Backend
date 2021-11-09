@@ -134,7 +134,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario){
     return  $listaProfesores;
 
 
-
 }
 
 
