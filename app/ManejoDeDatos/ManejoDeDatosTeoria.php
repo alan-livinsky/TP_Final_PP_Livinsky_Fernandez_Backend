@@ -88,7 +88,7 @@ function retornarListaTeoriaVisualizar($request,$response,$args){
 
     $contenidosAVisualizar=buscarContenidosTeoricosAvizualizar($id_usuario,$titulo);
 
-    $response->getBody()->write(json_encode($listaContenidoBarraApoyo));
+    $response->getBody()->write(json_encode($contenidosAVisualizar));
     return $response->withHeader('Content-type','application/json');
 
 }
