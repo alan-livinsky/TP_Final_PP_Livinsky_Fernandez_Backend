@@ -139,6 +139,15 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
         var_dump($filtroProfesores);
 
+        $test="SELECT titulo FROM teoria_cursos
+                    WHERE teoria_cursos.id_ejercicio=$id_ejercicio
+                    AND ($filtroProfesores)
+                    UNION
+                    SELECT titulo FROM teoria_sistema
+                    WHERE teoria_cursos.id_ejercicio=1";
+
+        var_dump($test);
+
     }
 
    
