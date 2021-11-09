@@ -191,7 +191,7 @@ function buscarContenidosTeoricosAvizualizar($id_usuario,$titulo){
                                                         usuarios.apellido 
                                                 FROM teoria_cursos,usuarios
                                                 WHERE ($filtroProfesores)
-                                                AND teoria_cursos.titulo=$titulo
+                                                AND teoria_cursos.titulo='$titulo'
                                                 AND teoria_cursos.id_usuario=usuarios.id_usuario;");
     $consulta->execute();
 
