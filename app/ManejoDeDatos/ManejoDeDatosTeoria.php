@@ -77,8 +77,23 @@ function retornarListaOpcionesBarraApoyo($request,$response,$args){
     return $response->withHeader('Content-type','application/json');
 }
 
+function retornarListaTeoriaVisualizar($request,$response,$args){
+    $datosUsuario=$request->getBody();
+    $datosUsuario=json_decode($datosUsuario);
 
-    
-  
+    $id_usuario=$datosUsuario->id_usuario;
+    $titulo=$datosUsuario->titulo;
+
+    //$id_ejercicio=$datosUsuario->id_ejercicio;
+
+    $contenidosAVisualizar=buscarContenidosTeoricosAvizualizar($id_usuario,$titulo);
+
+    $response->getBody()->write(json_encode($listaContenidoBarraApoyo));
+    return $response->withHeader('Content-type','application/json');
+
+}
+
+
+
 
 ?>

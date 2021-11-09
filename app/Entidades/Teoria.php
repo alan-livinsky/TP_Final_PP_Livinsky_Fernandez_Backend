@@ -165,7 +165,50 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
 }
 
+function buscarContenidosTeoricosAvizualizar($id_usuario,$titulo){
 
+    //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
+    $curso=buscarCursoAlumno($id_usuario);
+        
+    $id_curso=$curso[0]['id_curso'];
+
+    $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
+
+    for($i=0;$i<count($listaProfesores);$i++){
+        $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
+
+        if($i<(count($listaProfesores)-1)){
+            $filtroProfesores=$filtroProfesores." OR ";
+        }  
+    }
+
+     
+    $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+    $consulta = $accesoDatos->prepararConsulta(" SELECT teoria_cursos.titulo,
+                                                        teoria_cursos.contenido,
+                                                        usuarios.nombre,
+                                                        usuarios.apellido 
+                                                FROM teoria_cursos,usuarios
+                                                WHERE ($filtroProfesores)
+                                                AND teoria_cursos.titulo=$titulo
+                                                AND teoria_cursos.id_usuario=usuarios.id_usuario;");
+    $consulta->execute();
+
+    if($consulta->rowCount()>0){
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else{
+        $consulta=null;
+
+        $consulta = $accesoDatos->prepararConsulta(" SELECT titulo,contenido,
+                                                     FROM teoria_sistema
+                                                     WHERE titulo=$titulo");
+                                                
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+}
 
 
 

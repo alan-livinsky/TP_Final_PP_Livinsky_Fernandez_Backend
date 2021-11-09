@@ -166,6 +166,7 @@ $app->group('/Editor', function (RouteCollectorProxy $group) {
 
 $app->group('/ApoyoTeorico', function (RouteCollectorProxy $group) {
     $group->post('/lista','retornarListaOpcionesBarraApoyo');
+    $group->post('/visualizar','retornarListaTeoriaVisualizar');
 });
 
 
