@@ -114,8 +114,8 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
     //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
     $curso=buscarCursoAlumno($id_usuario);
-
-        $id_curso=$curso[0]['id_curso'];
+    
+    $id_curso=$curso[0]['id_curso'];
 
     $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
 
@@ -141,12 +141,15 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
     }
 
    
-
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-    $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
-                                                VALUES
-                                                ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
-                                                $consulta->execute();
+    $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_cursos
+                                                WHERE teoria_cursos.id_ejercicio=$id_ejercicio
+                                                ' $filtroProfesores '
+                                                UNION
+                                                SELECT titulo FROM teoria_sistema
+                                                WHERE teoria_cursos.id_ejercicio=1");
+    
+    $consulta->execute();
     return  $listaProfesores;
 
 
