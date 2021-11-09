@@ -28,21 +28,6 @@
         return $response->withHeader('Content-type','application/json');
     }
 
-
-
-
-
-
-/*
-        function retornarListaTitulosEjercicios($request,$response,$args){
-            $id_ejercicio=$args['id_ejercicio'];
-            $listaTitulosEjercicio=buscarTitulosSengunEjercicio($id_ejercicio);
-            $response->getBody()->write(json_encode($listaTitulosEjercicio));
-            return $response->withHeader('Content-type','application/json');
-        }
-*/
-       
-
 //TEORIA SISTEMA
     function retornarResultadoCrearTeoria($request,$response,$args){
         $json = $request->getBody();
@@ -60,7 +45,6 @@
 //
 
 //TEORIA CURSO
-
     function retornarResultadoCrearTeoriaCurso($request,$response,$args){
         $json = $request->getBody();
         $data = json_decode($json,true);
@@ -68,7 +52,6 @@
         $response->getBody()->write(json_encode( $resultado_crear_teoria));
         return $response->withHeader('Content-type','application/json');
     }
-
 
     function retornarEstadoActualizacionContenido($request,$response,$args){
         $datosTeoriaEditar=$request->getBody();
@@ -79,15 +62,17 @@
         return $response->withHeader('Content-type','application/json');
     }
     
-    
-    /*EN TEORIA BORRAR TEORIA SISTEMA NO TIENE SENTIDO
-    function retornarEstadoBorrarTeoria($request,$response,$args){
-        $estadoBorrarContenido=borrarTeoria($args['titulo']);
-        $response->getBody()->write(json_encode($estadoBorrarContenido));
-        return $response->withHeader('Content-type','application/json');
-    }
-    */
 
-//
+//APOYO TEORICO
+function retornarListaOpcionesBarraApoyo($request,$response,$args){
+    $id_usuario=$request->getBody();
+    $listaContenidoBarraApoyo=buscarListaOpcionesBarraApoyo($id_usuario);
+    $response->getBody()->write(json_encode($listaGeneral));
+    return $response->withHeader('Content-type','application/json');
+}
+
+
+    
+  
 
 ?>

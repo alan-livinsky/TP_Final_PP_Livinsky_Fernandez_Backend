@@ -164,6 +164,12 @@ $app->group('/Editor', function (RouteCollectorProxy $group) {
     //$group->get('/listaEjercicio/{id_ejercicio}','retornarListaTitulosEjercicios');
 });
 
+$app->group('/ApoyoTeorico', function (RouteCollectorProxy $group) {
+    $group->post('/lista','retornarListaOpcionesBarraApoyo');
+});
+
+
+
 $app->run();
 
 ?>

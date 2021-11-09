@@ -37,6 +37,7 @@ function buscarCursosAsociados($id_usuario){
 
 
 //PREPARAR MANEJO DE DATOS FALTANTE
+
 //:RETORNA UNA <<ID_CURSO>>
 function buscarCursoAlumno($id_usuario){
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
@@ -48,8 +49,8 @@ function buscarCursoAlumno($id_usuario){
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-function buscarProfAsociadoACurso($id_usuario,$id_curso){
+//:RETORNA LISTA DE PROFESORES ASOCIADOS A UN CURSO
+function buscarProfesoresAsociadosACurso($id_usuario,$id_curso){
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("SELECT usuarios.id_usuario 
                                                 FROM usuarios,usuarios_por_curso
