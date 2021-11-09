@@ -113,9 +113,11 @@ function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 function buscarListaOpcionesBarraApoyo($id_usuario){
 
     //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
-    $id_curso=buscarCursoAlumno($id_usuario);
+    $curso=buscarCursoAlumno($id_usuario);
+    $id_curso=$curso['id_curso'];
 
-    echo $id_curso;
+    echo $curso['id_curso'];
+
 
     $listaProfesores=buscarProfesoresAsociadosACurso($id_usuario,$id_curso);
 
