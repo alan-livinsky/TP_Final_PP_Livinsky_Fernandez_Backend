@@ -160,8 +160,8 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
                                                 WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
     
     $consulta->execute();
-    return  $consulta;
 
+    return $consulta->fetchAll(PDO::FETCH_ASSOC);
 
 }
 
@@ -202,8 +202,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
 
 
-
-
 //CREAR TEORIA CURSO
 
 /*
@@ -225,24 +223,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
         return $consulta;
     }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
     function buscarListaConceptosApoyo($id_usuario,$tipo_usuario){
