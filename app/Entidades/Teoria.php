@@ -160,7 +160,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
                                                 WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
     
     $consulta->execute();
-    return  $listaProfesores;
+    return  $consulta;
 
 
 }
