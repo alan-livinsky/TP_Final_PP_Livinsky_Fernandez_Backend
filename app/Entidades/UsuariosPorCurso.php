@@ -55,13 +55,13 @@ function buscarProfesoresAsociadosACurso($id_curso){
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
     $tipo="Profesor";
-    var_dump($id_curso);
+
 
     $consulta = $accesoDatos->prepararConsulta("SELECT usuarios.id_usuario 
                                                 FROM usuarios,usuarios_por_curso
                                                 WHERE usuarios_por_curso.id_curso=$id_curso
-                                                and usuarios_por_curso.id_usuario=usuarios.id_usuario
-                                                and usuarios.tipo_usuario='$tipo' ");
+                                                AND usuarios_por_curso.id_usuario=usuarios.id_usuario
+                                                AND usuarios.tipo_usuario='$tipo' ");
     $consulta->execute();
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
 }

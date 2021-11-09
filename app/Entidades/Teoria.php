@@ -110,26 +110,35 @@ function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 }
 
 
-function buscarListaOpcionesBarraApoyo($id_usuario){
+function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
     //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
     $curso=buscarCursoAlumno($id_usuario);
-    $id_curso=$curso[0]['id_curso'];
 
+        $id_curso=$curso[0]['id_curso'];
 
     $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
 
+    if(count($listaProfesores)>0){
+
+        var_dump(count($listaProfesores));
+
+        //for($i=0;)
+
+
+    }
+
+   
 
 
 
-/*
 
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                 VALUES
                                                 ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
                                                 $consulta->execute();
-    */
+    
     return  $listaProfesores;
 
 
