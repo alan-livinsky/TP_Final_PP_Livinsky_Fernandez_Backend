@@ -128,8 +128,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
     if(count($listaProfesores)>1){
 
-        $filtroProfesores="AND(";
-
         for($i=0;$i<count($listaProfesores);$i++){
             $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario='".$listaProfesores[$i]['id_usuario']."'";
 
@@ -139,8 +137,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
             
         }
 
-        $filtroProfesores=$filtroProfesores.")";
-
         var_dump($filtroProfesores);
 
     }
@@ -149,7 +145,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_cursos
                                                 WHERE teoria_cursos.id_ejercicio=$id_ejercicio
-                                                ' $filtroProfesores '
+                                                AND ($filtroProfesores)
                                                 UNION
                                                 SELECT titulo FROM teoria_sistema
                                                 WHERE teoria_cursos.id_ejercicio=1");
