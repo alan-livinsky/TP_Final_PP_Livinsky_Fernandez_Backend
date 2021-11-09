@@ -51,12 +51,12 @@ function buscarCursoAlumno($id_usuario){
 }
 
 //:RETORNA LISTA DE PROFESORES ASOCIADOS A UN CURSO
-function buscarProfesoresAsociadosACurso($id_usuario,$id_curso){
+function buscarProfesoresAsociadosACurso($id_curso){
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("SELECT usuarios.id_usuario 
                                                 FROM usuarios,usuarios_por_curso
                                                 WHERE usuarios_por_curso.id_curso=$id_curso
-                                                and usuarios_por_curso.id_usuario=$id_usuario
+                                                and usuarios_por_curso.id_usuario=usuarios.id_usuario
                                                 and usuarios.tipo_usuario='Profesor'");
     $consulta->execute();
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
