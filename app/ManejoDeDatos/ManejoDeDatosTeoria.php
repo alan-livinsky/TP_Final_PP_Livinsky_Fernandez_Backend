@@ -66,6 +66,7 @@
 //APOYO TEORICO
 function retornarListaOpcionesBarraApoyo($request,$response,$args){
     $id_usuario=$request->getBody();
+    echo $id_usuario;
     $listaContenidoBarraApoyo=buscarListaOpcionesBarraApoyo($id_usuario);
     $response->getBody()->write(json_encode($listaGeneral));
     return $response->withHeader('Content-type','application/json');
