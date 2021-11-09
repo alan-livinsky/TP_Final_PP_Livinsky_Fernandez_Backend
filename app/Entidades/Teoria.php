@@ -122,6 +122,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario){
 
 
 /*
+
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                 VALUES
