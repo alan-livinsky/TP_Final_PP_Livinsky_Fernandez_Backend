@@ -2,37 +2,46 @@
 
 //SE MANEJAN LOS DATOS TANTO DE LA TEORIA DEL SISTEMA COMO DE LA TEORIA DEL CURSO.
 
-    //AMBOS TIPOS DE TEORIA
-        function retornarListaGeneralDeTitulos($request,$response,$args){
-            $listaGeneral=buscarListaGenaralDeTitulos();
-            $response->getBody()->write(json_encode($listaGeneral));
-            return $response->withHeader('Content-type','application/json');
+
+   //MANEJO DE BUSQUEDA GENERAL DE LISTA DE TEORIA PARA EL EDITOR
+    function retornarListaTeoriasEditor($request,$response,$args){
+        $id_usuario=$request->getBody();
+        $listaGeneral=buscarListaGenaralDeTitulos($id_usuario);
+        $response->getBody()->write(json_encode($listaGeneral));
+        return $response->withHeader('Content-type','application/json');
+    }
+
+    function retornarTeoriaAEditar($request,$response,$args){
+        $datos=$request->getBody();
+        $datos=json_decode($datos,true);
+
+        $id_usuario=$datos['id_usuario'];
+        $titulo=$datos['titulo'];
+
+        $teoria=buscarTeoriaAEditar($titulo,$id_usuario);
+
+        if($teoria=="error"){
+            return $response->withStatus(404);
         }
 
+        $response->getBody()->write(json_encode($teoria));
+        return $response->withHeader('Content-type','application/json');
+    }
+
+
+
+
+
+
+/*
         function retornarListaTitulosEjercicios($request,$response,$args){
             $id_ejercicio=$args['id_ejercicio'];
             $listaTitulosEjercicio=buscarTitulosSengunEjercicio($id_ejercicio);
             $response->getBody()->write(json_encode($listaTitulosEjercicio));
             return $response->withHeader('Content-type','application/json');
         }
-
-        function retornarTeoriaAEditar($request,$response,$args){
-            $datos=$request->getBody();
-            $datos=json_decode($datos,true);
-
-            $id_usuario=$datos['id_usuario'];
-            $titulo=$datos['titulo'];
-
-            $teoria=buscarTeoria($titulo,$id_usuario);
-
-            if($teoria=="error"){
-                return $response->withStatus(404);
-            }
-
-
-            $response->getBody()->write(json_encode($teoria));
-            return $response->withHeader('Content-type','application/json');
-        }
+*/
+       
 
 //TEORIA SISTEMA
     function retornarResultadoCrearTeoria($request,$response,$args){
