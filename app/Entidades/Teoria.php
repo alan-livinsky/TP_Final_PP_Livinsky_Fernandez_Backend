@@ -6,7 +6,7 @@
 
     //BUSCAR LA LISTA DE NOMBRES DE TODOS LOS CONCEPTOS Y FORMULAS EXISTENTES;
     //CREADOS POR EL USUARIO LOGUEADO
-    function buscarEditorListaTeorias($id_usuario){
+    function buscarListaGeneralDeTitulos($id_usuario){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
         $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
                                                     UNION

@@ -6,7 +6,7 @@
    //MANEJO DE BUSQUEDA GENERAL DE LISTA DE TEORIA PARA EL EDITOR
     function retornarListaTeoriasEditor($request,$response,$args){
         $id_usuario=$request->getBody();
-        $listaGeneral=buscarListaGenaralDeTitulos($id_usuario);
+        $listaGeneral=buscarListaGeneralDeTitulos($id_usuario);
         $response->getBody()->write(json_encode($listaGeneral));
         return $response->withHeader('Content-type','application/json');
     }
