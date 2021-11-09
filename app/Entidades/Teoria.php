@@ -1,11 +1,7 @@
 <?php
 
-    //DENTRO DE ESTA ENTIDAD SE MANEJARA TANTO TEORIA DEL SISTEMA COMO DE LOS CURSOS
-
-//<<--------EDITOR DE TEORIA----->>
-
-    //BUSCAR LA LISTA DE NOMBRES DE TODOS LOS CONCEPTOS Y FORMULAS EXISTENTES;
-    //CREADOS POR EL USUARIO LOGUEADO
+//BUSCAR LA LISTA DE NOMBRES DE TODOS LOS CONCEPTOS Y FORMULAS EXISTENTES;
+//CREADOS POR EL USUARIO LOGUEADO
     function buscarListaGeneralDeTitulos($id_usuario){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
         $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
@@ -17,17 +13,14 @@
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //BUSCA LA TEORIA QUE EL USUARIO DESEA EDITAR
+
+//BUSCA LA TEORIA QUE EL USUARIO DESEA EDITAR
     function buscarTeoriaAEditar($titulo,$id_usuario){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
-        //Primero se verifica si existe una teoria creada por el usuario asociada al
-        //titulo seleccionado.
-        $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_cursos
-                                                    WHERE teoria_cursos.titulo='$titulo'
-                                                    AND teoria_cursos.id_usuario=$id_usuario");
-        $consulta->execute();
-            
+        //Primero se verifica si existe una teoria creada por el usuario asociada al titulo seleccionado.
+        $consulta=buscarTeoriaCreadaProfesor($titulo,$id_usuario,$accesoDatos);
+         
         if($consulta->rowCount()>0){
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -46,6 +39,21 @@
             }
         }    
     }
+
+
+//BUSCA UNA TEORIA PARTICULAR CREADA POR UN PROFESOR PARTICULAR
+    function buscarTeoriaCreadaProfesor($titulo,$id_usuario,$accesoDatos){
+        $consulta = $accesoDatos->prepararConsulta("SELECT * FROM teoria_cursos
+                                                    WHERE teoria_cursos.titulo='$titulo'
+                                                    AND teoria_cursos.id_usuario=$id_usuario");
+        $consulta->execute();
+        return $consulta;
+    }
+
+
+
+
+
 
     //CREAR TEORIA SISTEMA
     function crearTeoriaSistema($teoria){
@@ -96,31 +104,31 @@
         $tipo=$datosTeoriaEditar['tipo'];
         $lista_cursos=json_encode($datosTeoriaEditar['lista_cursos']);
 
-        $teoria=buscarTeoria($titulo,$id_usuario);
+        $consulta=buscarTeoriaCreadaProfesor($titulo,$id_usuario,$accesoDatos);
+        //$teoria=buscarTeoria($titulo,$id_usuario);
+        //if($teoria=="error" || isset($teoria[0]['id_usuario'])==false){
 
-     
-
-        if($teoria=="error" || isset($teoria[0]['id_usuario'])==false){
+        if($consulta->rowCount()<=0){
             $id_teoria='default';
+            $consulta=null;
             $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                         VALUES
                                                         ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
             $consulta->execute();
             return $consulta;
         }
-
-        $consulta=null;
-
-        $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
-                                                    SET contenido='$contenido' 
-                                                    WHERE titulo='$titulo'
-                                                    AND id_usuario=$id_usuario");
-        $consulta->execute();
-        return $consulta;
+        
+        else if($consulta->rowCount()>0){
+            $consulta=null;
+            $consulta = $accesoDatos->prepararConsulta("UPDATE teoria_cursos
+                                                        SET contenido='$contenido' 
+                                                        WHERE titulo='$titulo'
+                                                        AND id_usuario=$id_usuario");
+            $consulta->execute();
+            return $consulta;
+        }
+       
     }
-
-
-//<<------------------------------------------------------------>>
 
 
     function buscarListaConceptosApoyo($id_usuario,$tipo_usuario){
@@ -146,11 +154,6 @@
 
         }
 
-
-
-
-
-        
         $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_sistema
                                                     UNION
                                                     SELECT titulo FROM teoria_cursos
