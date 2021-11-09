@@ -132,13 +132,13 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
 
 
-
+/*
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                 VALUES
                                                 ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
                                                 $consulta->execute();
-    
+   */ 
     return  $listaProfesores;
 
 
