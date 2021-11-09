@@ -122,6 +122,38 @@
 
 
 
+//CREAR TEORIA CURSO
+
+/*
+    function obtenerListaTeoriasNav($teoria){
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
+        $id_teoria=$teoria["id_teoria"];
+        $id_ejercicio=$teoria["id_ejercicio"];
+        $id_usuario=$teoria["id_usuario"];
+        $titulo=$teoria["titulo"]; 
+        $contenido=$teoria["contenido"];
+        $tipo=$teoria["tipo"];
+        $lista_cursos=json_encode($teoria["lista_cursos"]);
+
+        $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
+                                                    VALUES
+                                                    ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
+        $consulta->execute();
+        return $consulta;
+    }
+*/
+
+
+
+
+
+
+
+
+select * from teoria_cursos
+where teoria_cursos.id_usuario=378
+OR teoria_cursos.id_usuario=397
 
 
 
