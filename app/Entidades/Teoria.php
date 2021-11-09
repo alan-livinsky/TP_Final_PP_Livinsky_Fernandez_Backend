@@ -140,11 +140,11 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
         var_dump($filtroProfesores);
 
         $test="SELECT titulo FROM teoria_cursos
-                    WHERE teoria_cursos.id_ejercicio=$id_ejercicio
+                    WHERE id_ejercicio=$id_ejercicio
                     AND ($filtroProfesores)
                     UNION
                     SELECT titulo FROM teoria_sistema
-                    WHERE teoria_cursos.id_ejercicio=1";
+                    WHERE id_ejercicio=$id_ejercicio";
 
         var_dump($test);
 
@@ -152,12 +152,12 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
    
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-    $consulta = $accesoDatos->prepararConsulta("SELECT titulo FROM teoria_cursos
+    $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo FROM teoria_cursos
                                                 WHERE teoria_cursos.id_ejercicio=$id_ejercicio
                                                 AND ($filtroProfesores)
                                                 UNION
-                                                SELECT titulo FROM teoria_sistema
-                                                WHERE teoria_cursos.id_ejercicio=1");
+                                                SELECT teoria_sistema.titulo FROM teoria_sistema
+                                                WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
     
     $consulta->execute();
     return  $listaProfesores;
