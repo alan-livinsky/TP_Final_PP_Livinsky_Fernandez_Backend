@@ -131,10 +131,10 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
         $filtroProfesores="AND(";
 
         for($i=0;$i<count($listaProfesores);$i++){
-            $filtroProfesores+="teoria_cursos.id_usuario='".$listaProfesores[$i]['id_usuario']."' OR ";
+            $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario='".$listaProfesores[$i]['id_usuario']."' OR ";
         }
 
-        $filtroProfesores+=")";
+        $filtroProfesores=$filtroProfesores.")";
 
         var_dump($filtroProfesores);
 
