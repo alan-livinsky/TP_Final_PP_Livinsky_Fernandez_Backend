@@ -123,7 +123,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario){
     $listaProfesores=buscarProfesoresAsociadosACurso($id_usuario,$id_curso);
 
 
-
 /*
 
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
