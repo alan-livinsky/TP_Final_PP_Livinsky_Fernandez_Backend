@@ -119,26 +119,34 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
     $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
 
-    if(count($listaProfesores)>0){
+    $filtroProfesores="";
 
-        var_dump(count($listaProfesores));
+    if(count($listaProfesores)==1){
+        $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]->id_usuario."'";
+    }
 
-        //for($i=0;)
 
+    if(count($listaProfesores)>1){
+
+        $filtroProfesores="AND(";
+
+        for($i=0;$i<count($listaProfesores);$i++){
+            $filtroProfesores+="teoria_cursos.id_usuario='".$listaProfesores[$i]->id_usuario."' OR ";
+        }
+
+        $filtroProfesores+=")";
+
+        var_dump($filtroProfesores);
 
     }
 
    
 
-
-
-/*
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("INSERT INTO teoria_cursos
                                                 VALUES
                                                 ($id_teoria,$id_usuario,$id_ejercicio,'$titulo','$contenido','$tipo','$lista_cursos')");
                                                 $consulta->execute();
-   */ 
     return  $listaProfesores;
 
 
