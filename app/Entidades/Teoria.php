@@ -114,6 +114,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario){
 
     //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
     $curso=buscarCursoAlumno($id_usuario);
+    var_dump($curso);
     $id_curso=$curso['id_curso'];
 
     echo $curso['id_curso'];
