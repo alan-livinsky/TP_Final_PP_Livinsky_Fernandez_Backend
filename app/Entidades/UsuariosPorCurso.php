@@ -24,7 +24,8 @@ function asociarProfesorCurso($insertPreparado){
     return "Exito";
 }
 
-/*
+
+/*USADO EN ACCESO A PAGINAS*/
 function buscarCursosAsociados($id_usuario){
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("SELECT id_curso
@@ -33,7 +34,7 @@ function buscarCursosAsociados($id_usuario){
     $consulta->execute();
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
 }
-*/
+
 
 
 //PREPARAR MANEJO DE DATOS FALTANTE

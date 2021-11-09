@@ -30,9 +30,10 @@
                                                   VALUES
                                                   (default,'$año','$comision','$turno'");
         $consulta->execute();
+
+        $estadoCreacion="";
+        return $estadoCreacion;
     }
 
-    $estadoCreacion="";
-    return $estadoCreacion;
-
+   
 ?>
