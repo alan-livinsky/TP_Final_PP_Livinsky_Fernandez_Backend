@@ -159,7 +159,7 @@ $app->group('/TeoriaCurso', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/Editor', function (RouteCollectorProxy $group) {
-    $group->get('/listaGeneral','retornarListaTeoriasEditor');
+    $group->post('/listaGeneral','retornarListaTeoriasEditor');
     $group->post('/teoriaAEditar','retornarTeoriaAEditar');
     //$group->get('/listaEjercicio/{id_ejercicio}','retornarListaTitulosEjercicios');
 });
