@@ -77,7 +77,7 @@ function retornarListaOpcionesBarraApoyo($request,$response,$args){
     return $response->withHeader('Content-type','application/json');
 }
 
-function retornarListaTeoriaVisualizar($request,$response,$args){
+function retornarbuscarContenidosTeoricosAvisualizar($request,$response,$args){
     $datosUsuario=$request->getBody();
     $datosUsuario=json_decode($datosUsuario);
 

@@ -163,13 +163,14 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function buscarContenidosTeoricosAvizualizar($id_usuario,$titulo,$tipo){
+function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
 
     if($tipo=="Profesor"){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-        $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.contenido 
+        $consulta = $accesoDatos->prepararConsulta("SELECT titulo,contenido 
                                                     FROM teoria_cursos
-                                                    WHERE teoria_cursos.id_usuario=$id_usuario");
+                                                    WHERE teoria_cursos.id_usuario=$id_usuario
+                                                    AND titulo=$titulo");
         $consulta->execute();
 
         if($consulta->rowCount()>0){
