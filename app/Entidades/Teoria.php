@@ -218,8 +218,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
 
     $consulta = $accesoDatos->prepararConsulta("SELECT titulo,contenido,
                                                 FROM teoria_sistema
-                                                WHERE titulo=$titulo");
-                                                
+                                                WHERE titulo='$titulo'");   
     $consulta->execute();
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
     
