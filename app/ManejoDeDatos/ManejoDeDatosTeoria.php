@@ -93,8 +93,10 @@ function retornarListaTeoriaVisualizar($request,$response,$args){
 }
 
 function retornarNormativaRelacionada($request,$response,$args){
-    $id_ejercicio=$request->getBody();
-    $id_ejercicio=json_decode($id_ejercicio);
+    $ejercicio=$request->getBody();
+    $ejercicio=json_decode($id_ejercicio);
+    $id_ejercicio=$ejercicio->$id_usuario;
+
 
     $normativaRelacionada=buscarNormativaRelacionada($id_ejercicio);
 
