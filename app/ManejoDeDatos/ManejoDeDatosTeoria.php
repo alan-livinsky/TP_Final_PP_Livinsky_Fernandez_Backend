@@ -83,10 +83,11 @@ function retornarListaTeoriaVisualizar($request,$response,$args){
 
     $id_usuario=$datosUsuario->id_usuario;
     $titulo=$datosUsuario->titulo;
+    $tipo=$datosUsuario->tipo;
 
     //$id_ejercicio=$datosUsuario->id_ejercicio;
 
-    $contenidosAVisualizar=buscarContenidosTeoricosAvizualizar($id_usuario,$titulo);
+    $contenidosAVisualizar=buscarContenidosTeoricosAvizualizar($id_usuario,$titulo,$tipo);
 
     $response->getBody()->write(json_encode($contenidosAVisualizar));
     return $response->withHeader('Content-type','application/json');
