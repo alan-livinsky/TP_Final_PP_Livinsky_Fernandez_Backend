@@ -213,6 +213,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
 
     }
 
+    
     //SI NO ENCUENTRA LA TEORIA EN TEORIA CURSOS LA BUSCA DEL SISTEMA
 
     $consulta=null;
