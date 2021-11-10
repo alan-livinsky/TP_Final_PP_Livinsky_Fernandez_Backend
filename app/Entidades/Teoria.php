@@ -152,7 +152,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
    
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-    $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo FROM teoria_cursos
+    $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
                                                 WHERE teoria_cursos.id_ejercicio=$id_ejercicio
                                                 AND ($filtroProfesores)
                                                 UNION
@@ -210,6 +210,19 @@ function buscarContenidosTeoricosAvizualizar($id_usuario,$titulo){
     }
 
 }
+
+function buscarNormativaRelacionada($id_ejercicio){
+
+    $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+    $consulta = $accesoDatos->prepararConsulta("SELECT nombre,url from normativa_relacionada_general
+                                                UNION
+                                                SELECT nombre,url FROM normativa_relacionada_especifica
+                                                WHERE id_ejercicio=$id_ejercicio");
+    $consulta->execute();
+    return $consulta->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
 
 

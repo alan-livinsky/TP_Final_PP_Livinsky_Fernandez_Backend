@@ -90,7 +90,16 @@ function retornarListaTeoriaVisualizar($request,$response,$args){
 
     $response->getBody()->write(json_encode($contenidosAVisualizar));
     return $response->withHeader('Content-type','application/json');
+}
 
+function retornarNormativaRelacionada($request,$response,$args){
+    $id_ejercicio=$request->getBody();
+    $id_ejercicio=json_decode($id_ejercicio);
+
+    $normativaRelacionada=buscarNormativaRelacionada($id_ejercicio);
+
+    $response->getBody()->write(json_encode($normativaRelacionada));
+    return $response->withHeader('Content-type','application/json');
 }
 
 
