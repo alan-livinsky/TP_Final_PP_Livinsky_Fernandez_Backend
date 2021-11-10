@@ -137,7 +137,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
             
         }
 
-        var_dump($filtroProfesores);
+        //var_dump($filtroProfesores);
 
         $test="SELECT titulo FROM teoria_cursos
                     WHERE id_ejercicio=$id_ejercicio
@@ -146,7 +146,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
                     SELECT titulo FROM teoria_sistema
                     WHERE id_ejercicio=$id_ejercicio";
 
-        var_dump($test);
+        //var_dump($test);
 
     }
 
@@ -156,7 +156,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
                                                 WHERE teoria_cursos.id_ejercicio=$id_ejercicio
                                                 AND ($filtroProfesores)
                                                 UNION
-                                                SELECT teoria_sistema.titulo FROM teoria_sistema
+                                                SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
                                                 WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
     
     $consulta->execute();
