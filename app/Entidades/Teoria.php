@@ -150,7 +150,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
 
     }
 
-   
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
     $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
                                                 WHERE teoria_cursos.id_ejercicio=$id_ejercicio
@@ -162,7 +161,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
     $consulta->execute();
 
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
-
 }
 
 function buscarContenidosTeoricosAvizualizar($id_usuario,$titulo){
