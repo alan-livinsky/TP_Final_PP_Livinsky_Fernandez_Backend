@@ -199,7 +199,8 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
         $consulta = $accesoDatos->prepararConsulta(" SELECT teoria_cursos.titulo,
                                                             teoria_cursos.contenido,
                                                             usuarios.nombre,
-                                                            usuarios.apellido 
+                                                            usuarios.apellido,
+                                                            usuarios.id_usuario
                                                     FROM teoria_cursos,usuarios
                                                     WHERE ($filtroProfesores)
                                                     AND teoria_cursos.titulo='$titulo'
