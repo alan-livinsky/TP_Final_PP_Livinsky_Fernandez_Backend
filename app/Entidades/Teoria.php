@@ -170,7 +170,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
         $consulta = $accesoDatos->prepararConsulta("SELECT titulo,contenido 
                                                     FROM teoria_cursos
                                                     WHERE teoria_cursos.id_usuario=$id_usuario
-                                                    AND titulo=$titulo");
+                                                    AND titulo='$titulo'");
         $consulta->execute();
 
         if($consulta->rowCount()>0){
