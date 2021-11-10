@@ -216,7 +216,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
 
     $consulta=null;
 
-    $consulta = $accesoDatos->prepararConsulta("SELECT titulo,contenido,
+    $consulta = $accesoDatos->prepararConsulta("SELECT titulo,contenido
                                                 FROM teoria_sistema
                                                 WHERE titulo='$titulo'");   
     $consulta->execute();
