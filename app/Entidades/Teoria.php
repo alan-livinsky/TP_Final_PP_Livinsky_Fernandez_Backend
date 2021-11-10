@@ -167,14 +167,9 @@ function buscarContenidosTeoricosAvizualizar($id_usuario,$titulo,$tipo){
 
     if($tipo=="Profesor"){
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-        $consulta = $accesoDatos->prepararConsulta(" SELECT teoria_cursos.titulo,
-                                                            teoria_cursos.contenido,
-                                                            usuarios.nombre,
-                                                            usuarios.apellido 
-                                                    FROM teoria_cursos,usuarios
-                                                    WHERE ($filtroProfesores)
-                                                    AND teoria_cursos.titulo='$titulo'
-                                                    AND teoria_cursos.id_usuario=usuarios.id_usuario;");
+        $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.contenido, 
+                                                    FROM teoria_cursos
+                                                    WHERE teoria_cursos.id_usuario=$id_usuario");
         $consulta->execute();
 
         if($consulta->rowCount()>0){
