@@ -110,57 +110,60 @@ function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 }
 
 
-function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio){
+function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
 
-    //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
-    $curso=buscarCursoAlumno($id_usuario);
-    
-    $id_curso=$curso[0]['id_curso'];
+    if($tipo=="Alumno"){
 
-    $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
+        //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
+        $curso=buscarCursoAlumno($id_usuario);
+        
+            $id_curso=$curso[0]['id_curso'];
 
-    $filtroProfesores="";
+        $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
 
-    if(count($listaProfesores)==1){
-        $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
-    }
+        $filtroProfesores="";
 
-
-    if(count($listaProfesores)>1){
-
-        for($i=0;$i<count($listaProfesores);$i++){
-            $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
-
-            if($i<(count($listaProfesores)-1)){
-                $filtroProfesores=$filtroProfesores." OR ";
-            }
-            
+        if(count($listaProfesores)==1){
+            $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
         }
 
-        //var_dump($filtroProfesores);
+        if(count($listaProfesores)>1){
+            for($i=0;$i<count($listaProfesores);$i++){
+                $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
 
-        $test="SELECT titulo FROM teoria_cursos
-                    WHERE id_ejercicio=$id_ejercicio
-                    AND ($filtroProfesores)
-                    UNION
-                    SELECT titulo FROM teoria_sistema
-                    WHERE id_ejercicio=$id_ejercicio";
+                if($i<(count($listaProfesores)-1)){
+                    $filtroProfesores=$filtroProfesores." OR ";
+                }
+                
+            }
+        }
 
-        //var_dump($test);
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+        $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
+                                                    WHERE teoria_cursos.id_ejercicio=$id_ejercicio
+                                                    AND ($filtroProfesores)
+                                                    UNION
+                                                    SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
+                                                    WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
+        
+        $consulta->execute();
 
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-    $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
-                                                WHERE teoria_cursos.id_ejercicio=$id_ejercicio
-                                                AND ($filtroProfesores)
-                                                UNION
-                                                SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
-                                                WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
-    
-    $consulta->execute();
+    if($tipo=="Profesor"){
+        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+        $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
+                                                    WHERE teoria_cursos.id_ejercicio=$id_ejercicio
+                                                    AND teoria_cursos.id_usuario=$id_usuario
+                                                    UNION
+                                                    SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
+                                                    WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
+        
+        $consulta->execute();
 
-    return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
