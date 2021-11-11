@@ -91,7 +91,7 @@ function retornarbuscarContenidosTeoricosAvisualizar($request,$response,$args){
 
     $contenidosAVisualizar=buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo);
 
-    if(count($contenidosAVisualizar==0)){
+    if(count($contenidosAVisualizar)==0){
         return $response->withStatus(401)
                         ->withHeader('Content-Type','text/html');   
     }
