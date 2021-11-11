@@ -147,9 +147,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
                                                     SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
                                                     WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
         $consulta->execute();
-
-        var_dump($consulta);
-
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
