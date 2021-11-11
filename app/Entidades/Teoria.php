@@ -112,6 +112,8 @@ function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
 
 function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
 
+    $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
     if($tipo=="Alumno"){
 
         //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
@@ -138,7 +140,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
             }
         }
 
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
                                                     WHERE teoria_cursos.id_ejercicio=$id_ejercicio
                                                     AND ($filtroProfesores)
@@ -152,7 +153,6 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
     }
 
     if($tipo=="Profesor"){
-        $accesoDatos = Acceso_a_datos::obtenerConexionBD();
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
                                                     WHERE teoria_cursos.id_ejercicio=$id_ejercicio
                                                     AND teoria_cursos.id_usuario=$id_usuario
