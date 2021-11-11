@@ -91,6 +91,8 @@ function retornarbuscarContenidosTeoricosAvisualizar($request,$response,$args){
 
     $contenidosAVisualizar=buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo);
 
+    var_dump($contenidosAVisualizar);
+
     $response->getBody()->write(json_encode($contenidosAVisualizar));
     return $response->withHeader('Content-type','application/json');
 }
