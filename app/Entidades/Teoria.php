@@ -130,6 +130,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
         }
 
         if(count($listaProfesores)>1){
+            $filtroProfesores="AND ";
             for($i=0;$i<count($listaProfesores);$i++){
                 $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
 
@@ -140,16 +141,9 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
             }
         }
 
-        var_dump("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
-                  WHERE teoria_cursos.id_ejercicio=$id_ejercicio
-                  AND ($filtroProfesores)
-                  UNION
-                  SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
-                  WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
-
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
                                                     WHERE teoria_cursos.id_ejercicio=$id_ejercicio
-                                                    AND ($filtroProfesores)
+                                                    $filtroProfesores
                                                     UNION
                                                     SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
                                                     WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
