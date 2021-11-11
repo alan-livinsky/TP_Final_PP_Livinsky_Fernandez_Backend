@@ -14,9 +14,8 @@ use Firebase\JWT\JWT;
         $usuario=buscar_usuario($buscar['email'],$buscar['password']);
 
         if($usuario==false){
-           return $response
-                        ->withStatus(401)
-                        ->withHeader('Content-Type', 'text/html');
+           return $response ->withStatus(401)
+                            ->withHeader('Content-Type','text/html');                       
         }
         else{
             $privateKey=$_ENV['JWT_SECRET'];
