@@ -149,12 +149,13 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
             }
         }
 
+        /*
         var_dump("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
         WHERE teoria_cursos.id_ejercicio=$id_ejercicio $filtroProfesores
         UNION
         SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
         WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
-
+*/
 
 
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
