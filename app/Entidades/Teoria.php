@@ -126,7 +126,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
         $filtroProfesores="";
 
         if(count($listaProfesores)==1){
-            $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
+            $filtroProfesores="AND (teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
         }
 
         if(count($listaProfesores)>1){
@@ -136,6 +136,9 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
 
                 if($i<(count($listaProfesores)-1)){
                     $filtroProfesores=$filtroProfesores." OR ";
+                }
+                else{
+                    $filtroProfesores=$filtroProfesores.")";
                 }
                 
             }
