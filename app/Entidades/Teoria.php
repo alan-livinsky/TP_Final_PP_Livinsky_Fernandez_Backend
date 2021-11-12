@@ -126,7 +126,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
         $filtroProfesores="";
 
         if(count($listaProfesores)==1){
-            $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
+            $filtroProfesores="AND (teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
         }
 
         if(count($listaProfesores)>1){
@@ -155,7 +155,7 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
         UNION
         SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
         WHERE teoria_sistema.id_ejercicio=$id_ejercicio");
-        */
+*/
 
 
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
@@ -206,7 +206,6 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
         
         $filtroProfesores="";
 
-        /*
         for($i=0;$i<count($listaProfesores);$i++){
             $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
 
@@ -214,28 +213,8 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
                 $filtroProfesores=$filtroProfesores." OR ";
             }  
         }
-        */
-
-
-        if(count($listaProfesores)==1){
-            $filtroProfesores="teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
-        }
-
-        //$contador=count($listaProfesores);
-
-       
-        for($i=0;$i<count($listaProfesores);$i++){
-            $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
-
-            if($i<(count($listaProfesores)-1)){
-                $filtroProfesores=$filtroProfesores." OR ";
-            }  
-        }
-
 
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-
-
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,
                                                             teoria_cursos.contenido,
                                                             usuarios.nombre,
