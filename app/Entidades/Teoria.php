@@ -197,8 +197,18 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
             }  
         }
 
+        var_dump("SELECT teoria_cursos.titulo,
+        teoria_cursos.contenido,
+        usuarios.nombre,
+        usuarios.apellido,
+        usuarios.id_usuario
+FROM teoria_cursos,usuarios
+WHERE ($filtroProfesores)
+AND teoria_cursos.titulo='$titulo'
+AND teoria_cursos.id_usuario=usuarios.id_usuario;");
+
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
-        $consulta = $accesoDatos->prepararConsulta(" SELECT teoria_cursos.titulo,
+        $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,
                                                             teoria_cursos.contenido,
                                                             usuarios.nombre,
                                                             usuarios.apellido,
