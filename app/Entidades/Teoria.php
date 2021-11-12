@@ -254,7 +254,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
         usuarios.apellido,
         usuarios.id_usuario
 FROM teoria_cursos,usuarios
-WHERE ($filtroProfesores)
+WHERE $filtroProfesores
 AND teoria_cursos.titulo='$titulo'
 AND teoria_cursos.id_usuario=usuarios.id_usuario;");
 
