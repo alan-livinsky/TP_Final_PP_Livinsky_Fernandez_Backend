@@ -218,8 +218,10 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
 
 
         if(count($listaProfesores)==1){
-            $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
+            $filtroProfesores="teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
         }
+
+        //$contador=count($listaProfesores);
 
        
         for($i=0;$i<count($listaProfesores);$i++){
@@ -232,6 +234,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
 
 
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
+
 
         $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,
                                                             teoria_cursos.contenido,
