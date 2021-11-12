@@ -206,6 +206,7 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
         
         $filtroProfesores="";
 
+        /*
         for($i=0;$i<count($listaProfesores);$i++){
             $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
 
@@ -213,6 +214,37 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
                 $filtroProfesores=$filtroProfesores." OR ";
             }  
         }
+        */
+
+
+        if(count($listaProfesores)==1){
+            $filtroProfesores="AND teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."'";
+        }
+
+        if(count($listaProfesores)>1){
+            $filtroProfesores="AND ";
+            for($i=0;$i<count($listaProfesores);$i++){
+                if($i==0){
+                    $filtroProfesores=$filtroProfesores."(teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
+                }
+                else{
+                    $filtroProfesores=$filtroProfesores."teoria_cursos.id_usuario=".$listaProfesores[$i]['id_usuario']."";
+                }
+
+                if($i<(count($listaProfesores)-1)){
+                    $filtroProfesores=$filtroProfesores." OR ";
+                }
+                else{
+                    $filtroProfesores=$filtroProfesores.")";
+                }
+                
+            }
+        }
+
+
+
+
+
 
         $accesoDatos = Acceso_a_datos::obtenerConexionBD();
 
