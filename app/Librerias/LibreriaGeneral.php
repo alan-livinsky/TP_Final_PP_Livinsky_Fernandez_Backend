@@ -6,5 +6,4 @@ function obtenerFechaActual(){
     return $fechaActual;
 }
 
-
 ?>

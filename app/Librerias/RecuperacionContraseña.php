@@ -137,7 +137,7 @@ function prepararEmailDeRecuperacion($tokensDeSeguridad){
                                         <tbody>
                                             <tr>
                                                 <td align="center" style="background:#f0b13c;">
-                                                    <img src="https://tp-final-pp-liv-ferz-frontend.herokuapp.com/img/CabeceraEmail.png"
+                                                    <img src="https://final-pp-liv-ferz-frontend.herokuapp.com/img/CabeceraEmail.png"
                                                         alt="" width="600" style="height:auto;display:block;">
                                                 </td>
                                             </tr>

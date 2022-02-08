@@ -212,7 +212,6 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
                 }  
             }
     
-          
             $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,
                                                                 teoria_cursos.contenido,
                                                                 usuarios.nombre,
