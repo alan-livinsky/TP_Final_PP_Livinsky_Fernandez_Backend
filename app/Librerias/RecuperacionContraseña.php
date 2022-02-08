@@ -40,7 +40,7 @@ function enviarEmailDeRecuperacion($request,$response,$args){
         $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH'); 
         $mail->addAddress($email,'Usuario');                 
         //Contenido
-        $mail->Subject = 'Recuperacion de acceso a cuenta';
+        $mail->Subject = 'Recuperación de acceso a cuenta.';
         $mail->Body=$contenidoEmailRecuperacion;
         $mail->isHTML(true);
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
@@ -114,8 +114,8 @@ function generarTokensEmailRecuperacion($email){
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD();
     $consulta=$accesoDatos->prepararConsulta("INSERT INTO solicitudes_recuperar_contraseña 
-                                            VALUES
-                                            (default,'$email','$selector','$token','$fechaVencimiento')");
+                                              VALUES
+                                              (default,'$email','$selector','$token','$fechaVencimiento')");
     $consulta->execute();
 
     $consulta=null;
@@ -152,17 +152,17 @@ function prepararEmailDeRecuperacion($tokensDeSeguridad){
                                                                 <td style="padding:0 0 36px 0;color:#153643;">
                                                                     <h1
                                                                         style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">
-                                                                        Solicitud de recuperacion de contraseña.</h1>
+                                                                        Solicitud de recuperación de contraseña.</h1>
                                                                     <p
                                                                         style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
                                                                         Le enviamos este correo porque hemos recibido una solicitud de
-                                                                        recuperacion de contraseña para esta cuenta de correo electronico.
-                                                                        Por favor utilice el enlace provisto a continuacion para restaurar su contraseña.
-                                                                        El mismo tendra una validez de 24hs.
+                                                                        recuperación de contraseña para esta cuenta de correo electrónico.
+                                                                        Por favor utilice el enlace provisto a continuación para restaurar su contraseña.
+                                                                        El mismo tendrá una validez de 24hs.
                                                                     </p>
                                                                     <p
                                                                         style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                                        <a href="'.$urlRecuperacion.'">Recuperar Contraseña</a>
+                                                                        <a href="'.$urlRecuperacion.'">Recuperar Contraseña.</a>
                                                                     </p>
                                                                 </td>
                                                             </tr>
@@ -180,7 +180,7 @@ function prepararEmailDeRecuperacion($tokensDeSeguridad){
                                                                 <td style="padding:0;width:50%;" align="left">
                                                                     <p
                                                                         style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
-                                                                        SAE-SH - Por favor no responda a este correo electronico.</p>
+                                                                        SAE-SH - Por favor no responda a este correo electrónico.</p>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
