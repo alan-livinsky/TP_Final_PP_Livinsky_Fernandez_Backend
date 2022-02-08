@@ -145,9 +145,7 @@ function prepararEmailDeRecuperacion($tokensDeSeguridad){
                     
                                             <tr style="height:500px;">
                                                 <td style="padding:36px 30px 42px 30px;">
-                                                    <table role="presentation"
-                                                        style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
-                                                        <h1 style="color:#153643">SAE-SH</h1>
+                                                    <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
                                                         <tbody>
                                                             <tr>
                                                                 <td style="padding:0 0 36px 0;color:#153643;">
@@ -173,14 +171,14 @@ function prepararEmailDeRecuperacion($tokensDeSeguridad){
                                             </tr>
                     
                                             <tr>
-                                                <td style="padding:30px;background:#f38a28;">
+                                                <td style="padding:30px;background:black;">
                                                     <table role="presentation"
                                                         style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
                                                         <tbody>
                                                             <tr>
                                                                 <td style="padding:0;width:50%;" align="left">
                                                                     <p
-                                                                        style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+                                                                        style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:orange;">
                                                                         SAE-SH - Por favor no responda a este correo electrónico.</p>
                                                                 </td>
                                                             </tr>
