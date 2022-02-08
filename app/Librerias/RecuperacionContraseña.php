@@ -40,7 +40,8 @@ function enviarEmailDeRecuperacion($request,$response,$args){
         $mail->setFrom('SAESHitbeltran@gmail.com','SAE-SH'); 
         $mail->addAddress($email,'Usuario');                 
         //Contenido
-        $mail->Subject = 'Recuperación de acceso a cuenta.';
+        $mail->Subject = utf8_decode('Recuperación de acceso a cuenta.'); //El decode es para que tome el tilde.
+        $mail->CharSet = 'UTF-8';
         $mail->Body=$contenidoEmailRecuperacion;
         $mail->isHTML(true);
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
