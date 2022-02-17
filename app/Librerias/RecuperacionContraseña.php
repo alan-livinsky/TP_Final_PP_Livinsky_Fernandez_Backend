@@ -33,7 +33,7 @@ function enviarEmailDeRecuperacion($request,$response,$args){
         $mail->Host='smtp.gmail.com';                       
         $mail->SMTPAuth=true;                                 
         $mail->Username='SAESHitbeltran@gmail.com';         
-        $mail->Password='uredibhblnowjwpo'; //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
+        $mail->Password='lanlmetythogahgl'; //SMTP contraseña de aplicacion (autentificacion en 2 pasos)
         $mail->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;      
         $mail->Port=465;     
         //Recipientes
