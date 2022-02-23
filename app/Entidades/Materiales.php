@@ -1,6 +1,5 @@
 <?php
 
- 
     function buscar_lista_materiales(){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD();
         $consulta=$accesoDatos->prepararConsulta("SELECT nombre FROM materiales");
@@ -35,7 +34,6 @@
         $consulta->execute();
 
         return $estadoCreacion="200";
-
     }
 
 ?>
