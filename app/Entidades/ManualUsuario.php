@@ -2,7 +2,7 @@
 
     function buscarManuales($opcion){
         $accesoDatos=Acceso_a_datos::obtenerConexionBD();
-        $consulta=$accesoDatos->prepararConsulta("SELECT * FROM explicaciones_aplicacion,ejercicios
+        $consulta=$accesoDatos->prepararConsulta("SELECT url_video FROM explicaciones_aplicacion,ejercicios
                                                   WHERE ejercicios.nombre_ejercicio='$opcion'
                                                   AND explicaciones_aplicacion.id_ejercicio=ejercicios.id_ejercicio");
         $consulta->execute();
