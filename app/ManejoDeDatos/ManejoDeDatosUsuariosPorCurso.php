@@ -7,8 +7,6 @@
         $jsonCursos=$request->getBody();
         $CursosAsociar=json_decode($jsonCursos);
 
-        //var_dump($CursosAsociar);
-
         $insertPreparado="INSERT INTO usuarios_por_curso values";
 
         for($i=0;$i<count($CursosAsociar);$i++){
@@ -21,8 +19,6 @@
             }
         }
 
-        //echo $insertPreparado;
-      
         $estadoAsociacion=asociarProfesorCurso($insertPreparado);
         $response->getBody()->write(Json_encode($estadoAsociacion));                                    
         return $response->withHeader('Content-type','application/json');

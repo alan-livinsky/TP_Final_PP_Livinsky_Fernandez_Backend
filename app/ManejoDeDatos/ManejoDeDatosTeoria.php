@@ -2,7 +2,6 @@
 
 //SE MANEJAN LOS DATOS TANTO DE LA TEORIA DEL SISTEMA COMO DE LA TEORIA DEL CURSO.
 
-
    //MANEJO DE BUSQUEDA GENERAL DE LISTA DE TEORIA PARA EL EDITOR
     function retornarListaTeoriasEditor($request,$response,$args){
         $id_usuario=$request->getBody();
@@ -63,57 +62,55 @@
     }
     
 
-//APOYO TEORICO
-function retornarListaOpcionesBarraApoyo($request,$response,$args){
-    $datosUsuario=$request->getBody();
-    $datosUsuario=json_decode($datosUsuario);
+    //APOYO TEORICO
+    function retornarListaOpcionesBarraApoyo($request,$response,$args){
+        $datosUsuario=$request->getBody();
+        $datosUsuario=json_decode($datosUsuario);
 
-    $id_usuario=$datosUsuario->id_usuario;
-    $id_ejercicio=$datosUsuario->id_ejercicio;
-    $tipo=$datosUsuario->tipo;
+        $id_usuario=$datosUsuario->id_usuario;
+        $id_ejercicio=$datosUsuario->id_ejercicio;
+        $tipo=$datosUsuario->tipo;
 
-    $listaContenidoBarraApoyo=buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo);
-    //var_dump($listaContenidoBarraApoyo);
+        $listaContenidoBarraApoyo=buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo);
+        //var_dump($listaContenidoBarraApoyo);
 
-    $response->getBody()->write(json_encode($listaContenidoBarraApoyo));
-    return $response->withHeader('Content-type','application/json');
-}
-
-function retornarbuscarContenidosTeoricosAvisualizar($request,$response,$args){
-    $datosUsuario=$request->getBody();
-    $datosUsuario=json_decode($datosUsuario);
-
-    $id_usuario=$datosUsuario->id_usuario;
-    $titulo=$datosUsuario->titulo;
-    $tipo=$datosUsuario->tipo;
-
-    //$id_ejercicio=$datosUsuario->id_ejercicio;
-
-    $contenidosAVisualizar=buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo);
-
-    if(count($contenidosAVisualizar)==0){
-        return $response->withStatus(401)
-                        ->withHeader('Content-Type','text/html');   
+        $response->getBody()->write(json_encode($listaContenidoBarraApoyo));
+        return $response->withHeader('Content-type','application/json');
     }
 
-    $response->getBody()->write(json_encode($contenidosAVisualizar));
-    return $response->withHeader('Content-type','application/json');
-}
+    function retornarbuscarContenidosTeoricosAvisualizar($request,$response,$args){
+        $datosUsuario=$request->getBody();
+        $datosUsuario=json_decode($datosUsuario);
 
-function retornarNormativaRelacionada($request,$response,$args){
-    $ejercicio=$request->getBody();
-    $ejercicio=json_decode($ejercicio);
+        $id_usuario=$datosUsuario->id_usuario;
+        $titulo=$datosUsuario->titulo;
+        $tipo=$datosUsuario->tipo;
 
-    $id_ejercicio=$ejercicio->id_ejercicio;
+        //$id_ejercicio=$datosUsuario->id_ejercicio;
+
+        $contenidosAVisualizar=buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo);
+
+        if(count($contenidosAVisualizar)==0){
+            return $response->withStatus(401)
+                            ->withHeader('Content-Type','text/html');   
+        }
+
+        $response->getBody()->write(json_encode($contenidosAVisualizar));
+        return $response->withHeader('Content-type','application/json');
+    }
+
+    function retornarNormativaRelacionada($request,$response,$args){
+        $ejercicio=$request->getBody();
+        $ejercicio=json_decode($ejercicio);
+
+        $id_ejercicio=$ejercicio->id_ejercicio;
 
 
-    $normativaRelacionada=buscarNormativaRelacionada($id_ejercicio);
+        $normativaRelacionada=buscarNormativaRelacionada($id_ejercicio);
 
-    $response->getBody()->write(json_encode($normativaRelacionada));
-    return $response->withHeader('Content-type','application/json');
-}
-
-
+        $response->getBody()->write(json_encode($normativaRelacionada));
+        return $response->withHeader('Content-type','application/json');
+    }
 
 
 ?>
