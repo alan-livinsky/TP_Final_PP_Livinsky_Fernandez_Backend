@@ -34,7 +34,7 @@
     require __DIR__ . '/Entidades/Materiales.php';
     require __DIR__ . '/Entidades/UsuariosPorCurso.php';
     require __DIR__ . '/Entidades/Teoria.php';
-    require __DIR__ . '/Entidades/ManualUsuario';
+    require __DIR__ . '/Entidades/ManualUsuario.php';
 
     require __DIR__ . '/Librerias/RecuperacionContraseña.php';
     require __DIR__ . '/Librerias/LibreriaGeneral.php';
