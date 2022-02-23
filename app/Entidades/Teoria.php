@@ -105,10 +105,8 @@ function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
                                                     AND id_usuario=$id_usuario");
         $consulta->execute();
         return $consulta;
-    }
-   
+    } 
 }
-
 
 function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
 
@@ -229,7 +227,6 @@ function buscarContenidosTeoricosAvisualizar($id_usuario,$titulo,$tipo){
         }
     }
 
-    
     //SI NO ENCUENTRA LA TEORIA EN TEORIA CURSOS LA BUSCA DEL SISTEMA
 
     $consulta=null;

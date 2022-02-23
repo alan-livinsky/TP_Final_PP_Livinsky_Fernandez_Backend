@@ -124,7 +124,3 @@ use Firebase\JWT\JWT;
         $response->getBody()->write(Json_encode($estado));                                    
         return $response->withHeader('Content-type','application/json');  
     }
-
-
-
-  

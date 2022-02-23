@@ -1,9 +1,6 @@
 <?php
 
 function busquedaSimple($tabla,$campoCondicion,$dato){
-
-    //ACA IRIA UN FILTRO POR TIPO DE DATO
-
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("SELECT * FROM $tabla WHERE $campoCondicion='$dato'");
     $consulta->execute();
@@ -17,7 +14,6 @@ function eliminacionSimple($tabla,$campo,$condicion,$datoAcomparar,$tipoDeDato){
 
     $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
     $consulta=$accesoDatos->prepararConsulta("DELETE FROM $tabla WHERE $campo $condicion $datoAcomparar");
-    //echo "DELETE FROM $tabla WHERE $condicion";
     $consulta->execute();
 }
 
