@@ -108,6 +108,7 @@ function actualizarContenidoTeoriaCursos($datosTeoriaEditar){
     } 
 }
 
+//BUSCAR TITULOS DE TEORIAS QUE SE PUEDEN VISUALIZAR
 function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
 
     $accesoDatos = Acceso_a_datos::obtenerConexionBD();
@@ -116,12 +117,11 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
 
         //LAS SIGUIENTES FUNCIONES SE ENCUENTRAN EN UsuariosPorCurso.php
         $curso=buscarCursoAlumno($id_usuario);
-        
-            $id_curso=$curso[0]['id_curso'];
-
+        $id_curso=$curso[0]['id_curso'];
         $listaProfesores=buscarProfesoresAsociadosACurso($id_curso);
 
         $filtroProfesores="";
+        $consulta="";
 
         if(count($listaProfesores)==1){
             $filtroProfesores="AND (teoria_cursos.id_usuario='".$listaProfesores[0]['id_usuario']."')";
@@ -142,16 +142,20 @@ function buscarListaOpcionesBarraApoyo($id_usuario,$id_ejercicio,$tipo){
                 }
                 else{
                     $filtroProfesores=$filtroProfesores.")";
-                }
-                
+                } 
             }
-        }
 
-        $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
-                                                    WHERE teoria_cursos.id_ejercicio=$id_ejercicio $filtroProfesores
-                                                    UNION
-                                                    SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
-                                                    WHERE teoria_sistema.id_ejercicio=$id_ejercicio");                                    
+            $consulta = $accesoDatos->prepararConsulta("SELECT teoria_cursos.titulo,teoria_cursos.tipo FROM teoria_cursos
+                                                        WHERE teoria_cursos.id_ejercicio=$id_ejercicio $filtroProfesores
+                                                        UNION
+                                                        SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
+                                                        WHERE teoria_sistema.id_ejercicio=$id_ejercicio");        
+        }
+        else {
+            $consulta = $accesoDatos->prepararConsulta("SELECT teoria_sistema.titulo,teoria_sistema.tipo FROM teoria_sistema
+                                                        WHERE teoria_sistema.id_ejercicio=$id_ejercicio");       
+        }
+                          
         $consulta->execute();
         //var_dump($consulta);
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
