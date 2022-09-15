@@ -37,6 +37,16 @@ use Firebase\JWT\JWT;
             //Tambien se encripta automaticamente en base64url  
             $response->getBody()->write(json_encode($token_creado));
 
+            // $cookies = new \Slim\Psr7\Cookies();
+            // $cookies->setDefaults(['hostonly' => true, 'secure' => true, 'httponly' => true, 'samesite' => 'Lax']);
+            // $cookies->set('MyCookieName', ['value' => '', 'samesite' => 'Strict']); // this way I can ovveride the samesite attribute for this cookie only
+            // $response=$response->withHeader('Set-Cookie', $cookies->toHeaders());
+            // unset($cookies);
+
+
+
+
+
             $setcookies = new \Slim\Psr7\Cookies();
             $setcookies->set('auth',[
                     'value' => $token_creado, 
@@ -51,8 +61,8 @@ use Firebase\JWT\JWT;
             );
             // $setcookies->set('tracking', "$value");
 
-            $response->withHeader('Set-Cookie', $setcookies->toHeaders());
-            return $response->withHeader('Content-type','application/json');
+            // $response->withHeader('Set-Cookie', $setcookies->toHeaders());
+            return $response->withHeader('Content-type','application/json')->withHeader('Set-Cookie', $setcookies->toHeaders());
         }
     }
 
