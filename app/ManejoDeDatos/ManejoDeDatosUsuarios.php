@@ -52,11 +52,11 @@ use Firebase\JWT\JWT;
                     'value' => $token_creado, 
                     'expires' => time() + 3600, 
                     'path' => '/',
-                    'domain' => 'https://tp-final-pp-liv-ferz-backend.herokuapp.com/',
+                    // 'domain' => 'https://tp-final-pp-liv-ferz-backend.herokuapp.com/',
                     'httponly' => true,
                     'hostonly' => false,
                     'secure' => true,
-                    'samesite' => 'lax'
+                    // 'samesite' => 'lax'
                 ]
             );
             // $setcookies->set('tracking', "$value");
