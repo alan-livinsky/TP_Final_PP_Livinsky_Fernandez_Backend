@@ -37,7 +37,7 @@ use Firebase\JWT\JWT;
             //Tambien se encripta automaticamente en base64url  
             $response->getBody()->write(json_encode($token_creado));
 
-            $response->cookies->set('token', array(
+            $response->$cookies->set('token', array(
                 'value' => $token_creado,
                 'domain' => 'https://tp-final-pp-liv-ferz-backend.herokuapp.com/',
                 'path' => '/',
