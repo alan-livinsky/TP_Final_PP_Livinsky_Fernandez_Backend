@@ -49,7 +49,7 @@ use Firebase\JWT\JWT;
                     'samesite' => 'lax'
                 ]
             );
-            $setcookies->set('tracking', "$value");
+            // $setcookies->set('tracking', "$value");
 
             $response->withHeader('Set-Cookie', $setcookies->toHeaders());
             return $response->withHeader('Content-type','application/json');
