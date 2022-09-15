@@ -9,7 +9,7 @@ use Firebase\JWT\JWT;
 
   function mantenerAccesoPagina($request,$response,$args){
     $cookies = new \Slim\Psr7\Cookies($request->getCookieParams());
-    echo "cookie value is: " . $cookies->get('auth');
+    var_dump("cookie value is: " . $cookies->get('auth'));
     //El token llega por el header,autorization bearer.
     $JWT = $request->getBody();
 
