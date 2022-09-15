@@ -34,8 +34,6 @@
         $buscarHash->execute();
         $hash=$buscarHash->fetchAll(PDO::FETCH_ASSOC);
 
-
-
         if (password_verify($password,$hash[0]['password'])){
             $password=$hash[0]['password'];
 
