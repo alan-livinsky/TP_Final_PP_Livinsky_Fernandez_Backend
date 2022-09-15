@@ -51,6 +51,9 @@
     $errorHandler=$errorMiddleware->getDefaultErrorHandler();
     $errorHandler->forceContentType('application/json');
 
+    $cookies = new \Slim\Psr7\Cookies($request->getCookieParams());
+    echo "cookie value is: " . $cookies->get('auth');
+
     //Middleware <<Validacion JWT - tuupola/slim-jwt-auth>>
     //Automaticamente decodifica el token y lo guarda en $request->get_getAttribute("token");
     $app->add(new Tuupola\Middleware\JwtAuthentication([
