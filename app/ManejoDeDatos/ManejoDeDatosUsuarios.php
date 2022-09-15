@@ -37,15 +37,21 @@ use Firebase\JWT\JWT;
             //Tambien se encripta automaticamente en base64url  
             $response->getBody()->write(json_encode($token_creado));
 
-            $response->$cookies->set('token', array(
-                'value' => $token_creado,
-                'domain' => 'https://tp-final-pp-liv-ferz-backend.herokuapp.com/',
-                'path' => '/',
-                'expires' => time() + 3600,
-                'secure' => true,
-                'httponly' => true
-            ));
-
+            $setcookies = new Slim\Http\Cookies();
+            $setcookies->set('auth',[
+                    'value' => $token_creado, 
+                    'expires' => time() + 3600, 
+                    'path' => '/',
+                    'domain' => 'https://tp-final-pp-liv-ferz-backend.herokuapp.com/',
+                    'httponly' => true,
+                    'hostonly' => false,
+                    'secure' => true,
+                    'samesite' => 'lax'
+                ]
+            );
+            $setcookies->set('tracking', "$value");
+            
+            $response->withHeader('Set-Cookie', $setcookies->toHeaders());
             return $response->withHeader('Content-type','application/json');
         }
     }
