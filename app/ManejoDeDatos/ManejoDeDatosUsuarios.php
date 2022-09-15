@@ -37,7 +37,7 @@ use Firebase\JWT\JWT;
             //Tambien se encripta automaticamente en base64url  
             $response->getBody()->write(json_encode($token_creado));
 
-            $setcookies = new Slim\Http\Cookies();
+            $setcookies = new \Slim\Psr7\Cookies();
             $setcookies->set('auth',[
                     'value' => $token_creado, 
                     'expires' => time() + 3600, 
@@ -50,7 +50,7 @@ use Firebase\JWT\JWT;
                 ]
             );
             $setcookies->set('tracking', "$value");
-            
+
             $response->withHeader('Set-Cookie', $setcookies->toHeaders());
             return $response->withHeader('Content-type','application/json');
         }
