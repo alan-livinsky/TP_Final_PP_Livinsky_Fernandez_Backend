@@ -100,7 +100,7 @@ use Firebase\JWT\JWT;
 
         if($validacionDeContraseñaAntigua){
             $estadoactualizacion=actualizar_contraseña($datosUsuario['sub'],$contraseñas->nueva,);
-            echo $estadoactualizacion;
+            // echo $estadoactualizacion;
             $response->getBody()->write(Json_encode($estadoactualizacion));                                    
             return $response->withHeader('Content-type','application/json');
         }
@@ -131,7 +131,7 @@ use Firebase\JWT\JWT;
        
             if($consultaEmailSolicitante){
                 $accesoDatos=Acceso_a_datos::obtenerConexionBD(); 
-                echo $contraseña;
+                // echo $contraseña;
 
                 $consulta=$accesoDatos->prepararConsulta("UPDATE usuarios 
                                                           SET password='$contraseña'
